@@ -4,6 +4,12 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 import authRoutes from "./routes/authRoutes";
+import cleanupActionRoutes from "./routes/cleanupActionRoutes";
+import reportRoutes from "./routes/reportRoutes";
+import verificationRoutes from "./routes/verificationRoutes";
+import sortingRoutes from "./routes/sortingRoutes";
+import recyclingRoutes from "./routes/recyclingRoutes";
+import volunteerRoutes from "./routes/volunteerRoutes";
 
 dotenv.config();
 
@@ -14,6 +20,12 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/cleanup-actions", cleanupActionRoutes);
+app.use("/api/reports", reportRoutes);
+app.use("/api/verifications", verificationRoutes);
+app.use("/api/sorting", sortingRoutes);
+app.use("/api/recycling", recyclingRoutes);
+app.use("/api/volunteers", volunteerRoutes);
 
 mongoose
     .connect(process.env.MONGO_URI!)
