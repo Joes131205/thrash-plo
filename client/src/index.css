@@ -12,18 +12,21 @@
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
+  --weight-extra-bold: 800;
 
   /* color */
-  --background: "#FAFAFA";
-  --primary-color: "#FFFFFF";
-  --secondary-color: "#84DCC6";
-  --accent-color: "#A5FFD6";
-  --text-primary: "#2E2E2E";
-  --text-secondary: "#707070";
-  --text-desc: "#BFBFBF";
-  --text-flow: "#3D2B1F";
-  --rank-background: "#E8F6F2";
-  --footer-background: "#0E0E0E";
+  --background: #fafafa;
+  --primary-color: #ffffff;
+  --secondary-color: #84dcc6;
+  --accent-color: #a5ffd6;
+  --separator-color: #f6f6f6;
+  --text-primary: #2e2e2e;
+  --text-secondary: #707070;
+  --text-desc: #bfbfbf;
+  --text-flow: #3d2b1f;
+  --stroke-primary: #d1d5db;
+  --rank-background: #e8f6f2;
+  --footer-background: #0e0e0e;
 
   /* fontsize */
   --dp-10: 10px;
@@ -38,9 +41,15 @@
   --dp-28: 28px;
   --dp-30: 30px;
   --dp-32: 32px;
+  --dp-34: 34px;
+  --dp-36: 36px;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     padding: 0;
     margin: 0;
