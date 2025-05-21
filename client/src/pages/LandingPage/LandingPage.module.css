@@ -174,3 +174,30 @@
   background: transparent;
 }
 /* END JENIS SAMPAH */
+
+/* BANNER LAPOR SAMPAH */
+.laporSampah {
+  margin-top: 160px;
+  background-color: var(--accent-color);
+  padding: 50px 40px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottomContent {
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.bottomContent img {
+  background: transparent;
+  width: 191px;
+  height: 191px;
+}
+/* END BANNER LAPOR SAMPAH */

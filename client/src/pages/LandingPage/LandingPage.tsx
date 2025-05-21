@@ -3,7 +3,7 @@ import { ImgFlow, ImgLanding, ImgLogo, ImgMisiKita, ImgPantai, ImgSungai, ImgTum
 import styles from "./LandingPage.module.css";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 import StakeholderBox from "@/components/molecules/stakeholderBox/stakeholderBox";
-import { IcKomunitas, IcMitra, IcPemerintah, IcWarga } from "@/assets/icons";
+import { IcGarbage, IcKomunitas, IcMitra, IcPemerintah, IcTruck, IcWarga } from "@/assets/icons";
 
 export default function LandingPage() {
   const isSmall = true;
@@ -28,8 +28,8 @@ export default function LandingPage() {
           </li>
         </ul>
         <div className={styles.btnContainer}>
-          <ButtonMain btnText={"Login"} btnColor={false} colorBorder={true} textColor={false} />
-          <ButtonMain btnText={"Warga"} btnColor={true} colorBorder={false} textColor={true} />
+          <ButtonMain btnText={"Login"} btnColor={false} colorBorder={true} textColor={"default"} />
+          <ButtonMain btnText={"Warga"} btnColor={true} colorBorder={false} textColor={"white"} />
         </div>
       </div>
       {/* END NAVBAR */}
@@ -110,6 +110,23 @@ export default function LandingPage() {
         </div>
       </div>
       {/* END JENIS SAMPAH */}
+
+      {/* BANNER LAPOR SAMPAH */}
+      <div className={styles.laporSampah}>
+        <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }}>
+          Bersama Atasi Sampah, Mulai Hari Ini
+        </h2>
+        <p className={styles.descMisi} style={{ width: isSmall ? 780 : 0, textAlign: "center" }}>
+          Laporkan titik sampah, koordinasikan aksi bersih-bersih, dan bantu wujudkan sistem pengelolaan sampah yang kolaboratif dan berkelanjutan.
+        </p>
+
+        <div className={styles.bottomContent}>
+          <img src={IcGarbage} alt="Icon Sampah" />
+          <ButtonMain btnText={"Lapor Sekarang"} btnColor={false} colorBorder={false} textColor={"green"} weightFont={true} />
+          <img src={IcTruck} alt="Icon Truck" style={{ width: 250, height: 250 }} />
+        </div>
+      </div>
+      {/* END BANNER LAPOR SAMPAH */}
     </div>
   );
 }
