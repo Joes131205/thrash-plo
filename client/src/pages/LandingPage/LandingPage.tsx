@@ -1,5 +1,5 @@
 import React from "react";
-import { ImgLanding, ImgLogo, ImgMisiKita } from "@/assets/images";
+import { ImgFlow, ImgLanding, ImgLogo, ImgMisiKita } from "@/assets/images";
 import styles from "./LandingPage.module.css";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 import StakeholderBox from "@/components/molecules/stakeholderBox/stakeholderBox";
@@ -56,7 +56,7 @@ export default function LandingPage() {
           <h2 className={styles.titleMisi}>Misi Kita</h2>
           <p className={styles.descMisi}>
             TrashPlo hadir dengan misi untuk membangun ekosistem kolaboratif dalam pengelolaan sampah yang efektif, transparan, dan berkelanjutan. Kami berfokus pada pemberdayaan masyarakat untuk aktif melaporkan titik-titik sampah liar,
-            mendukung komunitas lingkungan dalam aksi bersih, serta mempercepat koordinasi dengan instansi pemerintah untuk penanganan sampah yang lebih responsif.{" "}
+            mendukung komunitas lingkungan dalam aksi bersih, serta mempercepat koordinasi dengan instansi pemerintah untuk penanganan sampah yang lebih responsif
           </p>
         </div>
         <div className={styles.imgRight}>
@@ -71,7 +71,7 @@ export default function LandingPage() {
           <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }}>
             Siapa Saja Yang Terlibat?
           </h2>
-          <p className={styles.descMisi}>TrashPlo hadir melalui kolaborasi untuk menciptakan lingkungan yang lebih bersih dan berkelanjutan.</p>
+          <p className={styles.descMisi}>TrashPlo hadir melalui kolaborasi untuk menciptakan lingkungan yang lebih bersih dan berkelanjutan</p>
         </div>
         <div className={styles.listStakeholder}>
           <StakeholderBox icon={IcWarga} title="Warga" description="Melaporkan titik sampah liar dan berpartisipasi aktif dalam aksi bersih" />
@@ -81,6 +81,19 @@ export default function LandingPage() {
         </div>
       </div>
       {/* END STAKEHOLDER */}
+
+      {/* FLOW THRASHPLO */}
+      <div className={styles.flow}>
+        <div className={styles.upperText}>
+          <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }}>
+            Bagaimana ThrashPlo Bekerja?
+          </h2>
+          <p className={styles.descMisi}>Lapor sekarang, selamatkan lingkungan hari ini</p>
+        </div>
+
+        <img src={ImgFlow} alt="Flow ThrashPlo" />
+      </div>
+      {/* END FLOW THRASHPLO */}
     </div>
   );
 }

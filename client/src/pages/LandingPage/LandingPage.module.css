@@ -133,3 +133,13 @@
   gap: 17px;
 }
 /* END STAKEHOLDER */
+
+/* FLOW */
+.flow {
+  margin-top: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* END FLOW */
