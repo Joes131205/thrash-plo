@@ -2,8 +2,12 @@ import React from "react";
 import { ImgLanding, ImgLogo, ImgMisiKita } from "@/assets/images";
 import styles from "./LandingPage.module.css";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
+import StakeholderBox from "@/components/molecules/stakeholderBox/stakeholderBox";
+import { IcKomunitas, IcMitra, IcPemerintah, IcWarga } from "@/assets/icons";
 
 export default function LandingPage() {
+  const isSmall = true;
+
   return (
     <div id="home">
       {/* NAVBAR */}
@@ -60,6 +64,23 @@ export default function LandingPage() {
         </div>
       </div>
       {/* END MISI KITA */}
+
+      {/* STAKEHOLDER */}
+      <div className={styles.stakeholder}>
+        <div className={styles.upperText}>
+          <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }}>
+            Siapa Saja Yang Terlibat?
+          </h2>
+          <p className={styles.descMisi}>TrashPlo hadir melalui kolaborasi untuk menciptakan lingkungan yang lebih bersih dan berkelanjutan.</p>
+        </div>
+        <div className={styles.listStakeholder}>
+          <StakeholderBox icon={IcWarga} title="Warga" description="Melaporkan titik sampah liar dan berpartisipasi aktif dalam aksi bersih" />
+          <StakeholderBox icon={IcKomunitas} title="Komunitas" description="Verifikasi laporan warga, mengatur aksi bersih, dan mengajukan pengangkutan ke DLH" />
+          <StakeholderBox icon={IcPemerintah} title="Pemerintah (DLH)" description="Menyetujui permintaan penanganan sampah dan mengatur pengangkutan residu  " />
+          <StakeholderBox icon={IcMitra} title="Mitra Daur Ulang" description="Membeli sampah terpilah dari komunitas untuk didaur ulang sekaligus mendorong ekonomi sirkular" />
+        </div>
+      </div>
+      {/* END STAKEHOLDER */}
     </div>
   );
 }
