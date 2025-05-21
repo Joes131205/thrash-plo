@@ -1,5 +1,5 @@
 import React from "react";
-import { ImgFlow, ImgLanding, ImgLogo, ImgMisiKita } from "@/assets/images";
+import { ImgFlow, ImgLanding, ImgLogo, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan } from "@/assets/images";
 import styles from "./LandingPage.module.css";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 import StakeholderBox from "@/components/molecules/stakeholderBox/stakeholderBox";
@@ -85,15 +85,31 @@ export default function LandingPage() {
       {/* FLOW THRASHPLO */}
       <div className={styles.flow}>
         <div className={styles.upperText}>
-          <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }}>
-            Bagaimana ThrashPlo Bekerja?
-          </h2>
+          <h2 style={{ fontSize: isSmall ? "36px" : "50px", background: "transparent" }}>Bagaimana ThrashPlo Bekerja?</h2>
           <p className={styles.descMisi}>Lapor sekarang, selamatkan lingkungan hari ini</p>
         </div>
 
         <img src={ImgFlow} alt="Flow ThrashPlo" />
       </div>
       {/* END FLOW THRASHPLO */}
+
+      {/* JENIS SAMPAH */}
+      <div className={styles.jenisSampah}>
+        <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }}>
+          Satu Laporanmu, Satu Langkah Menuju <br />
+          Indonesia yang Lebih Bersih
+        </h2>
+        <p className={styles.descMisi}>Lapor sekarang, selamatkan lingkungan hari ini</p>
+
+        <div className={styles.imgSampah}>
+          <img src={ImgTumpukan} alt="Tumpukan Sampah" style={{ height: "575px" }} />
+          <div className={styles.rightImg}>
+            <img src={ImgSungai} alt="Sampah Sungai" />
+            <img src={ImgPantai} alt="Sampah Pantai" />
+          </div>
+        </div>
+      </div>
+      {/* END JENIS SAMPAH */}
     </div>
   );
 }
