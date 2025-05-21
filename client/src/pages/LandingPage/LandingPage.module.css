@@ -70,3 +70,40 @@
   height: 110px;
 }
 /* END HOME */
+
+/* MISI KITA */
+.misiKita {
+  display: flex;
+  flex-direction: row;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 125px;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.textLeft {
+  width: 50%;
+}
+
+.titleMisi {
+  font-weight: var(--weight-semibold);
+  font-size: 50px;
+  color: var(--text-primary);
+  margin-bottom: 34px;
+}
+
+.descMisi {
+  font-weight: var(--weight-medium);
+  font-size: var(--dp-18);
+  color: var(--text-secondary);
+}
+
+.imgRight {
+  width: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* END MISI KITA */
