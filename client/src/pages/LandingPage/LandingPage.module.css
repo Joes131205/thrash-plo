@@ -201,3 +201,113 @@
   height: 191px;
 }
 /* END BANNER LAPOR SAMPAH */
+
+/* AKSI BERSIH */
+.aksiBersih {
+  margin-top: 199px;
+  margin-bottom: 131px;
+}
+/* END AKSI BERSIH */
+
+/* FOOTER */
+.footer {
+  background-color: var(--footer-background);
+  padding: 50px 40px;
+}
+
+.upperFooter {
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+}
+
+.leftFooter {
+  width: 50%;
+}
+
+.footerDesc {
+  color: rgba(250, 250, 250, 0.8);
+  margin-top: 36px;
+}
+
+.listSosmed {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-top: 136px;
+}
+
+.iconWrap {
+  padding: 8px;
+  border-radius: 100px;
+  background-color: #fcfcfc;
+  width: 43px;
+  height: 43px;
+}
+
+.iconWrap:hover {
+  background-color: var(--accent-color);
+  cursor: pointer;
+}
+
+.rightFooter {
+  width: 50%;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 46px;
+}
+
+.topName {
+  color: rgba(250, 250, 250, 0.9);
+  font-weight: var(--weight-semibold);
+  margin-bottom: 60px;
+}
+
+.listBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bottomName {
+  color: rgba(250, 250, 250, 0.8);
+  font-weight: var(--weight-regular);
+}
+
+.bottomName:hover {
+  /* opacity: 0.8; */
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.line {
+  width: 100%;
+  background-color: var(--primary-color);
+  height: 1px;
+  opacity: 0.3;
+  margin-top: 27px;
+  margin-bottom: 18px;
+}
+
+.bottomFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bottomFooter p {
+  color: rgba(250, 250, 250, 0.8);
+}
+
+.bottomFooter p:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.rightBottom {
+  display: flex;
+  flex-direction: row;
+  gap: 110px;
+}
+/* END FOOTER */

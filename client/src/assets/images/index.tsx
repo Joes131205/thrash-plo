@@ -7,5 +7,6 @@ import ImgFlow from "../images/img-flow.png";
 import ImgTumpukan from "../images/img-tumpukan.png";
 import ImgSungai from "../images/img-sungai.png";
 import ImgPantai from "../images/img-pantai.png";
+import ImgWhiteLogo from "../images/img-white-logo.png";
 
-export { ImgLogo, ImgLandingLeft, ImgLandingRight, ImgLanding, ImgMisiKita, ImgFlow, ImgPantai, ImgSungai, ImgTumpukan };
+export { ImgLogo, ImgLandingLeft, ImgLandingRight, ImgLanding, ImgMisiKita, ImgFlow, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo };

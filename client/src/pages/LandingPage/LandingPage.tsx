@@ -1,9 +1,9 @@
 import React from "react";
-import { ImgFlow, ImgLanding, ImgLogo, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan } from "@/assets/images";
+import { ImgFlow, ImgLanding, ImgLogo, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo } from "@/assets/images";
 import styles from "./LandingPage.module.css";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 import StakeholderBox from "@/components/molecules/stakeholderBox/stakeholderBox";
-import { IcGarbage, IcKomunitas, IcMitra, IcPemerintah, IcTruck, IcWarga } from "@/assets/icons";
+import { IcFacebook, IcGarbage, IcInsta, IcKomunitas, IcMitra, IcPemerintah, IcTiktok, IcTruck, IcWarga } from "@/assets/icons";
 
 export default function LandingPage() {
   const isSmall = true;
@@ -18,7 +18,7 @@ export default function LandingPage() {
             <a href="#home">Home</a>
           </li>
           <li className={styles.listItem}>
-            <a href="#our-mission">Misi Kita</a>
+            <a href="#misi-kita">Misi Kita</a>
           </li>
           <li className={styles.listItem}>
             <a href="#lapor-sampah">Laporkan Sampah</a>
@@ -51,7 +51,7 @@ export default function LandingPage() {
       {/* END BANNER */}
 
       {/* MISI KITA */}
-      <div className={styles.misiKita}>
+      <div className={styles.misiKita} id="misi-kita">
         <div className={styles.textLeft}>
           <h2 className={styles.titleMisi}>Misi Kita</h2>
           <p className={styles.descMisi}>
@@ -112,7 +112,7 @@ export default function LandingPage() {
       {/* END JENIS SAMPAH */}
 
       {/* BANNER LAPOR SAMPAH */}
-      <div className={styles.laporSampah}>
+      <div className={styles.laporSampah} id="lapor-sampah">
         <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }}>
           Bersama Atasi Sampah, Mulai Hari Ini
         </h2>
@@ -127,6 +127,82 @@ export default function LandingPage() {
         </div>
       </div>
       {/* END BANNER LAPOR SAMPAH */}
+
+      {/* AKSI BERSIH */}
+      <div className={styles.aksiBersih} id="aksi-bersih">
+        <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px", textAlign: "center" }}>
+          Aksi Nyata untuk Gapai Indonesia Bersih!
+        </h2>
+        <p className={styles.descMisi} style={{ textAlign: "center" }}>
+          Jadilah pahlawan lingkungan, mulai dari lokasi terdekatmu
+        </p>
+
+        <div className={styles.listAksi}></div>
+      </div>
+      {/* END AKSI BERSIH */}
+
+      {/* FOOTER */}
+      <div className={styles.footer}>
+        <div className={styles.upperFooter}>
+          <div className={styles.leftFooter}>
+            <div className={styles.textLogo}>
+              <img src={ImgWhiteLogo} alt="Logo ThrashPlo" />
+              <p className={styles.footerDesc}>Platform kolaboratif untuk menghubungkan masyarakat, komunitas, dan pemerintah dalam melaporkan, membersihkan, dan mengelola sampah secara berkelanjutan.</p>
+            </div>
+            <div className={styles.listSosmed}>
+              <div className={styles.iconWrap}>
+                <img src={IcFacebook} alt="Icon Facebook" />
+              </div>
+              <div className={styles.iconWrap}>
+                <img src={IcInsta} alt="Icon Instagram" />
+              </div>
+              <div className={styles.iconWrap}>
+                <img src={IcTiktok} alt="Icon Tiktok" />
+              </div>
+            </div>
+          </div>
+          <div className={styles.rightFooter}>
+            <div>
+              <h5 className={styles.topName}>PERUSAHAAN</h5>
+              <p className={styles.bottomName}>Tentang Kami</p>
+            </div>
+            <div>
+              <h5 className={styles.topName}>NAVIGASI</h5>
+              <div className={styles.listBottom}>
+                <p className={styles.bottomName}>
+                  <a href="#home">Home</a>
+                </p>
+                <p className={styles.bottomName}>
+                  <a href="#misi-kita">Misi Kita</a>
+                </p>
+                <p className={styles.bottomName}>
+                  <a href="#lapor-sampah">Laporkan Sampah</a>
+                </p>
+                <p className={styles.bottomName}>
+                  <a href="#aksi-bersih">Aksi Bersih</a>
+                </p>
+              </div>
+            </div>
+            <div>
+              <h5 className={styles.topName}>PUSAT BANTUAN</h5>
+              <div className={styles.listBottom}>
+                <p className={styles.bottomName}>Jl. Raya Kb. Jeruk, Kota Jakarta Barat, 11540</p>
+                <p className={styles.bottomName}>support.trashplo@gmail.com</p>
+                <p className={styles.bottomName}>0811-2602-436</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.line}></div>
+        <div className={styles.bottomFooter}>
+          <p>© TrashPlo 2025 | All Right Reserved</p>
+          <div className={styles.rightBottom}>
+            <p>Syarat dan Ketentuan</p>
+            <p>Kebijakan Privasi</p>
+          </div>
+        </div>
+      </div>
+      {/* END FOOTER */}
     </div>
   );
 }
