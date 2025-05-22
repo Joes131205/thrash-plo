@@ -11,5 +11,6 @@ import IcArrowLeft from "../icons/ic-arrow-left.svg";
 import IcArrowRight from "../icons/ic-arrow-right.svg";
 import IcLocation from "../icons/ic-house.svg";
 import IcSeparator from "../icons/ic-separator.svg";
+import IcCalendar from "../icons/ic-calendar.svg";
 
-export { IcWarga, IcPemerintah, IcMitra, IcKomunitas, IcGarbage, IcTruck, IcFacebook, IcInsta, IcTiktok, IcArrowLeft, IcArrowRight, IcLocation, IcSeparator };
+export { IcWarga, IcPemerintah, IcMitra, IcKomunitas, IcGarbage, IcTruck, IcFacebook, IcInsta, IcTiktok, IcArrowLeft, IcArrowRight, IcLocation, IcSeparator, IcCalendar };

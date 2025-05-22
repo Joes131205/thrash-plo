@@ -204,14 +204,21 @@
 
 /* AKSI BERSIH */
 .aksiBersih {
-  margin-top: 199px;
-  margin-bottom: 131px;
+  margin: 180px 0px;
+}
+
+.listAksi {
+  padding: 0px 40px;
+  margin-top: 82px;
+  display: flex;
+  flex-direction: row;
+  gap: 20;
 }
 /* END AKSI BERSIH */
 
 /* PAHLAWAN */
 .pahlawan {
-  margin-bottom: 121px;
+  margin-bottom: 180px;
   padding-left: 40px;
   padding-right: 40px;
 }

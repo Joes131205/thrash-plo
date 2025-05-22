@@ -1,10 +1,11 @@
 import React from "react";
-import { ImgFlow, ImgHeroOne, ImgHeroThree, ImgHeroTwo, ImgLanding, ImgLogo, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo } from "@/assets/images";
-import styles from "./LandingPage.module.css";
+import { ImgAksiOne, ImgAksiTwo, ImgFlow, ImgHeroOne, ImgHeroThree, ImgHeroTwo, ImgLanding, ImgLogo, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo } from "@/assets/images";
+import { IcArrowLeft, IcArrowRight, IcCalendar, IcFacebook, IcGarbage, IcInsta, IcKomunitas, IcMitra, IcPemerintah, IcTiktok, IcTruck, IcWarga } from "@/assets/icons";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 import StakeholderBox from "@/components/molecules/stakeholderBox/stakeholderBox";
-import { IcArrowLeft, IcArrowRight, IcFacebook, IcGarbage, IcInsta, IcKomunitas, IcMitra, IcPemerintah, IcTiktok, IcTruck, IcWarga } from "@/assets/icons";
 import HeroBox from "@/components/organisms/heroBox/heroBox";
+import AksiBox from "@/components/organisms/aksiBersihBox/aksiBox";
+import styles from "./LandingPage.module.css";
 
 export default function LandingPage() {
   const isSmall = true;
@@ -138,7 +139,27 @@ export default function LandingPage() {
           Jadilah pahlawan lingkungan, mulai dari lokasi terdekatmu
         </p>
 
-        <div className={styles.listAksi}></div>
+        <div className={styles.listAksi}>
+          <AksiBox image={ImgAksiOne} iconCalendar={IcCalendar} date="5 Juni 2025" title="Bersih Bersama di Muara Angke: Dari Warga untuk Laut Kita" volunteerCount={200} volunteerTarget={250} onClick={() => console.log("Card diklik!")} />
+          <AksiBox
+            image={ImgAksiTwo}
+            iconCalendar={IcCalendar}
+            date="20 Agustus 2025"
+            title="Jakarta Pesisir Tanpa Sampah – Kolaborasi untuk Laut Bersih"
+            volunteerCount={50}
+            volunteerTarget={100}
+            onClick={() => console.log("Card diklik!")}
+          />
+          <AksiBox
+            image={ImgAksiOne}
+            iconCalendar={IcCalendar}
+            date="15 Desember 2025"
+            title="Gerakan Bersih Kali Angke - Untuk Jakarta Mengalir Lebih Baik"
+            volunteerCount={100}
+            volunteerTarget={150}
+            onClick={() => console.log("Card diklik!")}
+          />
+        </div>
       </div>
       {/* END AKSI BERSIH */}
 
