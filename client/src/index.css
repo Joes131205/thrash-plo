@@ -22,10 +22,15 @@
   --separator-color: #f6f6f6;
   --text-primary: #2e2e2e;
   --text-secondary: #707070;
+  --text-ternary: #808080;
   --text-desc: #bfbfbf;
   --text-flow: #3d2b1f;
   --stroke-primary: #d1d5db;
+  --stroke-secondary: #d9d9d9;
   --rank-background: #e8f6f2;
+  --rank-point: #092548;
+  --rank-pts: #f3f19c;
+  --stats: #323a57;
   --footer-background: #0e0e0e;
 
   /* fontsize */

@@ -209,6 +209,65 @@
 }
 /* END AKSI BERSIH */
 
+/* PAHLAWAN */
+.pahlawan {
+  margin-bottom: 121px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.boxPahlawan {
+  background-color: var(--rank-background);
+  border-radius: 10px;
+  padding: 55px 80px;
+  margin-top: 50px;
+}
+
+.upperBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.textTop {
+  color: var(--text-ternary);
+  font-weight: var(--weight-semibold);
+  font-size: var(--dp-28);
+}
+
+.slider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.wrapArrow {
+  background-color: var(--primary-color);
+  border-radius: 100px;
+  border: 1px solid var(--stroke-secondary);
+  padding: 8px;
+  transition: background-color 0.3s;
+}
+
+.wrapArrow:hover {
+  background-color: var(--accent-color);
+}
+
+.periodText {
+  font-size: 15px;
+  color: var(--text-ternary);
+}
+
+.listPahlawan {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+/* END PAHLAWAN */
+
 /* FOOTER */
 .footer {
   background-color: var(--footer-background);
@@ -243,6 +302,7 @@
   background-color: #fcfcfc;
   width: 43px;
   height: 43px;
+  transition: background-color 0.3s;
 }
 
 .iconWrap:hover {

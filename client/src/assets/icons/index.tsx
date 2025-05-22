@@ -7,5 +7,9 @@ import IcGarbage from "../icons/ic-garbage.svg";
 import IcTiktok from "../icons/ic-tiktok-logo.svg";
 import IcInsta from "../icons/ic-insta-logo.svg";
 import IcFacebook from "../icons/ic-fb-logo.svg";
+import IcArrowLeft from "../icons/ic-arrow-left.svg";
+import IcArrowRight from "../icons/ic-arrow-right.svg";
+import IcLocation from "../icons/ic-house.svg";
+import IcSeparator from "../icons/ic-separator.svg";
 
-export { IcWarga, IcPemerintah, IcMitra, IcKomunitas, IcGarbage, IcTruck, IcFacebook, IcInsta, IcTiktok };
+export { IcWarga, IcPemerintah, IcMitra, IcKomunitas, IcGarbage, IcTruck, IcFacebook, IcInsta, IcTiktok, IcArrowLeft, IcArrowRight, IcLocation, IcSeparator };

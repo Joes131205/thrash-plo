@@ -1,9 +1,10 @@
 import React from "react";
-import { ImgFlow, ImgLanding, ImgLogo, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo } from "@/assets/images";
+import { ImgFlow, ImgHeroOne, ImgHeroThree, ImgHeroTwo, ImgLanding, ImgLogo, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo } from "@/assets/images";
 import styles from "./LandingPage.module.css";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 import StakeholderBox from "@/components/molecules/stakeholderBox/stakeholderBox";
-import { IcFacebook, IcGarbage, IcInsta, IcKomunitas, IcMitra, IcPemerintah, IcTiktok, IcTruck, IcWarga } from "@/assets/icons";
+import { IcArrowLeft, IcArrowRight, IcFacebook, IcGarbage, IcInsta, IcKomunitas, IcMitra, IcPemerintah, IcTiktok, IcTruck, IcWarga } from "@/assets/icons";
+import HeroBox from "@/components/organisms/heroBox/heroBox";
 
 export default function LandingPage() {
   const isSmall = true;
@@ -140,6 +141,75 @@ export default function LandingPage() {
         <div className={styles.listAksi}></div>
       </div>
       {/* END AKSI BERSIH */}
+
+      {/* PAHLAWAN */}
+      <div className={styles.pahlawan} id="pahlawan">
+        <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px", textAlign: "center" }}>
+          Pahlawan Lingkungan Teratas
+        </h2>
+        <p className={styles.descMisi} style={{ textAlign: "center" }}>
+          Warga paling aktif dalam melaporkan titik sampah untuk lingkungan yang lebih bersih
+        </p>
+
+        <div className={styles.boxPahlawan}>
+          <div className={styles.upperBox}>
+            <h3 className={styles.textTop}>Top 3 Pahlawan</h3>
+            <div className={styles.slider}>
+              <div className={styles.wrapArrow}>
+                <a href="">
+                  <img src={IcArrowLeft} alt="Arrow Left" />
+                </a>
+              </div>
+              <p className={styles.periodText}>Bulan Ini</p>
+              <div className={styles.wrapArrow}>
+                <a href="">
+                  <img src={IcArrowRight} alt="Arrow Right" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.listPahlawan}>
+            <HeroBox
+              image={ImgHeroOne}
+              name="Ani Sulastri"
+              location="Keramat Jati"
+              points="100pts"
+              rank="01."
+              stats={[
+                { value: 12, label: "Laporan" },
+                { value: 8, label: "Relawan" },
+                { value: 80, label: "Sampah" },
+              ]}
+            />
+            <HeroBox
+              image={ImgHeroTwo}
+              name="Budi Santoso"
+              location="Kota Bogor"
+              points="80pts"
+              rank="02."
+              stats={[
+                { value: 10, label: "Laporan" },
+                { value: 8, label: "Relawan" },
+                { value: 50, label: "Sampah" },
+              ]}
+            />
+            <HeroBox
+              image={ImgHeroThree}
+              name="Ahmat Suseno"
+              location="Kabupaten Malang"
+              points="60pts"
+              rank="03."
+              stats={[
+                { value: 8, label: "Laporan" },
+                { value: 5, label: "Relawan" },
+                { value: 10, label: "Sampah" },
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+      {/* END PAHLAWAN */}
 
       {/* FOOTER */}
       <div className={styles.footer}>
