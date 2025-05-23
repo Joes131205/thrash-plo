@@ -93,7 +93,7 @@ export default function LandingPage() {
     <div id="home">
       {/* NAVBAR */}
       <div className={styles.navbar}>
-        <img src={ImgLogo} alt="Logo ThrashPlo" />
+        <img src={ImgLogo} alt="Logo ThrashPlo" style={{ cursor: "pointer" }} onClick={() => navigate("/")} />
         <ul className={styles.listNavbar}>
           <li className={styles.listItem}>
             <a href="#home">Home</a>

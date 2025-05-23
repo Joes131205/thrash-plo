@@ -26,7 +26,7 @@ const styles: Record<string, React.CSSProperties> = {
     outline: "none",
     backgroundColor: "transparent",
     color: "var(--stroke-secondary)",
-    fontSize: "16px",
+    fontSize: "14px",
     flex: 1,
   },
   eyeIcon: {

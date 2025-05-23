@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import { IcEmail, IcFacebookLog, IcGarbage, IcGoogleLog, IcLogoSmall, IcPassword, IcSeparatorLog } from "@/assets/icons";
 import { useState } from "react";
@@ -6,6 +7,7 @@ import TextInput from "@/components/molecules/textInput/textInput";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const isSmall = true;
 
   const [email, setEmail] = useState("");
@@ -21,7 +23,7 @@ export default function LoginPage() {
       <div className={styles.container}>
         {/* LEFT CONTENT */}
         <div className={styles.leftContent}>
-          <img src={IcLogoSmall} alt="Logo ThrashPlo" style={{ marginBottom: 11 }} />
+          <img src={IcLogoSmall} alt="Logo ThrashPlo" style={{ marginBottom: 10, cursor: "pointer" }} onClick={() => navigate("/")} />
           <div>
             <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "32px" : "50px" }}>
               Selamat Datang Kembali

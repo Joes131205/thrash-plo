@@ -23,6 +23,13 @@ import IcSeparatorLog from "../icons/ic-separator-log.svg";
 import IcEmoticon from "../icons/ic-emoticon.svg";
 import IcTelephone from "../icons/ic-telepon.svg";
 import IcKTP from "../icons/ic-ktp.svg";
+import IcPartner from "../icons/ic-partners.svg";
+import IcListNumber from "../icons/ic-listNum.svg";
+import IcMappin from "../icons/ic-mappin.svg";
+import IcPen from "../icons/ic-pen.svg";
+import IcPencil from "../icons/ic-pencil.svg";
+import IcPlus from "../icons/ic-plus.svg";
+import IcPerson from "../icons/ic-person.svg";
 
 export {
   IcWarga,
@@ -50,4 +57,11 @@ export {
   IcEmoticon,
   IcKTP,
   IcTelephone,
+  IcPartner,
+  IcListNumber,
+  IcMappin,
+  IcPen,
+  IcPencil,
+  IcPerson,
+  IcPlus,
 };

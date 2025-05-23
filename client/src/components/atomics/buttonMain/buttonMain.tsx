@@ -32,6 +32,7 @@ export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, 
         ...styles.button,
         backgroundColor: btnColor ? "var(--secondary-color)" : "var(--primary-color)",
         border: colorBorder ? "1.5px solid var(--stroke-primary)" : "none",
+        width: "100%",
       }}
       onClick={onClick}
     >
