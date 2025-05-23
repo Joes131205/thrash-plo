@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { ImgAksiOne, ImgAksiTwo, ImgFlow, ImgHeroOne, ImgHeroThree, ImgHeroTwo, ImgLanding, ImgLogo, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo } from "@/assets/images";
 import { IcArrowLeft, IcArrowRight, IcCalendar, IcFacebook, IcGarbage, IcInsta, IcKomunitas, IcMitra, IcPemerintah, IcTiktok, IcTruck, IcWarga } from "@/assets/icons";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
@@ -8,7 +10,84 @@ import AksiBox from "@/components/organisms/aksiBersihBox/aksiBox";
 import styles from "./LandingPage.module.css";
 
 export default function LandingPage() {
+  const navigate = useNavigate();
   const isSmall = true;
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.3,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    }),
+  };
+
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const containerStagger = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.25,
+      },
+    },
+  };
+
+  const fadeSlideUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (custom: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: custom * 0.3, duration: 0.7, ease: "easeOut" },
+    }),
+  };
+
+  const fadeScale = {
+    hidden: { opacity: 0, scale: 0.85 },
+    visible: (custom: number) => ({
+      opacity: 1,
+      scale: 1,
+      transition: { delay: custom * 0.3, duration: 0.5, ease: "easeOut" },
+    }),
+  };
+
+  const slideLeft = {
+    hidden: { opacity: 0, x: -100 },
+    visible: (custom: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: custom * 0.3, duration: 0.6, ease: "easeOut" },
+    }),
+  };
+
+  const slideRight = {
+    hidden: { opacity: 0, x: 100 },
+    visible: (custom: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: custom * 0.3, duration: 0.6, ease: "easeOut" },
+    }),
+  };
+
+  const popScale = {
+    hidden: { opacity: 0, scale: 0.7 },
+    visible: (custom: number) => ({
+      opacity: 1,
+      scale: 1,
+      transition: { delay: custom * 0.3 + 0.2, duration: 0.5, ease: "easeOut" },
+    }),
+  };
 
   return (
     <div id="home">
@@ -30,137 +109,148 @@ export default function LandingPage() {
           </li>
         </ul>
         <div className={styles.btnContainer}>
-          <ButtonMain btnText={"Login"} btnColor={false} colorBorder={true} textColor={"default"} />
-          <ButtonMain btnText={"Warga"} btnColor={true} colorBorder={false} textColor={"white"} />
+          <ButtonMain btnText={"Login"} btnColor={false} colorBorder={true} textColor={"default"} onClick={() => navigate("/login")} />
+          <ButtonMain btnText={"Warga"} btnColor={true} colorBorder={false} textColor={"white"} onClick={() => navigate("/register")} />
         </div>
       </div>
       {/* END NAVBAR */}
 
       {/* BANNER HOME */}
       <div className={styles.home}>
-        <div className={styles.heading}>
+        <motion.div className={styles.heading} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} custom={0} variants={fadeInUp}>
           <h1 className={styles.title}>SATU SAMPAH, SATU AKSI</h1>
           <p className={styles.desc}>
             TrashPlo menghubungkan warga, pemerintah, dan komunitas peduli lingkungan dalam satu gerakan bersama untuk menciptakan kota yang lebih bersih. Laporkan sampah di sekitarmu, ikuti aksi bersih, dan jadilah bagian dari perubahan
             yang nyata.
           </p>
-        </div>
+        </motion.div>
 
-        <img src={ImgLanding} alt="Image Landing" />
+        <motion.img src={ImgLanding} alt="Image Landing" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} custom={1} variants={fadeInUp} />
       </div>
 
       <div className={styles.separator}></div>
       {/* END BANNER */}
 
       {/* MISI KITA */}
-      <div className={styles.misiKita} id="misi-kita">
-        <div className={styles.textLeft}>
+      <motion.div className={styles.misiKita} id="misi-kita" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
+        <motion.div className={styles.textLeft} custom={0} variants={fadeInUp}>
           <h2 className={styles.titleMisi}>Misi Kita</h2>
           <p className={styles.descMisi}>
             TrashPlo hadir dengan misi untuk membangun ekosistem kolaboratif dalam pengelolaan sampah yang efektif, transparan, dan berkelanjutan. Kami berfokus pada pemberdayaan masyarakat untuk aktif melaporkan titik-titik sampah liar,
             mendukung komunitas lingkungan dalam aksi bersih, serta mempercepat koordinasi dengan instansi pemerintah untuk penanganan sampah yang lebih responsif
           </p>
-        </div>
-        <div className={styles.imgRight}>
+        </motion.div>
+
+        <motion.div className={styles.imgRight} custom={1} variants={fadeInUp}>
           <img src={ImgMisiKita} alt="Misi Kita" className={styles.imgRight} />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       {/* END MISI KITA */}
 
       {/* STAKEHOLDER */}
-      <div className={styles.stakeholder}>
-        <div className={styles.upperText}>
+      <motion.div className={styles.stakeholder} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
+        <motion.div className={styles.upperText} custom={0} variants={fadeInUp}>
           <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }}>
             Siapa Saja Yang Terlibat?
           </h2>
           <p className={styles.descMisi}>TrashPlo hadir melalui kolaborasi untuk menciptakan lingkungan yang lebih bersih dan berkelanjutan</p>
-        </div>
-        <div className={styles.listStakeholder}>
+        </motion.div>
+
+        <motion.div className={styles.listStakeholder} custom={1} variants={fadeInUp}>
           <StakeholderBox icon={IcWarga} title="Warga" description="Melaporkan titik sampah liar dan berpartisipasi aktif dalam aksi bersih" />
           <StakeholderBox icon={IcKomunitas} title="Komunitas" description="Verifikasi laporan warga, mengatur aksi bersih, dan mengajukan pengangkutan ke DLH" />
           <StakeholderBox icon={IcPemerintah} title="Pemerintah (DLH)" description="Menyetujui permintaan penanganan sampah dan mengatur pengangkutan residu  " />
           <StakeholderBox icon={IcMitra} title="Mitra Daur Ulang" description="Membeli sampah terpilah dari komunitas untuk didaur ulang sekaligus mendorong ekonomi sirkular" />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       {/* END STAKEHOLDER */}
 
       {/* FLOW THRASHPLO */}
-      <div className={styles.flow}>
-        <div className={styles.upperText}>
+      <motion.div className={styles.flow} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
+        <motion.div className={styles.upperText} custom={0} variants={fadeInUp}>
           <h2 style={{ fontSize: isSmall ? "36px" : "50px", background: "transparent" }}>Bagaimana ThrashPlo Bekerja?</h2>
           <p className={styles.descMisi}>Lapor sekarang, selamatkan lingkungan hari ini</p>
-        </div>
+        </motion.div>
 
-        <img src={ImgFlow} alt="Flow ThrashPlo" />
-      </div>
+        <motion.img src={ImgFlow} alt="Flow ThrashPlo" custom={1} variants={fadeInUp} />
+      </motion.div>
       {/* END FLOW THRASHPLO */}
 
       {/* JENIS SAMPAH */}
-      <div className={styles.jenisSampah}>
-        <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }}>
+      <motion.div className={styles.jenisSampah} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
+        <motion.h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }} variants={fadeInUp} custom={0}>
           Satu Laporanmu, Satu Langkah Menuju <br />
           Indonesia yang Lebih Bersih
-        </h2>
-        <p className={styles.descMisi}>Lapor sekarang, selamatkan lingkungan hari ini</p>
+        </motion.h2>
 
-        <div className={styles.imgSampah}>
-          <img src={ImgTumpukan} alt="Tumpukan Sampah" style={{ height: "575px" }} />
-          <div className={styles.rightImg}>
-            <img src={ImgSungai} alt="Sampah Sungai" />
-            <img src={ImgPantai} alt="Sampah Pantai" />
-          </div>
-        </div>
-      </div>
+        <motion.p className={styles.descMisi} variants={fadeInUp} custom={1}>
+          Lapor sekarang, selamatkan lingkungan hari ini
+        </motion.p>
+
+        <motion.div className={styles.imgSampah} variants={container} custom={2}>
+          <motion.img src={ImgTumpukan} alt="Tumpukan Sampah" style={{ height: "575px" }} variants={fadeSlideUp} custom={0} />
+          <motion.div className={styles.rightImg}>
+            <motion.img src={ImgSungai} alt="Sampah Sungai" variants={fadeScale} custom={1} />
+            <motion.img src={ImgPantai} alt="Sampah Pantai" variants={fadeScale} custom={2} />
+          </motion.div>
+        </motion.div>
+      </motion.div>
+
       {/* END JENIS SAMPAH */}
 
       {/* BANNER LAPOR SAMPAH */}
-      <div className={styles.laporSampah} id="lapor-sampah">
-        <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }}>
+      <motion.div className={styles.laporSampah} id="lapor-sampah" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }}>
+        <motion.h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px" }} variants={fadeSlideUp} custom={0}>
           Bersama Atasi Sampah, Mulai Hari Ini
-        </h2>
-        <p className={styles.descMisi} style={{ width: isSmall ? 780 : 0, textAlign: "center" }}>
-          Laporkan titik sampah, koordinasikan aksi bersih-bersih, dan bantu wujudkan sistem pengelolaan sampah yang kolaboratif dan berkelanjutan.
-        </p>
+        </motion.h2>
 
-        <div className={styles.bottomContent}>
-          <img src={IcGarbage} alt="Icon Sampah" />
-          <ButtonMain btnText={"Lapor Sekarang"} btnColor={false} colorBorder={false} textColor={"green"} weightFont={true} />
-          <img src={IcTruck} alt="Icon Truck" style={{ width: 250, height: 250 }} />
-        </div>
-      </div>
+        <motion.p className={styles.descMisi} style={{ width: isSmall ? 780 : 0, textAlign: "center" }} variants={fadeSlideUp} custom={1}>
+          Laporkan titik sampah, koordinasikan aksi bersih-bersih, dan bantu wujudkan sistem pengelolaan sampah yang kolaboratif dan berkelanjutan.
+        </motion.p>
+
+        <motion.div className={styles.bottomContent} variants={containerStagger}>
+          <motion.img src={IcGarbage} alt="Icon Sampah" variants={slideLeft} custom={0} />
+          <motion.div variants={popScale} custom={1}>
+            <ButtonMain btnText={"Lapor Sekarang"} btnColor={false} colorBorder={false} textColor={"green"} weightFont={true} />
+          </motion.div>
+          <motion.img src={IcTruck} alt="Icon Truck" style={{ width: 250, height: 250 }} variants={slideRight} custom={2} />
+        </motion.div>
+      </motion.div>
+
       {/* END BANNER LAPOR SAMPAH */}
 
       {/* AKSI BERSIH */}
-      <div className={styles.aksiBersih} id="aksi-bersih">
-        <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px", textAlign: "center" }}>
+      <motion.div
+        className={styles.aksiBersih}
+        id="aksi-bersih"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }} // animasi hanya sekali saat scroll 30% terlihat
+      >
+        <motion.h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px", textAlign: "center" }} custom={0} variants={fadeSlideUp}>
           Aksi Nyata untuk Gapai Indonesia Bersih!
-        </h2>
-        <p className={styles.descMisi} style={{ textAlign: "center" }}>
+        </motion.h2>
+
+        <motion.p className={styles.descMisi} style={{ textAlign: "center" }} custom={1} variants={fadeSlideUp}>
           Jadilah pahlawan lingkungan, mulai dari lokasi terdekatmu
-        </p>
+        </motion.p>
 
         <div className={styles.listAksi}>
-          <AksiBox image={ImgAksiOne} iconCalendar={IcCalendar} date="5 Juni 2025" title="Bersih Bersama di Muara Angke: Dari Warga untuk Laut Kita" volunteerCount={200} volunteerTarget={250} onClick={() => console.log("Card diklik!")} />
-          <AksiBox
-            image={ImgAksiTwo}
-            iconCalendar={IcCalendar}
-            date="20 Agustus 2025"
-            title="Jakarta Pesisir Tanpa Sampah – Kolaborasi untuk Laut Bersih"
-            volunteerCount={50}
-            volunteerTarget={100}
-            onClick={() => console.log("Card diklik!")}
-          />
-          <AksiBox
-            image={ImgAksiOne}
-            iconCalendar={IcCalendar}
-            date="15 Desember 2025"
-            title="Gerakan Bersih Kali Angke - Untuk Jakarta Mengalir Lebih Baik"
-            volunteerCount={100}
-            volunteerTarget={150}
-            onClick={() => console.log("Card diklik!")}
-          />
+          {[...Array(3)].map((_, i) => (
+            <motion.div key={i} custom={i} variants={popScale}>
+              <AksiBox
+                image={i === 0 ? ImgAksiOne : i === 1 ? ImgAksiTwo : ImgAksiOne}
+                iconCalendar={IcCalendar}
+                date={i === 0 ? "5 Juni 2025" : i === 1 ? "20 Agustus 2025" : "15 Desember 2025"}
+                title={i === 0 ? "Bersih Bersama di Muara Angke: Dari Warga untuk Laut Kita" : i === 1 ? "Jakarta Pesisir Tanpa Sampah – Kolaborasi untuk Laut Bersih" : "Gerakan Bersih Kali Angke - Untuk Jakarta Mengalir Lebih Baik"}
+                volunteerCount={i === 0 ? 200 : i === 1 ? 50 : 100}
+                volunteerTarget={i === 0 ? 250 : i === 1 ? 100 : 150}
+                onClick={() => console.log("Card diklik!")}
+              />
+            </motion.div>
+          ))}
         </div>
-      </div>
+      </motion.div>
       {/* END AKSI BERSIH */}
 
       {/* PAHLAWAN */}

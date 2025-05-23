@@ -6,6 +6,8 @@ type ButtonMainProps = {
   colorBorder?: boolean;
   textColor?: "white" | "green" | "default";
   weightFont?: boolean;
+  onClick?: () => void;
+  icon?: string;
 };
 
 const styles: Record<string, React.CSSProperties> = {
@@ -23,7 +25,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
 };
 
-export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, weightFont }: ButtonMainProps) {
+export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, weightFont, onClick, icon }: ButtonMainProps) {
   return (
     <div
       style={{
@@ -31,7 +33,9 @@ export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, 
         backgroundColor: btnColor ? "var(--secondary-color)" : "var(--primary-color)",
         border: colorBorder ? "1.5px solid var(--stroke-primary)" : "none",
       }}
+      onClick={onClick}
     >
+      {icon && <img src={icon} alt="icon" style={{ marginRight: 8, width: 20 }} />}
       <p
         style={{
           ...styles.text,

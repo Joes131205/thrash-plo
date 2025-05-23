@@ -1,0 +1,112 @@
+.wrapper {
+  height: 100vh;
+}
+
+.motionWrapper {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.leftContent {
+  width: 50%;
+  height: 100%;
+  padding: 20px 90px;
+  height: 100vh;
+}
+
+.titleMisi {
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.descMisi {
+  color: #555555;
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+
+.boxInput {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkboxRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 85%;
+}
+
+.checkboxLabel {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkbox {
+  border: 1px solid #d9d9d9;
+  color: #d9d9d9;
+  margin-right: 7px;
+}
+
+.rememberMe {
+  color: #d9d9d9;
+  font-size: 12px;
+}
+
+.forgotPassword {
+  color: var(--secondary-color);
+  font-size: var(--dp-12);
+  font-weight: var(--weight-medium);
+}
+
+.registerText {
+  font-size: 12px;
+  font-weight: var(--weight-medium);
+  color: #bfbfbf;
+  margin-top: 7px;
+}
+
+.registerLink {
+  font-size: 12px;
+  font-weight: var(--weight-semibold);
+  color: var(--secondary-color);
+}
+
+.rightContent {
+  width: 50%;
+  height: 100%;
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 165px 240px;
+}
+
+.textContent {
+  width: 435px;
+  margin-top: 51px;
+}
+
+.title {
+  color: var(--background);
+  font-size: var(--dp-20);
+  font-weight: var(--weight-semibold);
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.desc {
+  color: var(--background);
+  font-size: var(--dp-12);
+  font-weight: var(--weight-regular);
+  opacity: 0.8;
+  text-align: center;
+}

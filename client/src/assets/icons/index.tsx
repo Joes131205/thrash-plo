@@ -12,5 +12,42 @@ import IcArrowRight from "../icons/ic-arrow-right.svg";
 import IcLocation from "../icons/ic-house.svg";
 import IcSeparator from "../icons/ic-separator.svg";
 import IcCalendar from "../icons/ic-calendar.svg";
+import IcEmail from "../icons/ic-email.svg";
+import IcPassword from "../icons/ic-password.svg";
+import IcEyesOpen from "../icons/ic-eyes-open.svg";
+import IcEyesClose from "../icons/ic-eyes-close.svg";
+import IcGoogleLog from "../icons/ic-google.svg";
+import IcFacebookLog from "../icons/ic-fb.svg";
+import IcLogoSmall from "../icons/ic-logo-small.svg";
+import IcSeparatorLog from "../icons/ic-separator-log.svg";
+import IcEmoticon from "../icons/ic-emoticon.svg";
+import IcTelephone from "../icons/ic-telepon.svg";
+import IcKTP from "../icons/ic-ktp.svg";
 
-export { IcWarga, IcPemerintah, IcMitra, IcKomunitas, IcGarbage, IcTruck, IcFacebook, IcInsta, IcTiktok, IcArrowLeft, IcArrowRight, IcLocation, IcSeparator, IcCalendar };
+export {
+  IcWarga,
+  IcPemerintah,
+  IcMitra,
+  IcKomunitas,
+  IcGarbage,
+  IcTruck,
+  IcFacebook,
+  IcInsta,
+  IcTiktok,
+  IcArrowLeft,
+  IcArrowRight,
+  IcLocation,
+  IcSeparator,
+  IcCalendar,
+  IcEmail,
+  IcPassword,
+  IcEyesClose,
+  IcEyesOpen,
+  IcGoogleLog,
+  IcFacebookLog,
+  IcLogoSmall,
+  IcSeparatorLog,
+  IcEmoticon,
+  IcKTP,
+  IcTelephone,
+};
