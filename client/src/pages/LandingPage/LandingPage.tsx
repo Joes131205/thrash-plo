@@ -1,16 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { ImgAksiOne, ImgAksiTwo, ImgFlow, ImgHeroOne, ImgHeroThree, ImgHeroTwo, ImgLanding, ImgLogo, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo } from "@/assets/images";
-import { IcArrowLeft, IcArrowRight, IcCalendar, IcFacebook, IcGarbage, IcInsta, IcKomunitas, IcMitra, IcPemerintah, IcTiktok, IcTruck, IcWarga } from "@/assets/icons";
+import { ImgFlow, ImgHeroOne, ImgHeroThree, ImgHeroTwo, ImgLanding, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan } from "@/assets/images";
+import { IcArrowLeft, IcArrowRight, IcGarbage, IcKomunitas, IcMitra, IcPemerintah, IcTruck, IcWarga } from "@/assets/icons";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 import StakeholderBox from "@/components/molecules/stakeholderBox/stakeholderBox";
 import HeroBox from "@/components/organisms/heroBox/heroBox";
-import AksiBox from "@/components/organisms/aksiBersihBox/aksiBox";
 import styles from "./LandingPage.module.css";
+import Navbar from "@/components/molecules/navbar/navbar";
+import Footer from "@/components/organisms/footer/footer";
 
 export default function LandingPage() {
-  const navigate = useNavigate();
   const isSmall = true;
 
   const fadeInUp = {
@@ -92,27 +91,7 @@ export default function LandingPage() {
   return (
     <div id="home">
       {/* NAVBAR */}
-      <div className={styles.navbar}>
-        <img src={ImgLogo} alt="Logo ThrashPlo" style={{ cursor: "pointer" }} onClick={() => navigate("/")} />
-        <ul className={styles.listNavbar}>
-          <li className={styles.listItem}>
-            <a href="#home">Home</a>
-          </li>
-          <li className={styles.listItem}>
-            <a href="#misi-kita">Misi Kita</a>
-          </li>
-          <li className={styles.listItem}>
-            <a href="#lapor-sampah">Laporkan Sampah</a>
-          </li>
-          <li className={styles.listItem}>
-            <a href="#aksi-bersih">Aksi Bersih</a>
-          </li>
-        </ul>
-        <div className={styles.btnContainer}>
-          <ButtonMain btnText={"Login"} btnColor={false} colorBorder={true} textColor={"default"} onClick={() => navigate("/login")} />
-          <ButtonMain btnText={"Warga"} btnColor={true} colorBorder={false} textColor={"white"} onClick={() => navigate("/register")} />
-        </div>
-      </div>
+      <Navbar />
       {/* END NAVBAR */}
 
       {/* BANNER HOME */}
@@ -219,40 +198,6 @@ export default function LandingPage() {
 
       {/* END BANNER LAPOR SAMPAH */}
 
-      {/* AKSI BERSIH */}
-      <motion.div
-        className={styles.aksiBersih}
-        id="aksi-bersih"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }} // animasi hanya sekali saat scroll 30% terlihat
-      >
-        <motion.h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px", textAlign: "center" }} custom={0} variants={fadeSlideUp}>
-          Aksi Nyata untuk Gapai Indonesia Bersih!
-        </motion.h2>
-
-        <motion.p className={styles.descMisi} style={{ textAlign: "center" }} custom={1} variants={fadeSlideUp}>
-          Jadilah pahlawan lingkungan, mulai dari lokasi terdekatmu
-        </motion.p>
-
-        <div className={styles.listAksi}>
-          {[...Array(3)].map((_, i) => (
-            <motion.div key={i} custom={i} variants={popScale}>
-              <AksiBox
-                image={i === 0 ? ImgAksiOne : i === 1 ? ImgAksiTwo : ImgAksiOne}
-                iconCalendar={IcCalendar}
-                date={i === 0 ? "5 Juni 2025" : i === 1 ? "20 Agustus 2025" : "15 Desember 2025"}
-                title={i === 0 ? "Bersih Bersama di Muara Angke: Dari Warga untuk Laut Kita" : i === 1 ? "Jakarta Pesisir Tanpa Sampah – Kolaborasi untuk Laut Bersih" : "Gerakan Bersih Kali Angke - Untuk Jakarta Mengalir Lebih Baik"}
-                volunteerCount={i === 0 ? 200 : i === 1 ? 50 : 100}
-                volunteerTarget={i === 0 ? 250 : i === 1 ? 100 : 150}
-                onClick={() => console.log("Card diklik!")}
-              />
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-      {/* END AKSI BERSIH */}
-
       {/* PAHLAWAN */}
       <div className={styles.pahlawan} id="pahlawan">
         <h2 className={styles.titleMisi} style={{ fontSize: isSmall ? "36px" : "50px", textAlign: "center" }}>
@@ -323,66 +268,7 @@ export default function LandingPage() {
       {/* END PAHLAWAN */}
 
       {/* FOOTER */}
-      <div className={styles.footer}>
-        <div className={styles.upperFooter}>
-          <div className={styles.leftFooter}>
-            <div className={styles.textLogo}>
-              <img src={ImgWhiteLogo} alt="Logo ThrashPlo" />
-              <p className={styles.footerDesc}>Platform kolaboratif untuk menghubungkan masyarakat, komunitas, dan pemerintah dalam melaporkan, membersihkan, dan mengelola sampah secara berkelanjutan.</p>
-            </div>
-            <div className={styles.listSosmed}>
-              <div className={styles.iconWrap}>
-                <img src={IcFacebook} alt="Icon Facebook" />
-              </div>
-              <div className={styles.iconWrap}>
-                <img src={IcInsta} alt="Icon Instagram" />
-              </div>
-              <div className={styles.iconWrap}>
-                <img src={IcTiktok} alt="Icon Tiktok" />
-              </div>
-            </div>
-          </div>
-          <div className={styles.rightFooter}>
-            <div>
-              <h5 className={styles.topName}>PERUSAHAAN</h5>
-              <p className={styles.bottomName}>Tentang Kami</p>
-            </div>
-            <div>
-              <h5 className={styles.topName}>NAVIGASI</h5>
-              <div className={styles.listBottom}>
-                <p className={styles.bottomName}>
-                  <a href="#home">Home</a>
-                </p>
-                <p className={styles.bottomName}>
-                  <a href="#misi-kita">Misi Kita</a>
-                </p>
-                <p className={styles.bottomName}>
-                  <a href="#lapor-sampah">Laporkan Sampah</a>
-                </p>
-                <p className={styles.bottomName}>
-                  <a href="#aksi-bersih">Aksi Bersih</a>
-                </p>
-              </div>
-            </div>
-            <div>
-              <h5 className={styles.topName}>PUSAT BANTUAN</h5>
-              <div className={styles.listBottom}>
-                <p className={styles.bottomName}>Jl. Raya Kb. Jeruk, Kota Jakarta Barat, 11540</p>
-                <p className={styles.bottomName}>support.trashplo@gmail.com</p>
-                <p className={styles.bottomName}>0811-2602-436</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.line}></div>
-        <div className={styles.bottomFooter}>
-          <p>© TrashPlo 2025 | All Right Reserved</p>
-          <div className={styles.rightBottom}>
-            <p>Syarat dan Ketentuan</p>
-            <p>Kebijakan Privasi</p>
-          </div>
-        </div>
-      </div>
+      <Footer />
       {/* END FOOTER */}
     </div>
   );

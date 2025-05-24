@@ -114,7 +114,7 @@
 
 .navigationButtons {
   display: flex;
-  justify-content: space-between;
-  width: 102%;
   gap: 10px;
+  width: 100%;
+  flex: 1;
 }

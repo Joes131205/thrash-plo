@@ -8,6 +8,8 @@ type ButtonMainProps = {
   weightFont?: boolean;
   onClick?: () => void;
   icon?: string;
+  customStyle?: React.CSSProperties;
+  fullWidth?: boolean;
 };
 
 const styles: Record<string, React.CSSProperties> = {
@@ -25,7 +27,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
 };
 
-export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, weightFont, onClick, icon }: ButtonMainProps) {
+export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, weightFont, onClick, icon, customStyle, fullWidth }: ButtonMainProps) {
   return (
     <div
       style={{
@@ -33,6 +35,8 @@ export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, 
         backgroundColor: btnColor ? "var(--secondary-color)" : "var(--primary-color)",
         border: colorBorder ? "1.5px solid var(--stroke-primary)" : "none",
         width: "100%",
+        flex: fullWidth ? 1 : undefined,
+        ...customStyle,
       }}
       onClick={onClick}
     >

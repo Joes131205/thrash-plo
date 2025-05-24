@@ -13,5 +13,6 @@ import ImgAksiTwo from "../images/img-aksi-2.png";
 import ImgHeroOne from "../images/img-hero-1.png";
 import ImgHeroTwo from "../images/img-hero-2.png";
 import ImgHeroThree from "../images/img-hero-3.png";
+import ImgAksi from "../images/img-aksi.png";
 
-export { ImgLogo, ImgLandingLeft, ImgLandingRight, ImgLanding, ImgMisiKita, ImgFlow, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo, ImgAksiOne, ImgAksiTwo, ImgHeroOne, ImgHeroTwo, ImgHeroThree };
+export { ImgLogo, ImgLandingLeft, ImgLandingRight, ImgLanding, ImgMisiKita, ImgFlow, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo, ImgAksiOne, ImgAksiTwo, ImgHeroOne, ImgHeroTwo, ImgHeroThree, ImgAksi };

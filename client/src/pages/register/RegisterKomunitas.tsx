@@ -37,11 +37,11 @@ export default function RegisterKomunitas() {
   const StepOne = () => {
     return (
       <>
-        <motion.div key={currentStep} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 1 }} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          <TextInput value={name} onChange={(e) => setName(e.target.value)} placeholder="Nama Komunitas" type="name" icon={IcEmoticon} />
-          <TextInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Komunitas" type="email" icon={IcEmail} />
-          <TextInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" icon={IcPassword} />
-        </motion.div>
+        {/* <motion.div key={currentStep} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 1 }} style={{ display: "flex", flexDirection: "column", gap: 12 }}> */}
+        <TextInput value={name} onChange={(e) => setName(e.target.value)} placeholder="Nama Komunitas" type="name" icon={IcEmoticon} />
+        <TextInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email Komunitas" type="email" icon={IcEmail} />
+        <TextInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" icon={IcPassword} />
+        {/* </motion.div> */}
       </>
     );
   };
@@ -49,12 +49,12 @@ export default function RegisterKomunitas() {
   const StepTwo = () => {
     return (
       <>
-        <motion.div key={currentStep} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.8 }} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          <TextInput value={penanggungJawab} onChange={(e) => setPenanggungJawab(e.target.value)} placeholder="Nama Komunitas" type="name" icon={IcPerson} />
-          <TextInput value={telephone} onChange={(e) => setTelephone(e.target.value)} placeholder="Nomor Telepon" type="telephone" icon={IcTelephone} />
-          <TextInput value={alamat} onChange={(e) => setAlamat(e.target.value)} placeholder="Alamat Komunitas" type="alamat" icon={IcMappin} />
-          <TextInput value={tahun} onChange={(e) => setTahun(e.target.value)} placeholder="Tahun Berdiri" type="tahun" icon={IcPen} />
-        </motion.div>
+        {/* <motion.div key={currentStep} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.8 }} style={{ display: "flex", flexDirection: "column", gap: 12 }}> */}
+        <TextInput value={penanggungJawab} onChange={(e) => setPenanggungJawab(e.target.value)} placeholder="Nama Komunitas" type="name" icon={IcPerson} />
+        <TextInput value={telephone} onChange={(e) => setTelephone(e.target.value)} placeholder="Nomor Telepon" type="telephone" icon={IcTelephone} />
+        <TextInput value={alamat} onChange={(e) => setAlamat(e.target.value)} placeholder="Alamat Komunitas" type="alamat" icon={IcMappin} />
+        <TextInput value={tahun} onChange={(e) => setTahun(e.target.value)} placeholder="Tahun Berdiri" type="tahun" icon={IcPen} />
+        {/* </motion.div> */}
       </>
     );
   };
@@ -62,11 +62,11 @@ export default function RegisterKomunitas() {
   const StepThree = () => {
     return (
       <>
-        <motion.div key={currentStep} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.8 }} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          <TextInput value={jmlAnggota} onChange={(e) => setJmlAnggota(e.target.value)} placeholder="Jumlah Anggota Komunitas" type="anggota" icon={IcListNumber} />
-          <TextInput value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="Deskripsi Singkat Komunitas" type="email" icon={IcPencil} />
-          <PictInput icon={IcPlus} />
-        </motion.div>
+        {/* <motion.div key={currentStep} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.8 }} style={{ display: "flex", flexDirection: "column", gap: 12 }}> */}
+        <TextInput value={jmlAnggota} onChange={(e) => setJmlAnggota(e.target.value)} placeholder="Jumlah Anggota Komunitas" type="anggota" icon={IcListNumber} />
+        <TextInput value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="Deskripsi Singkat Komunitas" type="email" icon={IcPencil} />
+        <PictInput icon={IcPlus} />
+        {/* </motion.div> */}
       </>
     );
   };
@@ -106,8 +106,14 @@ export default function RegisterKomunitas() {
 
             <div style={{ width: "85%", marginTop: 35, textAlign: "center", paddingBottom: 20 }}>
               <div className={styles.navigationButtons}>
-                {currentStep > 1 && <ButtonMain btnText="Kembali" btnColor={true} textColor="white" onClick={prevStep} />}
-                {currentStep < 3 ? <ButtonMain btnText="Lanjut" btnColor={true} textColor="white" onClick={nextStep} /> : <ButtonMain btnText="Daftar" btnColor={true} textColor="white" />}
+                {currentStep < 3 ? (
+                  <>
+                    {currentStep > 1 && <ButtonMain btnText="Kembali" btnColor={true} textColor="white" onClick={prevStep} />}
+                    <ButtonMain btnText="Lanjut" btnColor={true} textColor="white" onClick={nextStep} />
+                  </>
+                ) : (
+                  <ButtonMain btnText="Daftar" btnColor={true} textColor="white" fullWidth />
+                )}
               </div>
 
               <div>

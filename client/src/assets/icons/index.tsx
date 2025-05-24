@@ -30,6 +30,10 @@ import IcPen from "../icons/ic-pen.svg";
 import IcPencil from "../icons/ic-pencil.svg";
 import IcPlus from "../icons/ic-plus.svg";
 import IcPerson from "../icons/ic-person.svg";
+import IcMapMini from "../icons/ic-map-mini.svg";
+import IcVolunteer from "../icons/ic-volunteer.svg";
+import IcCheckStatus from "../icons/ic-check.svg";
+import IcCalendarMini from "../icons/ic-calendar-mini.svg";
 
 export {
   IcWarga,
@@ -64,4 +68,8 @@ export {
   IcPencil,
   IcPerson,
   IcPlus,
+  IcMapMini,
+  IcCalendarMini,
+  IcCheckStatus,
+  IcVolunteer,
 };
