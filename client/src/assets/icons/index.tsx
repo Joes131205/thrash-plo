@@ -34,6 +34,8 @@ import IcMapMini from "../icons/ic-map-mini.svg";
 import IcVolunteer from "../icons/ic-volunteer.svg";
 import IcCheckStatus from "../icons/ic-check.svg";
 import IcCalendarMini from "../icons/ic-calendar-mini.svg";
+import IcQuestion from "./ic-question.svg";
+import IcSuccess from "./ic-success.svg";
 
 export {
   IcWarga,
@@ -72,4 +74,6 @@ export {
   IcCalendarMini,
   IcCheckStatus,
   IcVolunteer,
+  IcQuestion,
+  IcSuccess,
 };
