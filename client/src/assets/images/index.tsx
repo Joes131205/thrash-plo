@@ -8,11 +8,13 @@ import ImgTumpukan from "../images/img-tumpukan.png";
 import ImgSungai from "../images/img-sungai.png";
 import ImgPantai from "../images/img-pantai.png";
 import ImgWhiteLogo from "../images/img-white-logo.png";
-import ImgAksiOne from "../images/img-aksi-1.png";
-import ImgAksiTwo from "../images/img-aksi-2.png";
 import ImgHeroOne from "../images/img-hero-1.png";
 import ImgHeroTwo from "../images/img-hero-2.png";
 import ImgHeroThree from "../images/img-hero-3.png";
 import ImgAksi from "../images/img-aksi.png";
+import ImgHeroArtikel from "./img-hero-artikel.png";
+import ImgCardArtikel from "./img-artikel.png";
+import ImgAksiTwo from "./img-aksi-two.png";
+import ImgAksiThree from "./img-aksi-three.png";
 
-export { ImgLogo, ImgLandingLeft, ImgLandingRight, ImgLanding, ImgMisiKita, ImgFlow, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo, ImgAksiOne, ImgAksiTwo, ImgHeroOne, ImgHeroTwo, ImgHeroThree, ImgAksi };
+export { ImgLogo, ImgLandingLeft, ImgLandingRight, ImgLanding, ImgMisiKita, ImgFlow, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo, ImgAksiTwo, ImgHeroOne, ImgAksiThree, ImgHeroTwo, ImgHeroThree, ImgAksi, ImgHeroArtikel, ImgCardArtikel };

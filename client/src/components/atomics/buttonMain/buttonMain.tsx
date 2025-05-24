@@ -10,6 +10,7 @@ type ButtonMainProps = {
   icon?: string;
   customStyle?: React.CSSProperties;
   fullWidth?: boolean;
+  isSmall?: boolean;
 };
 
 const styles: Record<string, React.CSSProperties> = {
@@ -23,11 +24,10 @@ const styles: Record<string, React.CSSProperties> = {
   },
   text: {
     textAlign: "center",
-    fontSize: "16px",
   },
 };
 
-export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, weightFont, onClick, icon, customStyle, fullWidth }: ButtonMainProps) {
+export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, weightFont, onClick, icon, customStyle, fullWidth, isSmall }: ButtonMainProps) {
   return (
     <div
       style={{
@@ -44,6 +44,7 @@ export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, 
       <p
         style={{
           ...styles.text,
+          fontSize: isSmall ? "12px" : "16px",
           color: textColor === "white" ? "#FFFFFF" : textColor === "green" ? "#84DCC6" : "#2E2E2E",
           backgroundColor: btnColor ? "var(--secondary-color)" : "transparent",
           fontWeight: weightFont ? "var(--weight-semibold)" : "var(--weight-regular)",

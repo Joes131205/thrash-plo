@@ -36,6 +36,7 @@ import IcCheckStatus from "../icons/ic-check.svg";
 import IcCalendarMini from "../icons/ic-calendar-mini.svg";
 import IcQuestion from "./ic-question.svg";
 import IcSuccess from "./ic-success.svg";
+import IcUserArtikel from "./ic-user-artikel.svg";
 
 export {
   IcWarga,
@@ -76,4 +77,5 @@ export {
   IcVolunteer,
   IcQuestion,
   IcSuccess,
+  IcUserArtikel,
 };

@@ -1,3 +1,70 @@
 .container {
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+.sectionTitle {
+  color: var(--text-primary);
+  font-weight: var(--weight-semibold);
+  font-size: var(--dp-28);
+  margin-bottom: 10px;
+}
+
+.cardArtikel {
+  border: 2px solid var(--secondary-color);
+  border-radius: 14px;
+  padding: 25px;
+  width: 315px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.titleArtikel {
+  font-size: var(--dp-16);
+  color: var(--text-primary);
+  font-weight: var(--weight-semibold);
+  margin: 15px 0px;
+}
+
+.descArtikel {
+  font-size: var(--dp-12);
+  color: #999999;
+  margin: 15px 0px;
+}
+
+.listProps {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.props {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dateArtikel {
+  font-size: var(--dp-12);
+  font-weight: var(--weight-regular);
+  color: #8a8a8a;
+}
+
+.listArtikel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  scrollbar-width: none;
+}
+
+.listArtikel::-webkit-scrollbar {
+  display: none;
 }

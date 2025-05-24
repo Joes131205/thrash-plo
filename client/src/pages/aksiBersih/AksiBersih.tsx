@@ -2,13 +2,10 @@ import Navbar from "@/components/molecules/navbar/navbar";
 import Footer from "@/components/organisms/footer/footer";
 import styles from "./AksiBersih.module.css";
 import { ImgAksi } from "@/assets/images";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import CardAksi from "@/components/organisms/aksiBox/aksiBox";
 
 export default function AksiBersihPage() {
-  const navigate = useNavigate();
-
   const pageVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },

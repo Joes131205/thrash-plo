@@ -10,6 +10,7 @@ import DetailAksiPage from "./pages/aksiBersih/DetailAksi";
 import TentangKamiPage from "./pages/tentangKami/TentangKami";
 import ArtikelPage from "./pages/artikel/Artikel";
 import AksiBersihPage from "./pages/aksiBersih/AksiBersih";
+import DetailArtikelPage from "./pages/artikel/DetailArtikel";
 
 const App = () => {
   function AnimatedRoutes() {
@@ -31,6 +32,7 @@ const App = () => {
 
           {/* details */}
           <Route path="/detail-aksi" element={<DetailAksiPage />} />
+          <Route path="/detail-artikel" element={<DetailArtikelPage />} />
         </Routes>
       </AnimatePresence>
     );
