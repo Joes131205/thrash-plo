@@ -1,3 +1,60 @@
 .container {
   padding: 40px;
 }
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.leftContent {
+  width: 50%;
+}
+
+.titleMisi {
+  font-weight: var(--weight-semibold);
+  font-size: 50px;
+  color: var(--text-primary);
+  margin-bottom: 19px;
+  background: transparent;
+}
+
+.descMisi {
+  font-weight: var(--weight-medium);
+  font-size: var(--dp-18);
+  color: var(--text-secondary);
+  background: transparent;
+}
+
+.rightContent {
+  width: 50%;
+}
+
+.listTeam {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 230px;
+}
+
+.boxTeam {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teamName {
+  font-size: var(--dp-16);
+  color: var(--text-primary);
+  font-weight: var(--weight-semibold);
+  margin-top: 10px;
+}
+
+.teamRole {
+  font-size: var(--dp-14);
+  color: var(--text-primary);
+  opacity: 0.85;
+}

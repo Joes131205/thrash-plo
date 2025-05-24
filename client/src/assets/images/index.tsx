@@ -16,5 +16,38 @@ import ImgHeroArtikel from "./img-hero-artikel.png";
 import ImgCardArtikel from "./img-artikel.png";
 import ImgAksiTwo from "./img-aksi-two.png";
 import ImgAksiThree from "./img-aksi-three.png";
+import ImgAboutOne from "./img-about-1.png";
+import ImgAboutTwo from "./img-about-2.png";
+import ImgAboutThree from "./img-about-3.png";
+import ImgBorderLine from "./img-border-line.png";
+import ImgJanssen from "./img-jansen.png";
+import ImgSheren from "./img-sheren.png";
+import ImgJoe from "./img-joe.png";
 
-export { ImgLogo, ImgLandingLeft, ImgLandingRight, ImgLanding, ImgMisiKita, ImgFlow, ImgPantai, ImgSungai, ImgTumpukan, ImgWhiteLogo, ImgAksiTwo, ImgHeroOne, ImgAksiThree, ImgHeroTwo, ImgHeroThree, ImgAksi, ImgHeroArtikel, ImgCardArtikel };
+export {
+  ImgLogo,
+  ImgLandingLeft,
+  ImgLandingRight,
+  ImgLanding,
+  ImgMisiKita,
+  ImgFlow,
+  ImgPantai,
+  ImgSungai,
+  ImgTumpukan,
+  ImgWhiteLogo,
+  ImgAksiTwo,
+  ImgHeroOne,
+  ImgAksiThree,
+  ImgHeroTwo,
+  ImgHeroThree,
+  ImgAksi,
+  ImgHeroArtikel,
+  ImgCardArtikel,
+  ImgAboutOne,
+  ImgAboutThree,
+  ImgAboutTwo,
+  ImgBorderLine,
+  ImgJanssen,
+  ImgJoe,
+  ImgSheren,
+};
