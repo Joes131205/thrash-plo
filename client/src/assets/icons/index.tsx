@@ -39,6 +39,8 @@ import IcSuccess from "./ic-success.svg";
 import IcUserArtikel from "./ic-user-artikel.svg";
 import IcChevronRight from "./ic-chevron-right.svg";
 import IcChevronBottom from "./ic-chevron-bottom.svg";
+import IcCopy from "./ic-copy.svg";
+import IcMenunggu from "./ic-menunggu.svg";
 
 export {
   IcWarga,
@@ -82,4 +84,6 @@ export {
   IcUserArtikel,
   IcChevronRight,
   IcChevronBottom,
+  IcCopy,
+  IcMenunggu,
 };
