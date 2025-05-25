@@ -23,6 +23,7 @@ import ImgBorderLine from "./img-border-line.png";
 import ImgJanssen from "./img-jansen.png";
 import ImgSheren from "./img-sheren.png";
 import ImgJoe from "./img-joe.png";
+import ImgRiwayat from "./img-riwayat.png";
 
 export {
   ImgLogo,
@@ -50,4 +51,5 @@ export {
   ImgJanssen,
   ImgJoe,
   ImgSheren,
+  ImgRiwayat,
 };

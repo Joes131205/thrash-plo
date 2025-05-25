@@ -13,6 +13,7 @@ import DetailArtikelPage from "./pages/artikel/DetailArtikel";
 import ScrollToTop from "./components/atomics/scrollToTop/scrollToTop";
 import BuatLaporanPage from "./pages/report/CreateReport";
 import DetailLaporanPage from "./pages/report/DetailReport";
+import RiwayatLaporanPage from "./pages/report/RiwayatLaporan";
 
 const App = () => {
   function AnimatedRoutes() {
@@ -34,6 +35,7 @@ const App = () => {
             <Route path="/artikel" element={<ArtikelPage />} />
             <Route path="/aksi-bersih" element={<AksiBersihPage />} />
             <Route path="/buat-laporan" element={<BuatLaporanPage />} />
+            <Route path="/riwayat-laporan" element={<RiwayatLaporanPage />} />
 
             {/* details */}
             <Route path="/detail-aksi" element={<DetailAksiPage />} />

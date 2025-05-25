@@ -1,5 +1,4 @@
 import Navbar from "@/components/molecules/navbar/navbar";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import styles from "./Report.module.css";
 import Footer from "@/components/organisms/footer/footer";
@@ -11,8 +10,6 @@ import { IcPlus } from "@/assets/icons";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 
 export default function BuatLaporanPage() {
-  const navigate = useNavigate();
-
   const [locationValue, setLocationValue] = useState("");
   const [trashType, setTrashType] = useState("");
   const [weight, setWeight] = useState("");

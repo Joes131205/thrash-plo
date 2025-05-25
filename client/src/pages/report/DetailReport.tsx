@@ -1,12 +1,9 @@
 import Navbar from "@/components/molecules/navbar/navbar";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import styles from "./Report.module.css";
 import Footer from "@/components/organisms/footer/footer";
 
 export default function DetailLaporanPage() {
-  const navigate = useNavigate();
-
   const pageVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },

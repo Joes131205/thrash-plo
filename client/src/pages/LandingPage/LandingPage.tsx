@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ImgFlow, ImgHeroOne, ImgHeroThree, ImgHeroTwo, ImgLanding, ImgMisiKita, ImgPantai, ImgSungai, ImgTumpukan } from "@/assets/images";
 import { IcArrowLeft, IcArrowRight, IcGarbage, IcKomunitas, IcMitra, IcPemerintah, IcTruck, IcWarga } from "@/assets/icons";
@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 export default function LandingPage() {
   const navigate = useNavigate();
   const isSmall = true;
+
+  const [isLogin, setIsLogin] = useState(true);
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -93,7 +95,7 @@ export default function LandingPage() {
   return (
     <div id="home">
       {/* NAVBAR */}
-      <Navbar />
+      <Navbar isLogin={isLogin} />
       {/* END NAVBAR */}
 
       {/* BANNER HOME */}
