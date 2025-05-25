@@ -22,6 +22,7 @@ export default function RegisterKomunitas() {
 
   const [jmlAnggota, setJmlAnggota] = useState("");
   const [desc, setDesc] = useState("");
+  const [logo, setLogo] = useState<string | null>(null);
 
   const [rememberMe, setRememberMe] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
@@ -65,7 +66,7 @@ export default function RegisterKomunitas() {
         {/* <motion.div key={currentStep} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -50 }} transition={{ duration: 0.8 }} style={{ display: "flex", flexDirection: "column", gap: 12 }}> */}
         <TextInput value={jmlAnggota} onChange={(e) => setJmlAnggota(e.target.value)} placeholder="Jumlah Anggota Komunitas" type="anggota" icon={IcListNumber} />
         <TextInput value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="Deskripsi Singkat Komunitas" type="email" icon={IcPencil} />
-        <PictInput icon={IcPlus} />
+        <PictInput icon={IcPlus} placeholder="Logo Komunitas" isShowLabel={false} value={logo} onChange={(val) => setLogo(val)} />
         {/* </motion.div> */}
       </>
     );

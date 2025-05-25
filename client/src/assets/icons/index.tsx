@@ -37,6 +37,8 @@ import IcCalendarMini from "../icons/ic-calendar-mini.svg";
 import IcQuestion from "./ic-question.svg";
 import IcSuccess from "./ic-success.svg";
 import IcUserArtikel from "./ic-user-artikel.svg";
+import IcChevronRight from "./ic-chevron-right.svg";
+import IcChevronBottom from "./ic-chevron-bottom.svg";
 
 export {
   IcWarga,
@@ -78,4 +80,6 @@ export {
   IcQuestion,
   IcSuccess,
   IcUserArtikel,
+  IcChevronRight,
+  IcChevronBottom,
 };

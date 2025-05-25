@@ -11,6 +11,7 @@ type ButtonMainProps = {
   customStyle?: React.CSSProperties;
   fullWidth?: boolean;
   isSmall?: boolean;
+  disabled?: boolean;
 };
 
 const styles: Record<string, React.CSSProperties> = {
@@ -21,24 +22,27 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: "14px",
     cursor: "pointer",
     display: "flex",
+    transition: "0.3s ease",
   },
   text: {
     textAlign: "center",
   },
 };
 
-export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, weightFont, onClick, icon, customStyle, fullWidth, isSmall }: ButtonMainProps) {
+export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, weightFont, onClick, icon, customStyle, fullWidth, isSmall, disabled }: ButtonMainProps) {
   return (
     <div
       style={{
         ...styles.button,
-        backgroundColor: btnColor ? "var(--secondary-color)" : "var(--primary-color)",
+        backgroundColor: disabled ? "#ccc" : btnColor ? "var(--secondary-color)" : "var(--primary-color)",
         border: colorBorder ? "1.5px solid var(--stroke-primary)" : "none",
         width: "100%",
         flex: fullWidth ? 1 : undefined,
+        cursor: disabled ? "not-allowed" : "pointer",
+        opacity: disabled ? 0.6 : 1,
         ...customStyle,
       }}
-      onClick={onClick}
+      onClick={!disabled ? onClick : undefined}
     >
       {icon && <img src={icon} alt="icon" style={{ marginRight: 8, width: 20 }} />}
       <p
@@ -46,7 +50,7 @@ export default function ButtonMain({ btnText, btnColor, colorBorder, textColor, 
           ...styles.text,
           fontSize: isSmall ? "12px" : "16px",
           color: textColor === "white" ? "#FFFFFF" : textColor === "green" ? "#84DCC6" : "#2E2E2E",
-          backgroundColor: btnColor ? "var(--secondary-color)" : "transparent",
+          backgroundColor: "transparent",
           fontWeight: weightFont ? "var(--weight-semibold)" : "var(--weight-regular)",
         }}
       >

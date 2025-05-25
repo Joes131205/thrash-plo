@@ -8,8 +8,10 @@ import HeroBox from "@/components/organisms/heroBox/heroBox";
 import styles from "./LandingPage.module.css";
 import Navbar from "@/components/molecules/navbar/navbar";
 import Footer from "@/components/organisms/footer/footer";
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
+  const navigate = useNavigate();
   const isSmall = true;
 
   const fadeInUp = {
@@ -190,7 +192,7 @@ export default function LandingPage() {
         <motion.div className={styles.bottomContent} variants={containerStagger}>
           <motion.img src={IcGarbage} alt="Icon Sampah" variants={slideLeft} custom={0} />
           <motion.div variants={popScale} custom={1}>
-            <ButtonMain btnText={"Lapor Sekarang"} btnColor={false} colorBorder={false} textColor={"green"} weightFont={true} />
+            <ButtonMain btnText={"Lapor Sekarang"} btnColor={false} colorBorder={false} textColor={"green"} weightFont={true} onClick={() => navigate("/buat-laporan")} />
           </motion.div>
           <motion.img src={IcTruck} alt="Icon Truck" style={{ width: 250, height: 250 }} variants={slideRight} custom={2} />
         </motion.div>
