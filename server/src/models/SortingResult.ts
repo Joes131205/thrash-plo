@@ -2,9 +2,9 @@ import mongoose, { Schema, Document, Types } from "mongoose";
 
 export interface ISortingResult extends Document {
     actionId: Types.ObjectId;
-    wasteType: string;
+    wasteType: "unorganic" | "organic";
+    note: string;
     weight: number;
-    status: "recyclable" | "residue";
     createdAt: Date;
 }
 
