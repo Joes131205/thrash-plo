@@ -1,7 +1,7 @@
 import Navbar from "@/components/molecules/navbar/navbar";
 import Footer from "@/components/organisms/footer/footer";
 import styles from "./AksiBersih.module.css";
-import { ImgAksi, ImgOsoji } from "@/assets/images";
+import { ImgOsoji } from "@/assets/images";
 import { motion } from "framer-motion";
 import CardAksi from "@/components/organisms/aksiBox/aksiBox";
 
