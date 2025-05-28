@@ -5,14 +5,30 @@ import { IcEmail, IcFacebookLog, IcGarbage, IcGoogleLog, IcLogoSmall, IcPassword
 import { useState } from "react";
 import TextInput from "@/components/molecules/textInput/textInput";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
+import { useAuth } from "@/context/useContext";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const isSmall = true;
 
+  const { setIsLogin } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = () => {
+    setIsLoading(true);
+    console.log({ email, password, rememberMe });
+    setIsLogin(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate("/riwayat-laporan");
+    }, 2000);
+  };
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRememberMe(e.target.checked);
@@ -56,8 +72,8 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <div style={{ width: "85%", marginTop: 40, textAlign: "center" }}>
-            <ButtonMain btnText="Masuk" btnColor={true} textColor="white" />
+          <div style={{ width: "87%", marginTop: 40, textAlign: "center" }}>
+            <ButtonMain btnText="Masuk" btnColor={true} textColor="white" loading={isLoading} onClick={handleSubmit} />
             <p className={styles.registerText}>
               Belum punya akun?{" "}
               <a href="/register-warga" className={styles.registerLink}>

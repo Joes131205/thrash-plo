@@ -14,8 +14,6 @@ export default function LandingPage() {
   const navigate = useNavigate();
   const isSmall = true;
 
-  const [isLogin, setIsLogin] = useState(true);
-
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: (i = 1) => ({
@@ -95,7 +93,7 @@ export default function LandingPage() {
   return (
     <div id="home">
       {/* NAVBAR */}
-      <Navbar isLogin={isLogin} />
+      <Navbar />
       {/* END NAVBAR */}
 
       {/* BANNER HOME */}

@@ -53,7 +53,7 @@ const CardAksi: React.FC<CardAksiProps> = ({ imageSrc, title, date, location, vo
           <p className={styles.textProp}>
             Diselenggarakan Oleh <span>{organizer}</span>
           </p>
-          <ButtonMain btnText={"Lihat Selengkapnya"} btnColor={true} colorBorder={false} textColor={"default"} weightFont={true} onClick={onDetailClick || (() => navigate("/detail-aksi"))} />
+          <ButtonMain btnText={"Lihat Selengkapnya"} btnColor={true} colorBorder={false} textColor={"white"} weightFont={true} onClick={onDetailClick || (() => navigate("/detail-aksi"))} />
         </div>
       </div>
     </div>

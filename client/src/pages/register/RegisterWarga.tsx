@@ -15,7 +15,23 @@ export default function RegisterWarga() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [noKTP, setNoKTP] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = () => {
+    setLoading(true);
+    console.log({
+      name,
+      telephone,
+      email,
+      password,
+      noKTP,
+    });
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/login");
+    }, 2000);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -35,13 +51,13 @@ export default function RegisterWarga() {
               <TextInput value={name} onChange={(e) => setName(e.target.value)} placeholder="Nama Lengkap" type="name" icon={IcEmoticon} />
               <TextInput value={telephone} onChange={(e) => setTelephone(e.target.value)} placeholder="Nomor Telepon" type="telephone" icon={IcTelephone} />
               <TextInput value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" type="email" icon={IcEmail} />
-              <TextInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" icon={IcPassword} />
+              <TextInput value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" icon={IcPassword} password />
               <TextInput value={noKTP} onChange={(e) => setNoKTP(e.target.value)} placeholder="Nomor KTP" type="name" icon={IcKTP} />
             </div>
 
             <div className={styles.checkboxRow}>
               <div className={styles.checkboxLabel}>
-                <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} className={styles.checkbox} />
+                <input type="checkbox" checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)} className={styles.checkbox} />
                 <p className={styles.rememberMe}>
                   Saya udah membaca {""}
                   <a href="/" className={styles.registerLink}>
@@ -53,7 +69,7 @@ export default function RegisterWarga() {
             </div>
 
             <div style={{ width: "85%", marginTop: 25, textAlign: "center", paddingBottom: 20 }}>
-              <ButtonMain btnText="Daftar" btnColor={true} textColor="white" />
+              <ButtonMain btnText="Daftar" btnColor={true} textColor="white" onClick={handleSubmit} disabled={!isChecked} loading={loading} />
               <div>
                 <p className={styles.registerText}>
                   Sudah punya akun?{" "}

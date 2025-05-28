@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styleCss from "../../../pages/LandingPage/LandingPage.module.css";
 import { Link } from "react-router-dom";
 import React from "react";
-
-type NavbarProps = {
-  isLogin?: boolean;
-};
+import { useAuth } from "@/context/useContext";
 
 const styles: Record<string, React.CSSProperties> = {
   navbar: {
@@ -39,8 +36,9 @@ const styles: Record<string, React.CSSProperties> = {
   },
 };
 
-export default function Navbar({ isLogin }: NavbarProps) {
+export default function Navbar() {
   const navigate = useNavigate();
+  const { isLogin, setIsLogin } = useAuth();
 
   return (
     <div style={styles.navbar}>
@@ -71,8 +69,23 @@ export default function Navbar({ isLogin }: NavbarProps) {
         )}
       </ul>
       <div style={styles.btnContainer}>
-        <ButtonMain btnText={"Login"} btnColor={false} colorBorder={true} textColor={"default"} onClick={() => navigate("/login")} />
-        <ButtonMain btnText={"Warga"} btnColor={true} colorBorder={false} textColor={"white"} onClick={() => navigate("/register-warga")} />
+        {isLogin ? (
+          <ButtonMain
+            btnText="Logout"
+            btnColor={false}
+            colorBorder={true}
+            textColor="default"
+            onClick={() => {
+              setIsLogin(false);
+              navigate("/");
+            }}
+          />
+        ) : (
+          <>
+            <ButtonMain btnText="Login" btnColor={false} colorBorder={true} textColor="default" onClick={() => navigate("/login")} />
+            <ButtonMain btnText="Warga" btnColor={true} colorBorder={false} textColor="white" onClick={() => navigate("/register-warga")} />
+          </>
+        )}
       </div>
     </div>
   );

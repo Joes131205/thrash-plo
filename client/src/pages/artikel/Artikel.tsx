@@ -3,7 +3,7 @@ import Footer from "@/components/organisms/footer/footer";
 import styles from "./Artikel.module.css";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ImgAksiThree, ImgAksiTwo, ImgCardArtikel, ImgHeroArtikel } from "@/assets/images";
+import { ImgAksiThree, ImgAksiTwo, ImgArtikelDLH, ImgCardArtikel, ImgEarthDay, ImgHeroArtikel, ImgTrashArt, ImgTumpukanSampah } from "@/assets/images";
 import CardArtikel from "@/components/organisms/artikelBox/cardArtikel";
 
 export default function ArtikelPage() {
@@ -56,63 +56,49 @@ export default function ArtikelPage() {
                 onClick={() => navigate("/detail-artikel")}
               />
               <CardArtikel
-                image={ImgCardArtikel}
-                title="Krisis Sampah di Laut: Mengapa Kita Harus Peduli?"
+                image={ImgTumpukanSampah}
+                title="Cara Menjaga Bumi dari Ancaman Sampah"
                 date="23 Maret 2025"
                 author="Wilyan Adiasari"
-                description="Setiap tahun, jutaan ton sampah mencemari laut, membahayakan ekosistem dan kehidupan laut. Bagaimana sampah dari daratan bisa sampai ke laut? Dan apa yang bisa kita lakukan untuk mencegahnya?"
+                description="Sampah menjadi salah satu masalah lingkungan yang paling mendesak di dunia saat ini. Peningkatan jumlah sampah akibat aktivitas manusia yang tidak terkontrol mengancam ekosistem, kesehatan masyarakat, dan kualitas hidup kita secara keseluruhan. "
                 onClick={() => navigate("/detail-artikel")}
               />
             </div>
           </div>
-          <div>
-            <h2 className={styles.sectionTitle}>Artikel Dari DLH</h2>
 
-            <div className={styles.listArtikel}>
-              <CardArtikel
-                image={ImgCardArtikel}
-                title="Krisis Sampah di Laut: Mengapa Kita Harus Peduli?"
-                date="23 Maret 2025"
-                author="Pandawara Group"
-                description="Setiap tahun, jutaan ton sampah mencemari laut, membahayakan ekosistem dan kehidupan laut. Bagaimana sampah dari daratan bisa sampai ke laut? Dan apa yang bisa kita lakukan untuk mencegahnya?"
-                onClick={() => navigate("/detail-artikel")}
-              />
-              <CardArtikel
-                image={ImgCardArtikel}
-                title="Krisis Sampah di Laut: Mengapa Kita Harus Peduli?"
-                date="23 Maret 2025"
-                author="Pandawara Group"
-                description="Setiap tahun, jutaan ton sampah mencemari laut, membahayakan ekosistem dan kehidupan laut. Bagaimana sampah dari daratan bisa sampai ke laut? Dan apa yang bisa kita lakukan untuk mencegahnya?"
-                onClick={() => navigate("/detail-artikel")}
-              />
-              <CardArtikel
-                image={ImgCardArtikel}
-                title="Krisis Sampah di Laut: Mengapa Kita Harus Peduli?"
-                date="23 Maret 2025"
-                author="Pandawara Group"
-                description="Setiap tahun, jutaan ton sampah mencemari laut, membahayakan ekosistem dan kehidupan laut. Bagaimana sampah dari daratan bisa sampai ke laut? Dan apa yang bisa kita lakukan untuk mencegahnya?"
-                onClick={() => navigate("/detail-artikel")}
-              />
-            </div>
-          </div>
           <div>
             <h2 className={styles.sectionTitle}>Artikel Dari Komunitas</h2>
 
             <div className={styles.listArtikel}>
               <CardArtikel
-                image={ImgCardArtikel}
-                title="Krisis Sampah di Laut: Mengapa Kita Harus Peduli?"
+                image={ImgEarthDay}
+                title="Komunitas Hijau Bersih Gelar Aksi Bersih Sungai di Hari Bumi"
                 date="23 Maret 2025"
-                author="Pandawara Group"
-                description="Setiap tahun, jutaan ton sampah mencemari laut, membahayakan ekosistem dan kehidupan laut. Bagaimana sampah dari daratan bisa sampai ke laut? Dan apa yang bisa kita lakukan untuk mencegahnya?"
+                author="Komunitas Hijau Bersih"
+                description="Dalam rangka memperingati Hari Bumi, komunitas Hijau Bersih di Kecamatan Tirtomoyo mengadakan kegiatan bersih-bersih sungai yang diikuti oleh lebih dari 50 relawan."
                 onClick={() => navigate("/detail-artikel")}
               />
               <CardArtikel
-                image={ImgCardArtikel}
-                title="Krisis Sampah di Laut: Mengapa Kita Harus Peduli?"
+                image={ImgTrashArt}
+                title="Pelatihan Daur Ulang Kreatif oleh Komunitas TrashArt"
                 date="23 Maret 2025"
-                author="Pandawara Group"
-                description="Setiap tahun, jutaan ton sampah mencemari laut, membahayakan ekosistem dan kehidupan laut. Bagaimana sampah dari daratan bisa sampai ke laut? Dan apa yang bisa kita lakukan untuk mencegahnya?"
+                author="Komunitas TrashArt"
+                description="Komunitas TrashArt mengadakan pelatihan daur ulang kreatif yang diikuti oleh pemuda-pemudi lokal. Peserta belajar mengubah sampah plastik dan kertas bekas menjadi produk bernilai jual seperti tas, dompet, dan hiasan rumah."
+                onClick={() => navigate("/detail-artikel")}
+              />
+            </div>
+          </div>
+
+          <div>
+            <h2 className={styles.sectionTitle}>Artikel Dari DLH</h2>
+
+            <div className={styles.listArtikel}>
+              <CardArtikel
+                image={ImgArtikelDLH}
+                title="Tanggung Jawab untuk Mengelola Sampah"
+                date="23 Maret 2025"
+                author="DLH Kabupaten Malang"
+                description="Sampah bukan hanya persoalan lingkungan, melainkan juga cermin dari kebiasaan dan kesadaran masyarakat. Setiap hari, manusia menghasilkan jutaan ton sampah, dan sebagian besar.. "
                 onClick={() => navigate("/detail-artikel")}
               />
             </div>

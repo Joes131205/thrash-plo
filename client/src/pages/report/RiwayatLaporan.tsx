@@ -2,39 +2,40 @@ import Navbar from "@/components/molecules/navbar/navbar";
 import Footer from "@/components/organisms/footer/footer";
 import styles from "./Report.module.css";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import TabBar from "@/components/molecules/tabBar/tabBar";
 import TableSampah from "@/components/organisms/tableSampah/tableSampah";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function RiwayatLaporanPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const laporanBaru = location.state;
+
   const [activeTab, setActiveTab] = useState<TabType>("Menunggu");
+  const [laporanList, setLaporanList] = useState<any[]>([]);
 
-  const dummyData = [
-    {
-      id: 1,
-      lokasi: "Sungai Bidadari",
-      jenisSampah: "Sungai",
-      tanggal: "13-05-2025",
-      fotoUrl: "/img/sampah.png",
-      status: "Menunggu",
-    },
-    {
-      id: 2,
-      lokasi: "Ancol",
-      jenisSampah: "Pantai",
-      tanggal: "30-02-2025",
-      fotoUrl: "/img/sampah.png",
-      status: "Diproses",
-    },
-  ];
+  useEffect(() => {
+    if (laporanBaru) {
+      setLaporanList((prev) => {
+        if (prev.some((lap) => lap.id === laporanBaru.id)) {
+          return prev;
+        }
+        return [...prev, laporanBaru];
+      });
 
-  const filteredData = dummyData.filter((item) => item.status === activeTab);
+      navigate(location.pathname, { replace: true });
+    }
+  }, [laporanBaru, navigate, location.pathname]);
+
+  const filteredData = laporanList.filter((item) => item.status === activeTab);
 
   const handleDetailClick = (id: number) => {
-    console.log("Clicked detail ID:", id);
-    navigate("/detail-laporan");
+    const laporan = laporanList.find((lap) => lap.id === id);
+    if (laporan) {
+      navigate("/detail-laporan", { state: laporan });
+    }
   };
 
   const pageVariants = {
@@ -46,7 +47,7 @@ export default function RiwayatLaporanPage() {
     <div>
       <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.4 }}>
         {/* NAVBAR */}
-        <Navbar isLogin={true} />
+        <Navbar />
         {/* END NAVBAR */}
 
         {/* CONTENT */}
@@ -55,7 +56,9 @@ export default function RiwayatLaporanPage() {
 
           <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
 
-          <div className={styles.activeTab}>{filteredData.length === 0 ? <p style={{ textAlign: "center", marginTop: 20 }}>Belum ada laporan pada tab ini.</p> : <TableSampah data={filteredData} onDetailClick={handleDetailClick} />}</div>
+          <div className={styles.activeTab}>
+            {filteredData.length === 0 ? <p style={{ textAlign: "center", marginTop: 50, color: "#2e2e2e" }}>Belum ada laporan pada tab ini.</p> : <TableSampah data={filteredData} onDetailClick={handleDetailClick} />}
+          </div>
         </div>
         {/* END CONTENT */}
 

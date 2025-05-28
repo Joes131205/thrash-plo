@@ -35,6 +35,21 @@ export default function RegisterKomunitas() {
     setCurrentStep((prev) => Math.max(prev - 1, 1));
   };
 
+  const handleSubmit = () => {
+    console.log({
+      name,
+      email,
+      password,
+      penanggungJawab,
+      telephone,
+      alamat,
+      tahun,
+      jmlAnggota,
+      desc,
+      logo,
+    });
+  };
+
   const StepOne = () => {
     return (
       <>
@@ -113,7 +128,7 @@ export default function RegisterKomunitas() {
                     <ButtonMain btnText="Lanjut" btnColor={true} textColor="white" onClick={nextStep} />
                   </>
                 ) : (
-                  <ButtonMain btnText="Daftar" btnColor={true} textColor="white" fullWidth />
+                  <ButtonMain btnText="Daftar" btnColor={true} textColor="white" fullWidth onClick={handleSubmit} />
                 )}
               </div>
 

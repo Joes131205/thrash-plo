@@ -1,20 +1,17 @@
 import Navbar from "@/components/molecules/navbar/navbar";
 import Footer from "@/components/organisms/footer/footer";
 import styles from "./TentangKami.module.css";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ImgAboutOne, ImgAboutThree, ImgAboutTwo, ImgBorderLine, ImgJanssen, ImgJoe, ImgSheren } from "@/assets/images";
 
 export default function TentangKamiPage() {
-  const navigate = useNavigate();
-
   const pageVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 },
   };
   return (
-    <div>
+    <div style={{ backgroundColor: "#ffffff" }}>
       {/* NAVBAR */}
       <Navbar />
       {/* END NAVBAR */}

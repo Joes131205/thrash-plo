@@ -8,8 +8,11 @@ import Dropdown from "@/components/molecules/dropdownMain/DropdownMain";
 import PictInput from "@/components/molecules/pictInput/pictInput";
 import { IcPlus } from "@/assets/icons";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
+import { useNavigate } from "react-router-dom";
 
 export default function BuatLaporanPage() {
+  const navigate = useNavigate();
+
   const [locationValue, setLocationValue] = useState("");
   const [trashType, setTrashType] = useState("");
   const [weight, setWeight] = useState("");
@@ -17,6 +20,30 @@ export default function BuatLaporanPage() {
   const [photoNear, setPhotoNear] = useState<string | null>(null);
   const [photoFar, setPhotoFar] = useState<string | null>(null);
   const [isChecked, setIsChecked] = useState(false);
+
+  const handleSubmitReport = () => {
+    const weightNum = weight.trim() === "" ? null : Number(weight);
+
+    if (weight.trim() !== "" && isNaN(weightNum)) {
+      alert("Berat harus berupa angka!");
+      return;
+    }
+
+    console.log({ locationValue, trashType, weight, notes, photoNear, photoFar });
+    const laporanBaru = {
+      id: Date.now(),
+      tanggal: new Date().toLocaleDateString("id-ID"),
+      lokasi: locationValue,
+      jenisSampah: trashType,
+      weight: weightNum,
+      notes: notes,
+      fotoUrlNear: photoNear,
+      fotoUrl: photoFar,
+      status: "Menunggu",
+    };
+
+    navigate("/riwayat-laporan", { state: laporanBaru });
+  };
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
@@ -59,7 +86,7 @@ export default function BuatLaporanPage() {
                   </div>
                 </div>
               </div>
-              <ButtonMain btnText={"Buat Laporan"} btnColor={true} colorBorder={false} textColor={"default"} weightFont={true} disabled={!isChecked} />
+              <ButtonMain btnText={"Buat Laporan"} btnColor={true} colorBorder={false} textColor={"white"} weightFont={true} disabled={!isChecked} onClick={handleSubmitReport} />
             </div>
           </div>
         </div>

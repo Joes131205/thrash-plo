@@ -70,6 +70,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginBottom: 24,
     textAlign: "center",
     color: "var(--text-primary)",
+    width: "90%",
   },
   buttonGroup: {
     display: "flex",

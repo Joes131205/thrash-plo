@@ -24,6 +24,11 @@ import ImgJanssen from "./img-jansen.png";
 import ImgSheren from "./img-sheren.png";
 import ImgJoe from "./img-joe.png";
 import ImgRiwayat from "./img-riwayat.png";
+import ImgArtikelDLH from "./img-artikel-dlh.jpeg";
+import ImgEarthDay from "./img-earth-day.jpg";
+import ImgTrashArt from "./img-trash-art.jpg";
+import ImgTumpukanSampah from "./img-tumpukan-sampah.jpeg";
+import ImgOsoji from "./img-osoji.jpg";
 
 export {
   ImgLogo,
@@ -52,4 +57,9 @@ export {
   ImgJoe,
   ImgSheren,
   ImgRiwayat,
+  ImgArtikelDLH,
+  ImgEarthDay,
+  ImgTrashArt,
+  ImgTumpukanSampah,
+  ImgOsoji,
 };

@@ -1,5 +1,4 @@
 import { IcEyesOpen } from "@/assets/icons";
-import { ImgRiwayat } from "@/assets/images";
 import React from "react";
 
 type SampahData = {
@@ -46,7 +45,7 @@ const TableSampah: React.FC<TableSampahProps> = ({ data, onDetailClick }) => {
             <td style={cellStyle}>{row.jenisSampah}</td>
             <td style={cellStyle}>{row.tanggal}</td>
             <td style={cellStyle}>
-              <img src={ImgRiwayat} alt="foto" width={60} height={40} style={{ objectFit: "cover", borderRadius: 2 }} />
+              <img src={row.fotoUrl} alt="foto" width={60} height={40} style={{ objectFit: "cover", borderRadius: 2 }} />
             </td>
             <td style={cellStyle}>
               <button onClick={() => onDetailClick(row.id)} style={{ background: "none", border: "none", cursor: "pointer" }}>

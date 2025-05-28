@@ -12,39 +12,28 @@ type ReportInputProps = {
 
 const ReportInput: React.FC<ReportInputProps> = ({ label, placeholder, value, onChange, name, isLocationField = false, isTextarea }) => {
   const [useCurrentLocation, setUseCurrentLocation] = useState(false);
+  const [loadingLocation, setLoadingLocation] = useState(false);
+  const [hasFetchedLocation, setHasFetchedLocation] = useState(false);
 
   useEffect(() => {
-    if (isLocationField && useCurrentLocation) {
-      if (!navigator.geolocation) {
-        alert("Geolocation is not supported by your browser.");
-        return;
-      }
+    if (isLocationField && useCurrentLocation && !hasFetchedLocation) {
+      setLoadingLocation(true);
 
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
+      const timeout = setTimeout(() => {
+        const staticLocation = "Kali Angke, Jakarta Barat";
 
-          try {
-            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
-            const data = await response.json();
+        const syntheticEvent = {
+          target: { name, value: staticLocation },
+        } as React.ChangeEvent<HTMLInputElement>;
 
-            const locationName = data.display_name || `${latitude}, ${longitude}`;
+        onChange(syntheticEvent);
+        setLoadingLocation(false);
+        setHasFetchedLocation(true);
+      }, 2000);
 
-            const syntheticEvent = {
-              target: { name, value: locationName },
-            } as React.ChangeEvent<HTMLInputElement>;
-
-            onChange(syntheticEvent);
-          } catch (error) {
-            alert("Failed to get location name: " + error);
-          }
-        },
-        (error) => {
-          alert("Failed to get location: " + error.message);
-        }
-      );
+      return () => clearTimeout(timeout);
     }
-  }, [useCurrentLocation, isLocationField, name, onChange]);
+  }, [useCurrentLocation, isLocationField, name, onChange, hasFetchedLocation]);
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
@@ -55,6 +44,8 @@ const ReportInput: React.FC<ReportInputProps> = ({ label, placeholder, value, on
         target: { name, value: "" },
       } as React.ChangeEvent<HTMLInputElement>;
       onChange(syntheticEvent);
+      setLoadingLocation(false);
+      setHasFetchedLocation(false);
     }
   };
 
@@ -64,7 +55,7 @@ const ReportInput: React.FC<ReportInputProps> = ({ label, placeholder, value, on
       {isTextarea ? (
         <textarea name={name} value={value} onChange={onChange} placeholder={placeholder} style={styles.textarea} disabled={isLocationField && useCurrentLocation} />
       ) : (
-        <input type="text" name={name} value={value} onChange={onChange} placeholder={placeholder} style={styles.input} disabled={isLocationField && useCurrentLocation} />
+        <input type="text" name={name} value={loadingLocation ? "Mengambil lokasi kamu..." : value} onChange={onChange} placeholder={placeholder} style={styles.input} disabled={isLocationField && useCurrentLocation} />
       )}
       {isLocationField && (
         <label style={styles.checkboxLabel}>

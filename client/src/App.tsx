@@ -25,12 +25,12 @@ const App = () => {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             {/* starter */}
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register-warga" element={<RegisterWarga />} />
             <Route path="/register-komunitas" element={<RegisterKomunitas />} />
 
             {/* menu navbar */}
-            <Route path="/" element={<LandingPage />} />
             <Route path="/tentang-kami" element={<TentangKamiPage />} />
             <Route path="/artikel" element={<ArtikelPage />} />
             <Route path="/aksi-bersih" element={<AksiBersihPage />} />

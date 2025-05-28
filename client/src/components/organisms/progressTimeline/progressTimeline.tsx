@@ -29,7 +29,7 @@ const ProgressTimeline: React.FC<ProgressTimelineProps> = ({ data }) => {
                 width: "16px",
                 height: "20px",
                 borderRadius: "50%",
-                backgroundColor: item.color || "#A5FFD6",
+                backgroundColor: item.color || "#2BBBAD	",
                 zIndex: 1,
               }}
             />
@@ -48,7 +48,7 @@ const ProgressTimeline: React.FC<ProgressTimelineProps> = ({ data }) => {
             )}
           </div>
           <div>
-            <h4 style={{ marginTop: -5, color: item.color || "#A5FFD6", fontWeight: "var(--weight-semibold)", fontSize: 18 }}>{item.title}</h4>
+            <h4 style={{ marginTop: -5, color: item.color || "#2BBBAD	", fontWeight: "var(--weight-semibold)", fontSize: 18 }}>{item.title}</h4>
             <p style={{ margin: 0, color: "#757575", fontSize: 14 }}>{item.subtitle}</p>
           </div>
         </div>

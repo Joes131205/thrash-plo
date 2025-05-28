@@ -18,7 +18,7 @@ const CardArtikel: React.FC<CardArtikelProps> = ({ image, title, date, author, d
 
   return (
     <div className={styles.cardArtikel}>
-      <img src={image} alt="Image" />
+      <img src={image} alt="Image" style={{ width: 260, height: 150 }} />
       <h5 className={styles.titleArtikel}>{title}</h5>
 
       <div className={styles.listProps}>

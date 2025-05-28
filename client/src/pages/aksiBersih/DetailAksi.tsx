@@ -2,7 +2,7 @@ import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 import Navbar from "@/components/molecules/navbar/navbar";
 import Footer from "@/components/organisms/footer/footer";
 import styles from "./AksiBersih.module.css";
-import { ImgAksi } from "@/assets/images";
+import { ImgAksi, ImgOsoji } from "@/assets/images";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import ModalConfirm from "@/components/organisms/modalConfirm/modalConfirm";
@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 export default function DetailAksiPage() {
   const navigate = useNavigate();
 
+  const [isLoadingRelawan, setIsLoadingRelawan] = useState(false);
   const [isConfirm, setIsConfirm] = useState(true);
   const [showModalConfirm, setShowModalConfirm] = useState(false);
   const [showModalSuccess, setShowModalSuccess] = useState(false);
@@ -37,13 +38,27 @@ export default function DetailAksiPage() {
       {/* CONTENT */}
       <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.4 }}>
         <div className={styles.container}>
-          <img src={ImgAksi} alt="Image Aksi" />
+          <img src={ImgOsoji} alt="Image Aksi" />
 
           <div className={styles.midContent}>
             <div style={{ width: "350%" }}>
-              <h2 className={`${styles.titleAksi} ${styles.medium}`}>Go Green</h2>
+              <h2 className={`${styles.titleAksi} ${styles.medium}`}>Hari Bersih Indonesia 2025 x Jakarta Osoji Club</h2>
             </div>
-            <ButtonMain btnText={"Jadi Relawan"} btnColor={true} colorBorder={false} textColor={"default"} weightFont={true} onClick={() => setShowModalConfirm(true)} />
+            <ButtonMain
+              btnText={"Jadi Relawan"}
+              btnColor={true}
+              colorBorder={false}
+              textColor={"white"}
+              weightFont={true}
+              loading={isLoadingRelawan}
+              onClick={() => {
+                setIsLoadingRelawan(true);
+                setTimeout(() => {
+                  setShowModalConfirm(true);
+                  setIsLoadingRelawan(false);
+                }, 800);
+              }}
+            />
             <ModalConfirm icon={IcQuestion} questionText="Apakah anda yakin ingin menjadi relawan aksi bersih ini?" isConfirm={isConfirm} isOpen={showModalConfirm} onClose={() => setShowModalConfirm(false)} onConfirm={handleConfirm} />
             <ModalConfirm icon={IcSuccess} questionText="Terima kasih sudah mengajukan relawan, info lebih lanjut akan dikirimkan melalui email" isConfirm={false} isOpen={showModalSuccess} onConfirm={() => navigate("/aksi-bersih")} />
           </div>
@@ -54,14 +69,14 @@ export default function DetailAksiPage() {
             {[
               {
                 label: "Komunitas Penyelenggara",
-                value: "Pandawara Group ( pandawaragroup@community.co.id )",
+                value: "Jakarta Osoji Club",
               },
-              { label: "Tanggal / Waktu", value: "24 Mei 2025 / 12:00 - 19.00" },
+              { label: "Tanggal / Waktu", value: "24 Juni 2025 / 07.00 - 11.00" },
               {
                 label: "Lokasi",
                 value: "Jl. Bojong Raya No.27 13, RT.13/RW.4, Rw. Buaya, Kecamatan Cengkareng, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11740",
               },
-              { label: "Jumlah Relawan", value: "15 / 50" },
+              { label: "Jumlah Relawan", value: "15 / 300" },
               { label: "Status", value: "Belum Dimulai" },
             ].map((item, index) => (
               <div key={index} className={styles.listRow}>
