@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 import authRoutes from "./routes/authRoutes";
 import cleanupActionRoutes from "./routes/cleanupActionRoutes";
+import communityRoutes from "./routes/communityRoutes";
 import reportRoutes from "./routes/reportRoutes";
 import verificationRoutes from "./routes/verificationRoutes";
 import sortingRoutes from "./routes/sortingRoutes";
@@ -21,6 +22,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/cleanup-actions", cleanupActionRoutes);
+app.use("/api/communities", communityRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/verifications", verificationRoutes);
 app.use("/api/sorting", sortingRoutes);

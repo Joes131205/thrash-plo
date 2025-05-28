@@ -4,7 +4,7 @@ export interface IVerification extends Document {
     reportId: Types.ObjectId;
     verifiedBy: Types.ObjectId;
     verificationTime: Date;
-    result: string;
+    result: "rejected" | "approved";
     createdAt: Date;
 }
 
@@ -17,7 +17,7 @@ const VerificationSchema: Schema = new Schema(
         },
         verifiedBy: {
             type: Schema.Types.ObjectId,
-            ref: "User",
+            ref: "Community",
             required: true,
         },
         verificationTime: { type: Date, required: true },

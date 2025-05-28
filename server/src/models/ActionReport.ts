@@ -1,10 +1,35 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
 
+// For user
 export interface IActionReport extends Document {
-    actionId: Types.ObjectId;
+    userId: string;
+    location: {
+        lat: number;
+        long: number;
+    };
+    category: "liar" | "pantai" | "sungai";
+    weightEstimation: number;
+    photo: {
+        near: string;
+        far: string;
+    };
     description: string;
-    documentation: string;
-    verificationStatus: boolean;
+    documentation: {
+        community: {
+            photo1: string;
+            photo2: string;
+            note: string;
+        };
+        dlh: {
+            photo1: string;
+            photo2: string;
+            note: string;
+        };
+    };
+    verificationStatus: {
+        status: boolean;
+        communityId?: string;
+    };
     createdAt: Date;
 }
 

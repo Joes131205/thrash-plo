@@ -1,9 +1,26 @@
 import { Request, Response } from "express";
 import CleanupAction, { ICleanupAction } from "../models/CleanupAction";
 
+// Valid progress stages
+type ProgressStage =
+    | "verification"
+    | "scheduling"
+    | "traveling"
+    | "collection"
+    | "sorting"
+    | "shipping"
+    | "completed";
+
 export const createCleanupAction = async (req: Request, res: Response) => {
     try {
-        const { reportId, communityId, startDate, endDate, status } = req.body;
+        const {
+            reportId,
+            communityId,
+            startDate,
+            endDate,
+            status,
+            progressStage,
+        } = req.body;
 
         if (!reportId || !communityId || !startDate || !endDate || !status) {
             return res.status(400).json({
@@ -18,6 +35,7 @@ export const createCleanupAction = async (req: Request, res: Response) => {
             startDate,
             endDate,
             status,
+            progressStage: progressStage || "verification", // Default to verification if not provided
         });
 
         const savedCleanupAction = await newCleanupAction.save();
@@ -75,6 +93,62 @@ export const getCleanupActionById = async (req: Request, res: Response) => {
 
         res.status(200).json({
             success: true,
+            data: cleanupAction,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: "Server error",
+            error,
+        });
+    }
+};
+
+export const updateProgressStage = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const { progressStage } = req.body;
+
+        // Check if the progress stage is valid
+        const validProgressStages: ProgressStage[] = [
+            "verification",
+            "scheduling",
+            "traveling",
+            "collection",
+            "sorting",
+            "shipping",
+            "completed",
+        ];
+
+        if (!validProgressStages.includes(progressStage)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid progress stage",
+            });
+        }
+
+        const cleanupAction = await CleanupAction.findById(id);
+        if (!cleanupAction) {
+            return res.status(404).json({
+                success: false,
+                message: "Cleanup action not found",
+            });
+        }
+
+        // Update the progress stage
+        cleanupAction.progressStage = progressStage;
+
+        // If the progress stage is completed, update the status as well
+        if (progressStage === "completed") {
+            cleanupAction.status = "done";
+        }
+
+        await cleanupAction.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Progress stage updated successfully",
             data: cleanupAction,
         });
     } catch (error) {

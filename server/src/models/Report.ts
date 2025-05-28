@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
 
+// In admin dashboard
 export interface IReport extends Document {
     trashId: string;
     userId: Types.ObjectId;
@@ -42,7 +43,7 @@ const ReportSchema: Schema = new Schema(
         },
         category: {
             type: String,
-            enum: ["small", "large"],
+            enum: ["liar", "pantai", "sungai"],
             required: true,
         },
         weightEstimation: {

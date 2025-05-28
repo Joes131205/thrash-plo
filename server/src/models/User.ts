@@ -4,7 +4,7 @@ export interface IUser extends Document {
     name: string;
     email: string;
     password: string;
-    role: "user" | "community" | "admin" | "DLH" | "partner";
+    role: "user" | "community" | "admin" | "DLH";
     createdAt: Date;
 }
 
@@ -13,6 +13,8 @@ const UserSchema: Schema = new Schema(
         name: { type: String, required: true },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
+        phone_number: { type: String, required: true },
+        ktp: { type: String, required: true },
         role: {
             type: String,
             default: "user",
