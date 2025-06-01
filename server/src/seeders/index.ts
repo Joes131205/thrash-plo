@@ -17,10 +17,6 @@ import {
     ISortingResult,
     ActionReport,
     IActionReport,
-    RecyclingPartner,
-    IRecyclingPartner,
-    RecyclingTransaction,
-    IRecyclingTransaction,
 } from "../models";
 
 dotenv.config();
@@ -328,97 +324,6 @@ async function seedActionReports(
     return actionReports;
 }
 
-async function seedRecyclingPartners(
-    users: IUser[],
-    count = 5
-): Promise<IRecyclingPartner[]> {
-    console.log("Seeding recycling partners...");
-    const recyclingPartners: IRecyclingPartner[] = [];
-    const partnerUsers = users.filter((user) => user.role === "partner");
-
-    if (partnerUsers.length === 0) {
-        console.log("No partner users available for recycling partners");
-        return [];
-    }
-
-    for (const partnerUser of partnerUsers) {
-        const recyclingPartner = new RecyclingPartner({
-            name: faker.company.name(),
-            acceptedWasteTypes: faker.helpers.arrayElements(
-                ["plastic", "paper", "glass", "metal"],
-                faker.number.int({ min: 1, max: 4 })
-            ),
-            contact: faker.phone.number(),
-        });
-
-        recyclingPartners.push(await recyclingPartner.save());
-    }
-
-    for (let i = recyclingPartners.length; i < count; i++) {
-        const recyclingPartner = new RecyclingPartner({
-            name: faker.company.name(),
-            acceptedWasteTypes: faker.helpers.arrayElements(
-                ["plastic", "paper", "glass", "metal"],
-                faker.number.int({ min: 1, max: 4 })
-            ),
-            contact: faker.phone.number(),
-        });
-
-        recyclingPartners.push(await recyclingPartner.save());
-    }
-
-    console.log(`${recyclingPartners.length} recycling partners created`);
-    return recyclingPartners;
-}
-
-async function seedRecyclingTransactions(
-    sortingResults: ISortingResult[],
-    recyclingPartners: IRecyclingPartner[],
-    count = 15
-): Promise<IRecyclingTransaction[]> {
-    console.log("Seeding recycling transactions...");
-    const recyclingTransactions: IRecyclingTransaction[] = [];
-
-    if (sortingResults.length === 0 || recyclingPartners.length === 0) {
-        console.log(
-            "No sorting results or recycling partners available for transactions"
-        );
-        return [];
-    }
-
-    const sortingForTransactions = faker.helpers.arrayElements(
-        sortingResults,
-        Math.min(count, sortingResults.length)
-    );
-
-    for (const sorting of sortingForTransactions) {
-        const partner = faker.helpers.arrayElement(recyclingPartners);
-        if (partner.acceptedWasteTypes.includes(sorting.wasteType)) {
-            const transaction = new RecyclingTransaction({
-                sortingResultId: sorting._id,
-                partnerId: partner._id,
-                commission: faker.number.float({
-                    min: 0.05,
-                    max: 0.3,
-                    fractionDigits: 2,
-                }),
-                status: faker.helpers.arrayElement([
-                    "pending",
-                    "completed",
-                    "cancelled",
-                ]),
-            });
-
-            recyclingTransactions.push(await transaction.save());
-        }
-    }
-
-    console.log(
-        `${recyclingTransactions.length} recycling transactions created`
-    );
-    return recyclingTransactions;
-}
-
 async function seedDatabase() {
     try {
         await connectDB();
@@ -431,8 +336,6 @@ async function seedDatabase() {
             Volunteer.deleteMany({}),
             SortingResult.deleteMany({}),
             ActionReport.deleteMany({}),
-            RecyclingPartner.deleteMany({}),
-            RecyclingTransaction.deleteMany({}),
         ]);
 
         console.log("Database cleared");
@@ -444,13 +347,6 @@ async function seedDatabase() {
         const volunteers = await seedVolunteers(users, cleanupActions, 60);
         const sortingResults = await seedSortingResults(cleanupActions, 20);
         const actionReports = await seedActionReports(cleanupActions, 20);
-        const recyclingPartners = await seedRecyclingPartners(users, 8);
-        const recyclingTransactions = await seedRecyclingTransactions(
-            sortingResults,
-            recyclingPartners,
-            30
-        );
-
         console.log("Database seeded successfully");
 
         console.log("\n====== Seeding Summary ======");
@@ -461,8 +357,6 @@ async function seedDatabase() {
         console.log(`Volunteers: ${volunteers.length}`);
         console.log(`Sorting Results: ${sortingResults.length}`);
         console.log(`Action Reports: ${actionReports.length}`);
-        console.log(`Recycling Partners: ${recyclingPartners.length}`);
-        console.log(`Recycling Transactions: ${recyclingTransactions.length}`);
         console.log("============================\n");
 
         await mongoose.disconnect();
