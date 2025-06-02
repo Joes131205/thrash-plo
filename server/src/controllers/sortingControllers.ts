@@ -1,7 +1,12 @@
 import { Request, Response } from "express";
-import SortingResult, { ISortingResult } from "../models/SortingResult";
-import ActionReport, { IActionReport } from "../models/ActionReport";
-import CleanupAction, { ICleanupAction } from "../models/CleanupAction";
+import {
+    SortingResult,
+    ISortingResult,
+    ActionReport,
+    IActionReport,
+    CleanupAction,
+    ICleanupAction,
+} from "../models";
 
 export const createSortingResult = async (req: Request, res: Response) => {
     try {

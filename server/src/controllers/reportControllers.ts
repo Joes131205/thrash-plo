@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Report, { IReport } from "../models/Report";
+import { Report, IReport } from "../models";
 
 export const createReport = async (req: Request, res: Response) => {
     try {
@@ -80,10 +80,9 @@ export const getReport = async (req: Request, res: Response) => {
         if (req.query.userId) {
             filter.userId = req.query.userId;
         }
-
         const reports = await Report.find(filter).populate(
             "userId",
-            "name email"
+            "name email phone_number"
         );
 
         res.status(200).json({
@@ -104,10 +103,9 @@ export const getReport = async (req: Request, res: Response) => {
 export const getReportById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-
         const report = await Report.findById(id).populate(
             "userId",
-            "name email"
+            "name email phone_number"
         );
 
         if (!report) {
@@ -151,12 +149,11 @@ export const updateReport = async (req: Request, res: Response) => {
 
         // Don't allow updating certain fields
         const { userId, trashId, ...allowedUpdates } = updates;
-
         const updatedReport = await Report.findByIdAndUpdate(
             id,
             { $set: allowedUpdates },
             { new: true, runValidators: true }
-        ).populate("userId", "name email");
+        ).populate("userId", "name email phone_number");
 
         res.status(200).json({
             success: true,

@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
-import Volunteer, { IVolunteer } from "../models/Volunteer";
-import CleanupAction, { ICleanupAction } from "../models/CleanupAction";
+import {
+    Volunteer,
+    IVolunteer,
+    CleanupAction,
+    ICleanupAction,
+} from "../models";
 
 export const createVolunteer = async (req: Request, res: Response) => {
     try {
@@ -73,10 +77,9 @@ export const getVolunteerInAction = async (req: Request, res: Response) => {
                 message: "Cleanup action not found",
             });
         }
-
         const volunteers = await Volunteer.find({ actionId }).populate(
             "userId",
-            "name email"
+            "name email phone_number"
         );
 
         res.status(200).json({

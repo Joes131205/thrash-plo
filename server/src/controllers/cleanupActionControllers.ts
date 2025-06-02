@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import CleanupAction, { ICleanupAction } from "../models/CleanupAction";
+import { CleanupAction, ICleanupAction } from "../models";
 
 // Valid progress stages
 type ProgressStage =
@@ -59,7 +59,7 @@ export const getCleanupAction = async (req: Request, res: Response) => {
     try {
         const cleanupActions = await CleanupAction.find()
             .populate("reportId", "trashId description location category")
-            .populate("communityId", "name email");
+            .populate("communityId", "name email phone_number");
 
         res.status(200).json({
             success: true,
@@ -79,10 +79,9 @@ export const getCleanupAction = async (req: Request, res: Response) => {
 export const getCleanupActionById = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-
         const cleanupAction = await CleanupAction.findById(id)
             .populate("reportId", "trashId description location category")
-            .populate("communityId", "name email");
+            .populate("communityId", "name email phone_number");
 
         if (!cleanupAction) {
             return res.status(404).json({

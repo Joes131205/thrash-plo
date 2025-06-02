@@ -4,6 +4,8 @@ export interface IUser extends Document {
     name: string;
     email: string;
     password: string;
+    phone_number: string;
+    ktp: string;
     role: "user" | "community" | "admin" | "DLH";
     createdAt: Date;
 }

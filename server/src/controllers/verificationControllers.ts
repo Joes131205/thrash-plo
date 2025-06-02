@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import Verification, { IVerification } from "../models/Verification";
-import Report, { IReport } from "../models/Report";
+import { Verification, IVerification, Report, IReport } from "../models";
 
 export const verifyReport = async (req: Request, res: Response) => {
     try {
@@ -32,11 +31,10 @@ export const verifyReport = async (req: Request, res: Response) => {
             verificationTime: new Date(),
             result,
         });
-
         const savedVerification = await newVerification.save();
 
         // Update report status if needed based on verification result
-        if (result === "verified") {
+        if (result === "approved") {
             await Report.findByIdAndUpdate(reportId, { status: "processing" });
         }
 
@@ -67,10 +65,9 @@ export const getVerification = async (req: Request, res: Response) => {
         if (req.query.verifiedBy) {
             filter.verifiedBy = req.query.verifiedBy;
         }
-
         const verifications = await Verification.find(filter)
             .populate("reportId", "trashId description photo")
-            .populate("verifiedBy", "name email");
+            .populate("verifiedBy", "name email phone_number");
 
         res.status(200).json({
             success: true,

@@ -5,6 +5,11 @@ import CleanupAction, { ICleanupAction } from "./CleanupAction";
 import Volunteer, { IVolunteer } from "./Volunteer";
 import SortingResult, { ISortingResult } from "./SortingResult";
 import ActionReport, { IActionReport } from "./ActionReport";
+import Community, { ICommunity } from "./Community";
+import RecyclingPartner, { IRecyclingPartner } from "./RecyclingPartner";
+import RecyclingTransaction, {
+    IRecyclingTransaction,
+} from "./RecyclingTransaction";
 
 export {
     User,
@@ -21,4 +26,10 @@ export {
     ISortingResult,
     ActionReport,
     IActionReport,
+    Community,
+    ICommunity,
+    RecyclingPartner,
+    IRecyclingPartner,
+    RecyclingTransaction,
+    IRecyclingTransaction,
 };

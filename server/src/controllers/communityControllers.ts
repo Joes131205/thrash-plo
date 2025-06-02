@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Community, { ICommunity } from "../models/Community";
+import { Community, ICommunity } from "../models";
 
 export const registerCommunity = async (req: Request, res: Response) => {
     try {
@@ -95,9 +95,8 @@ export const getCommunityById = async (req: Request, res: Response) => {
     try {
         const communityId = req.params.id;
 
-        const community = await Community.findById(communityId).select(
-            "-password"
-        );
+        const community =
+            await Community.findById(communityId).select("-password");
 
         if (!community) {
             return res.status(404).json({

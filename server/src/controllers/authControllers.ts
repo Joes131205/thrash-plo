@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import User, { IUser } from "../models/User";
+import { User, IUser, Community } from "../models";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-import Community from "../models/Community";
 
 const generateToken = (id: string) => {
     return jwt.sign({ id }, process.env.JWT_SECRET as string, {
@@ -13,12 +12,13 @@ const generateToken = (id: string) => {
 
 export const registerUser = async (req: Request, res: Response) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, phone_number, ktp } = req.body;
 
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !phone_number || !ktp) {
             return res.status(400).json({
                 success: false,
-                message: "Name, email, and password are required",
+                message:
+                    "Name, email, password, phone number, and KTP are required",
             });
         }
 
@@ -33,6 +33,8 @@ export const registerUser = async (req: Request, res: Response) => {
         const newUser = new User({
             name,
             email,
+            phone_number,
+            ktp,
             password: await bcryptjs.hash(password, 10),
         });
 
@@ -45,6 +47,8 @@ export const registerUser = async (req: Request, res: Response) => {
                 _id: savedUser._id,
                 name: savedUser.name,
                 email: savedUser.email,
+                phone_number: savedUser.phone_number,
+                // Not returning KTP for security reasons
             },
             token,
         });
@@ -91,6 +95,8 @@ export const login = async (req: Request, res: Response) => {
                 _id: user._id,
                 name: user.name,
                 email: user.email,
+                phone_number: user.phone_number,
+                // Not returning KTP for security reasons
             },
             token,
         });

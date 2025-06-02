@@ -40,49 +40,54 @@ async function connectDB() {
 async function seedUsers(count = 10): Promise<IUser[]> {
     console.log("Seeding users...");
     const users: IUser[] = [];
-
     const adminPassword = await bcrypt.hash("admin123", 10);
     const admin = new User({
         name: "Admin User",
         email: "admin@example.com",
         password: adminPassword,
+        phone_number: "081234567890",
+        ktp: "1234567890123456",
         role: "admin",
     });
     users.push(await admin.save());
-
     const communityPassword = await bcrypt.hash("community123", 10);
     const community = new User({
         name: "Community Organization",
         email: "community@example.com",
         password: communityPassword,
+        phone_number: "081234567891",
+        ktp: "1234567890123457",
         role: "community",
     });
     users.push(await community.save());
-
     const dlhPassword = await bcrypt.hash("dlh123", 10);
     const dlh = new User({
         name: "DLH Official",
         email: "dlh@example.com",
         password: dlhPassword,
+        phone_number: "081234567892",
+        ktp: "1234567890123458",
         role: "DLH",
     });
     users.push(await dlh.save());
-
     const partnerPassword = await bcrypt.hash("partner123", 10);
     const partner = new User({
         name: "Recycling Partner",
         email: "partner@example.com",
         password: partnerPassword,
+        phone_number: "081234567893",
+        ktp: "1234567890123459",
         role: "partner",
     });
     users.push(await partner.save());
-
     for (let i = 0; i < count; i++) {
         const password = await bcrypt.hash("password123", 10);
         const user = new User({
             name: faker.person.fullName(),
             email: faker.internet.email().toLowerCase(),
             password: password,
+            phone_number: faker.phone.number("+628##########"),
+            ktp: faker.string.numeric(16), // Indonesia's KTP has 16 digits
             role: "user",
         });
         users.push(await user.save());

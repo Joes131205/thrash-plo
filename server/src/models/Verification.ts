@@ -21,7 +21,11 @@ const VerificationSchema: Schema = new Schema(
             required: true,
         },
         verificationTime: { type: Date, required: true },
-        result: { type: String, required: true },
+        result: {
+            type: String,
+            enum: ["rejected", "approved"],
+            required: true,
+        },
         createdAt: { type: Date, default: Date.now },
     },
     {

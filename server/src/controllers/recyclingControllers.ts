@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import RecyclingPartner, {
+import {
+    RecyclingPartner,
     IRecyclingPartner,
-} from "../models/RecyclingPartner";
-import RecyclingTransaction, {
+    RecyclingTransaction,
     IRecyclingTransaction,
-} from "../models/RecyclingTransaction";
+} from "../models";
 
 export const getRecyclingPartner = async (req: Request, res: Response) => {
     try {
