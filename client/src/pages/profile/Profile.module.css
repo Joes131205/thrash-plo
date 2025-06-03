@@ -1,0 +1,75 @@
+.profileContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.profileHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.profileAvatar {
+    width: 100px;
+    height: 100px;
+    background-color: #e0f2e6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #24b04b;
+}
+
+.profileInfo h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.profileInfo p {
+    margin: 0;
+    color: #666;
+}
+
+.profileRole {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #e0f2e6;
+    color: #24b04b;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.profileDetails {
+    margin-top: 2rem;
+}
+
+.profileSection {
+    margin-bottom: 2rem;
+}
+
+.profileSection h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.detailRow {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.detailLabel {
+    width: 150px;
+    font-weight: 500;
+    color: #666;
+}
+
+.detailValue {
+    flex: 1;
+}
