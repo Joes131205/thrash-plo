@@ -100,7 +100,7 @@ const apiService = {
             api.post("/api/auth/login", { email, password }),
         register: (userData: UserData) =>
             api.post("/api/auth/register", userData),
-        getCurrent: (id: string) => api.get(`/api/auth/getMe/${id}`),
+        getCurrent: () => api.get(`/api/auth/getMe`),
     },
 
     reports: {

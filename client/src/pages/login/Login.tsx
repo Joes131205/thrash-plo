@@ -10,10 +10,11 @@ import {
     IcPassword,
     IcSeparatorLog,
 } from "@/assets/icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextInput from "@/components/molecules/textInput/textInput";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
 import { useAuth } from "@/context/authContext";
+import apiService from "@/utils/api";
 
 export default function LoginPage() {
     const navigate = useNavigate();
@@ -27,17 +28,49 @@ export default function LoginPage() {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = () => {
+    useEffect(() => {
+        const storedEmail = localStorage.getItem("rememberedEmail");
+        if (storedEmail) {
+            setEmail(storedEmail);
+            setRememberMe(true);
+        }
+    }, []);
+
+    const handleSubmit = async () => {
+        if (!email || !password) {
+            alert("Email dan password harus diisi");
+            return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert("Format email tidak valid");
+            return;
+        }
+
         setIsLoading(true);
-        console.log({ email, password, rememberMe });
-        setIsLogin(true);
+        try {
+            const response = await apiService.auth.login(email, password);
 
-        setTimeout(() => {
+            if (response.status === 200) {
+                setIsLogin(true);
+
+                if (rememberMe) {
+                    localStorage.setItem("rememberedEmail", email);
+                } else {
+                    localStorage.removeItem("rememberedEmail");
+                }
+
+                navigate("/");
+            } else {
+                alert("Login gagal, periksa email dan password Anda");
+            }
+        } catch (error) {
+            console.log(error);
+            alert("Terjadi kesalahan saat login");
+        } finally {
             setIsLoading(false);
-            navigate("/riwayat-laporan");
-        }, 2000);
+        }
     };
-
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setRememberMe(e.target.checked);
     };
@@ -101,6 +134,7 @@ export default function LoginPage() {
                     />
 
                     <div className={styles.boxInput}>
+                        {" "}
                         <TextInput
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -118,14 +152,12 @@ export default function LoginPage() {
                         />
                         <div className={styles.checkboxRow}>
                             <div className={styles.checkboxLabel}>
+                                {" "}
                                 <input
                                     type="checkbox"
                                     checked={rememberMe}
-                                    onChange={(e) =>
-                                        setRememberMe(e.target.checked)
-                                    }
+                                    onChange={handleCheckboxChange}
                                     className={styles.checkbox}
-                                    onClick={() => handleCheckboxChange}
                                 />
                                 <p className={styles.rememberMe}>Ingat saya</p>
                             </div>

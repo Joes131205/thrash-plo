@@ -1,78 +1,92 @@
 .container {
-  padding: 50px;
+    padding: 50px;
 }
 
 .titleMisi {
-  font-weight: var(--weight-semibold);
-  font-size: 34px;
-  color: var(--text-primary);
-  margin-bottom: 19px;
-  background: transparent;
+    font-weight: var(--weight-semibold);
+    font-size: 34px;
+    color: var(--text-primary);
+    margin-bottom: 19px;
+    background: transparent;
 }
 
 .content {
-  display: flex;
-  align-items: start;
-  gap: 150px;
-  margin-top: 60px;
+    display: flex;
+    align-items: start;
+    gap: 150px;
+    margin-top: 60px;
 }
 
 .leftContent {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .rightContent {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 /* CREATE LAPORAN */
 .warnText {
-  color: var(--text-primary);
-  font-weight: var(--weight-medium);
-  margin-bottom: 8px;
+    color: var(--text-primary);
+    font-weight: var(--weight-medium);
+    margin-bottom: 8px;
 }
 
 .warnBox {
-  background-color: var(--primary-color);
-  margin-bottom: 10px;
+    background-color: var(--primary-color);
+    margin-bottom: 10px;
 }
 
 .warnPlaceholder {
-  color: var(--warn-color);
-  margin-bottom: 10px;
+    color: var(--warn-color);
+    margin-bottom: 10px;
 }
 
 .checkboxLabel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  color: #2e2e2e;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: #2e2e2e;
+}
+
+.errorText {
+    color: #ff4d4f;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.errorLabel {
+    color: #ff4d4f;
+}
+
+.errorField {
+    border: 1px solid #ff4d4f !important;
 }
 /* END CREATE LAPORAN */
 
 /* RIWAYAT LAPORAN */
 .activeTab {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .propsTitle {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 18px;
-  font-weight: var(--weight-medium);
-  color: var(--text-primary);
+    display: block;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
 }
 
 .propsDesc {
-  color: #757575;
+    color: #757575;
 }
 
 /* END RIWAYAT LAPORAN */

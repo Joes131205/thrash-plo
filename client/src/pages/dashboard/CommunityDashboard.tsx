@@ -4,12 +4,47 @@ import styles from "./Dashboard.module.css";
 import { useAuth } from "@/context/authContext";
 import apiService from "@/utils/api";
 import LoadingSpinner from "@/components/atomics/loadingSpinner";
+import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
+import CleanupActionForm from "@/components/organisms/cleanupActionForm/CleanupActionForm";
+
+interface User {
+    _id: string;
+    name: string;
+    email: string;
+    role: string;
+}
+
+interface CleanupAction {
+    _id: string;
+    title: string;
+    location: string;
+    startDate: string;
+    endDate: string;
+    status: string;
+    progressStage:
+        | "verification"
+        | "scheduling"
+        | "traveling"
+        | "collection"
+        | "sorting"
+        | "shipping"
+        | "completed";
+    volunteers: number;
+    max_volunteers: number;
+    communityId: string;
+    reportId: string;
+}
 
 const CommunityDashboard = () => {
-    const { user, isLogin, loading } = useAuth();
+    const { user, isLogin } = useAuth();
     const navigate = useNavigate();
 
-    const [dashboardData, setDashboardData] = useState({
+    const [dashboardData, setDashboardData] = useState<{
+        actions: CleanupAction[];
+        volunteers: number;
+        completedActions: number;
+        inProgressActions: number;
+    }>({
         actions: [],
         volunteers: 0,
         completedActions: 0,
@@ -17,70 +52,72 @@ const CommunityDashboard = () => {
     });
     const [activeTab, setActiveTab] = useState("upcoming");
     const [isLoading, setIsLoading] = useState(true);
+    const [showActionForm, setShowActionForm] = useState(false);
+    const [selectedActionId, setSelectedActionId] = useState<
+        string | undefined
+    >(undefined);
+
+    // Function to fetch dashboard data
+    const fetchDashboardData = async () => {
+        try {
+            setIsLoading(true);
+
+            // Get all cleanup actions
+            const actionsResponse = await apiService.cleanupActions.getAll();
+
+            // Filter for this community's actions
+            const communityActions = actionsResponse.data.filter(
+                (action: any) => action.communityId === user?._id
+            );
+
+            // Calculate stats
+            const completed = communityActions.filter(
+                (action: any) => action.progressStage === "completed"
+            ).length;
+
+            const inProgress = communityActions.filter(
+                (action: any) => action.progressStage !== "completed"
+            ).length;
+
+            // Get total volunteers
+            let totalVolunteers = 0;
+            for (const action of communityActions) {
+                try {
+                    const volunteerResponse =
+                        await apiService.volunteers.getByAction(action._id);
+                    totalVolunteers += volunteerResponse.data.length;
+                } catch (error) {
+                    console.error("Error fetching volunteers:", error);
+                }
+            }
+
+            setDashboardData({
+                actions: communityActions as CleanupAction[],
+                volunteers: totalVolunteers,
+                completedActions: completed,
+                inProgressActions: inProgress,
+            });
+        } catch (error) {
+            console.error("Error fetching dashboard data:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
         // Redirect if not a community user
-        if (!loading && (!isLogin || (user && user.role !== "community"))) {
+        if (!isLoading && (!isLogin || (user && user.role !== "community"))) {
             navigate("/login");
         }
 
         // Fetch dashboard data if authenticated
         if (isLogin && user && user.role === "community") {
-            const fetchDashboardData = async () => {
-                try {
-                    setIsLoading(true);
-
-                    // Get all cleanup actions
-                    const actionsResponse =
-                        await apiService.cleanupActions.getAll();
-
-                    // Filter for this community's actions
-                    const communityActions = actionsResponse.data.filter(
-                        (action) => action.communityId === user._id
-                    );
-
-                    // Calculate stats
-                    const completed = communityActions.filter(
-                        (action) => action.progressStage === "completed"
-                    ).length;
-
-                    const inProgress = communityActions.filter(
-                        (action) => action.progressStage !== "completed"
-                    ).length;
-
-                    // Get total volunteers
-                    let totalVolunteers = 0;
-                    for (const action of communityActions) {
-                        try {
-                            const volunteerResponse =
-                                await apiService.volunteers.getByAction(
-                                    action._id
-                                );
-                            totalVolunteers += volunteerResponse.data.length;
-                        } catch (error) {
-                            console.error("Error fetching volunteers:", error);
-                        }
-                    }
-
-                    setDashboardData({
-                        actions: communityActions,
-                        volunteers: totalVolunteers,
-                        completedActions: completed,
-                        inProgressActions: inProgress,
-                    });
-                } catch (error) {
-                    console.error("Error fetching dashboard data:", error);
-                } finally {
-                    setIsLoading(false);
-                }
-            };
-
             fetchDashboardData();
         }
-    }, [isLogin, loading, navigate, user]);
+    }, [isLogin, navigate, user]);
 
     // Show loading spinner while checking auth status or fetching data
-    if (loading || isLoading) {
+    if (isLoading) {
         return (
             <div
                 style={{
@@ -94,6 +131,49 @@ const CommunityDashboard = () => {
             </div>
         );
     }
+
+    // Handle creating or updating an action
+    const handleActionSuccess = () => {
+        // Refresh dashboard data
+        fetchDashboardData();
+    };
+
+    const handleEditAction = (actionId: string) => {
+        setSelectedActionId(actionId);
+        setShowActionForm(true);
+    };
+
+    const handleCreateNewAction = () => {
+        setSelectedActionId(undefined);
+        setShowActionForm(true);
+    };
+
+    // Update action progress stage
+    const handleUpdateProgressStage = async (
+        actionId: string,
+        newStage: string
+    ) => {
+        try {
+            setIsLoading(true);
+            await apiService.cleanupActions.updateProgressStage(
+                actionId,
+                newStage as
+                    | "verification"
+                    | "scheduling"
+                    | "traveling"
+                    | "collection"
+                    | "sorting"
+                    | "shipping"
+                    | "completed"
+            );
+            await fetchDashboardData();
+        } catch (error) {
+            console.error("Error updating progress stage:", error);
+            alert("Gagal memperbarui status. Silakan coba lagi.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     // Filter actions based on active tab
     const filteredActions = dashboardData.actions.filter((action) => {
@@ -113,12 +193,20 @@ const CommunityDashboard = () => {
         }
         return true;
     });
-
     return (
         <div className={styles.dashboardContainer}>
             <div className={styles.dashboardHeader}>
-                <h1>Dashboard Komunitas</h1>
-                <p>Selamat datang, {user?.name}</p>
+                <div>
+                    <h1>Dashboard Komunitas</h1>
+                    <p>Selamat datang, {user?.name}</p>
+                </div>
+                <ButtonMain
+                    btnText="Buat Aksi Bersih"
+                    btnColor={true}
+                    colorBorder={false}
+                    textColor="white"
+                    onClick={() => handleCreateNewAction()}
+                />
             </div>
 
             <div className={styles.statsGrid}>
@@ -182,7 +270,7 @@ const CommunityDashboard = () => {
                                 <th>Tanggal Selesai</th>
                                 <th>Status</th>
                                 <th>Relawan</th>
-                                <th>Aksi</th>
+                                <th colSpan={2}>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -201,25 +289,66 @@ const CommunityDashboard = () => {
                                         ).toLocaleDateString("id-ID")}
                                     </td>
                                     <td>
-                                        {getProgressStageLabel(
-                                            action.progressStage
-                                        )}
+                                        <select
+                                            value={action.progressStage}
+                                            onChange={(e) =>
+                                                handleUpdateProgressStage(
+                                                    action._id,
+                                                    e.target.value
+                                                )
+                                            }
+                                            className={styles.statusSelect}
+                                        >
+                                            <option value="verification">
+                                                Verifikasi
+                                            </option>
+                                            <option value="scheduling">
+                                                Penjadwalan
+                                            </option>
+                                            <option value="traveling">
+                                                Perjalanan
+                                            </option>
+                                            <option value="collection">
+                                                Pengumpulan
+                                            </option>
+                                            <option value="sorting">
+                                                Pemilahan
+                                            </option>
+                                            <option value="shipping">
+                                                Pengiriman
+                                            </option>
+                                            <option value="completed">
+                                                Selesai
+                                            </option>
+                                        </select>
                                     </td>
                                     <td>
                                         {action.volunteers}/
                                         {action.max_volunteers}
                                     </td>
                                     <td>
-                                        <button
-                                            className={styles.actionButton}
-                                            onClick={() =>
-                                                navigate(
-                                                    `/detail-aksi?id=${action._id}`
-                                                )
-                                            }
+                                        <div
+                                            className={styles.actionButtonGroup}
                                         >
-                                            Detail
-                                        </button>
+                                            <button
+                                                className={styles.actionButton}
+                                                onClick={() =>
+                                                    navigate(
+                                                        `/detail-aksi?id=${action._id}`
+                                                    )
+                                                }
+                                            >
+                                                Detail
+                                            </button>
+                                            <button
+                                                className={`${styles.actionButton} ${styles.editButton}`}
+                                                onClick={() =>
+                                                    handleEditAction(action._id)
+                                                }
+                                            >
+                                                Edit
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}
@@ -237,6 +366,16 @@ const CommunityDashboard = () => {
                     </div>
                 )}
             </div>
+
+            {/* Modal form for creating/editing cleanup actions */}
+            {showActionForm && (
+                <CleanupActionForm
+                    isOpen={showActionForm}
+                    onClose={() => setShowActionForm(false)}
+                    onSuccess={handleActionSuccess}
+                    actionId={selectedActionId}
+                />
+            )}
         </div>
     );
 };
