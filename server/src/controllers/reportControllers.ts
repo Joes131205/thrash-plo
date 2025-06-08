@@ -17,7 +17,6 @@ export const createReport = async (req: Request, res: Response) => {
         if (
             !trashId ||
             !description ||
-            !photo ||
             !location ||
             !category ||
             !weightEstimation
@@ -25,6 +24,14 @@ export const createReport = async (req: Request, res: Response) => {
             return res.status(400).json({
                 success: false,
                 message: "Please provide all required fields",
+            });
+        }
+
+        // Validate photo object with both near and far properties
+        if (!photo || !photo.near || !photo.far) {
+            return res.status(400).json({
+                success: false,
+                message: "Photo must include both near and far images",
             });
         }
 
@@ -40,7 +47,7 @@ export const createReport = async (req: Request, res: Response) => {
             trashId,
             userId,
             description,
-            photo,
+            photo, // This now contains {near, far} structure
             location,
             status: "waiting",
             category,

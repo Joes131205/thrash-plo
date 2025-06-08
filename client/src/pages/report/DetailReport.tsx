@@ -14,7 +14,10 @@ interface Report {
     id?: string;
     trashId: string;
     description: string;
-    photo: string;
+    photo: {
+        near: string;
+        far: string;
+    };
     photoNear?: string;
     photoFar?: string;
     fotoUrl?: string;
@@ -121,9 +124,7 @@ export default function DetailLaporanPage() {
                         break;
                     default:
                         statusDisplay = reportData.status;
-                }
-
-                // Create a complete report object
+                } // Create a complete report object
                 const completeReport = {
                     ...reportData,
                     id: reportData._id || reportData.id,
@@ -134,9 +135,23 @@ export default function DetailLaporanPage() {
                     weight:
                         reportData.weightEstimation || reportData.weight || 0,
                     notes: reportData.description || reportData.notes || "-",
-                    fotoUrl: reportData.photo || reportData.fotoUrl,
-                    photoNear: reportData.photoNear,
-                    photoFar: reportData.photoFar || reportData.photo,
+                    // Handle both old and new photo structures
+                    fotoUrl: reportData.photo
+                        ? typeof reportData.photo === "string"
+                            ? reportData.photo
+                            : reportData.photo.far || reportData.photo.near
+                        : reportData.fotoUrl,
+                    photoNear:
+                        reportData.photo && reportData.photo.near
+                            ? reportData.photo.near
+                            : reportData.photoNear,
+                    photoFar:
+                        reportData.photo && reportData.photo.far
+                            ? reportData.photo.far
+                            : reportData.photoFar ||
+                              (typeof reportData.photo === "string"
+                                  ? reportData.photo
+                                  : ""),
                 };
 
                 setLaporan(completeReport);
@@ -355,11 +370,16 @@ export default function DetailLaporanPage() {
                                     <div>
                                         <p className={styles.propsDesc}>
                                             Foto dari Dekat
-                                        </p>
+                                        </p>{" "}
                                         <img
                                             src={
                                                 laporan.photoNear ??
                                                 laporan.fotoUrlNear ??
+                                                (laporan.photo &&
+                                                typeof laporan.photo !==
+                                                    "string"
+                                                    ? laporan.photo.near
+                                                    : null) ??
                                                 laporan.fotoUrl ??
                                                 ""
                                             }
@@ -378,6 +398,11 @@ export default function DetailLaporanPage() {
                                         <img
                                             src={
                                                 laporan.photoFar ??
+                                                (laporan.photo &&
+                                                typeof laporan.photo !==
+                                                    "string"
+                                                    ? laporan.photo.far
+                                                    : null) ??
                                                 laporan.fotoUrl ??
                                                 ""
                                             }
