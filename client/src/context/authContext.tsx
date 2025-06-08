@@ -26,6 +26,7 @@ type AuthContextType = {
         ktp: string
     ) => Promise<boolean>;
     logout: () => void;
+    setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -44,14 +45,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const fetchUserData = async () => {
         try {
-            const token = localStorage.getItem("token");
-            if (!token) return;
-
             const response = await apiService.auth.getCurrent();
 
-            if (response.data?.user) {
-                setUser(response.data.user);
+            if (response?.data) {
+                setUser(response.data);
             }
+            console.log(response);
         } catch (error) {
             console.error("Failed to fetch user data:", error);
             localStorage.removeItem("token");
@@ -123,7 +122,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     return (
         <AuthContext.Provider
-            value={{ isLogin, user, loginUser, registerUser, logout }}
+            value={{
+                isLogin,
+                setIsLogin,
+                user,
+                loginUser,
+                registerUser,
+                logout,
+            }}
         >
             {children}
         </AuthContext.Provider>

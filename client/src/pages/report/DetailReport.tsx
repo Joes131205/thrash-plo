@@ -4,20 +4,152 @@ import styles from "./Report.module.css";
 import Footer from "@/components/organisms/footer/footer";
 import { IcCopy, IcMenunggu } from "@/assets/icons";
 import ProgressTimeline from "@/components/organisms/progressTimeline/progressTimeline";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import ButtonMain from "@/components/atomics/buttonMain/buttonMain";
+import apiService from "@/utils/api";
+
+interface Report {
+    _id: string;
+    id?: string;
+    trashId: string;
+    description: string;
+    photo: string;
+    photoNear?: string;
+    photoFar?: string;
+    fotoUrl?: string;
+    fotoUrlNear?: string;
+    location: {
+        lat: number;
+        long: number;
+    };
+    lokasi?: string;
+    category: "liar" | "pantai" | "sungai";
+    jenisSampah?: string;
+    weightEstimation: number;
+    weight?: number;
+    status: "waiting" | "processing" | "done";
+    createdAt: string;
+    tanggal?: string;
+    userId: string;
+    notes?: string;
+    originalData?: Record<string, unknown>;
+}
 
 export default function DetailLaporanPage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const laporan = location.state;
+    const params = useParams();
+    const [laporan, setLaporan] = useState<Report | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        if (!laporan) {
-            navigate("/riwayat-laporan");
-        }
-    }, [laporan, navigate]);
+        const fetchReportDetails = async () => {
+            try {
+                setIsLoading(true);
+                setError(null);
+
+                // Get report ID from URL params or from location state
+                let reportId;
+                let reportData;
+
+                if (location.pathname.includes("/detail-laporan/")) {
+                    // Extract ID from URL path
+                    reportId = location.pathname.split("/").pop();
+
+                    if (reportId) {
+                        // Fetch report from API
+                        const response = await apiService.reports.getById(
+                            reportId
+                        );
+                        if (response.data && response.data.data) {
+                            reportData = response.data.data;
+                        }
+                    }
+                } else if (location.state) {
+                    // Use data from navigation state
+                    reportData = location.state.originalData || location.state;
+                }
+
+                if (!reportData) {
+                    setError("Report not found");
+                    setIsLoading(false);
+                    return;
+                }
+
+                // Format the date
+                const date = new Date(reportData.createdAt);
+                const formattedDate = `${date.getDate()}/${
+                    date.getMonth() + 1
+                }/${date.getFullYear()}`;
+
+                // Convert category to display format in Indonesian
+                let jenisSampah = "";
+                switch (reportData.category) {
+                    case "liar":
+                        jenisSampah = "Tumpukan Sampah Liar";
+                        break;
+                    case "pantai":
+                        jenisSampah = "Sampah di Pantai";
+                        break;
+                    case "sungai":
+                        jenisSampah = "Sampah di Sungai";
+                        break;
+                    default:
+                        jenisSampah = reportData.jenisSampah || "Lainnya";
+                }
+
+                // Format location
+                const lokasi = reportData.location
+                    ? `${reportData.location.lat.toFixed(
+                          4
+                      )}, ${reportData.location.long.toFixed(4)}`
+                    : reportData.lokasi || "Lokasi tidak tersedia";
+
+                // Convert status to display format
+                let statusDisplay;
+                switch (reportData.status) {
+                    case "waiting":
+                        statusDisplay = "Menunggu";
+                        break;
+                    case "processing":
+                        statusDisplay = "Diproses";
+                        break;
+                    case "done":
+                        statusDisplay = "Selesai";
+                        break;
+                    default:
+                        statusDisplay = reportData.status;
+                }
+
+                // Create a complete report object
+                const completeReport = {
+                    ...reportData,
+                    id: reportData._id || reportData.id,
+                    tanggal: formattedDate,
+                    jenisSampah,
+                    lokasi,
+                    status: statusDisplay,
+                    weight:
+                        reportData.weightEstimation || reportData.weight || 0,
+                    notes: reportData.description || reportData.notes || "-",
+                    fotoUrl: reportData.photo || reportData.fotoUrl,
+                    photoNear: reportData.photoNear,
+                    photoFar: reportData.photoFar || reportData.photo,
+                };
+
+                setLaporan(completeReport);
+            } catch (error) {
+                console.error("Error fetching report details:", error);
+                setError("Failed to load report details");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchReportDetails();
+    }, [location, params]);
 
     const pageVariants = {
         initial: { opacity: 0, y: 20 },
@@ -36,21 +168,58 @@ export default function DetailLaporanPage() {
             });
     };
 
-    const dataProgress = [
-        {
-            title: "Laporan Dikirim",
-            subtitle: laporan?.tanggal || "",
-            color: "#2BBBAD		",
-        },
-        {
-            title: "Laporan Menunggu Diterima oleh Komunitas",
-            subtitle: "Komunitas : -",
-            color: "#2BBBAD		",
-        },
-    ];
+    // Generate progress timeline data
+    const dataProgress = laporan
+        ? [
+              {
+                  title: "Laporan Dikirim",
+                  subtitle: laporan.tanggal || "",
+                  color: "#2BBBAD",
+              },
+              {
+                  title: "Laporan Menunggu Diterima oleh Komunitas",
+                  subtitle: "Komunitas : -",
+                  color: "#2BBBAD",
+              },
+          ]
+        : [];
 
-    if (!laporan) {
-        return null;
+    if (isLoading) {
+        return (
+            <div>
+                <Navbar />
+                <div
+                    className={styles.container}
+                    style={{ textAlign: "center", padding: "50px" }}
+                >
+                    <h2>Memuat detail laporan...</h2>
+                </div>
+                <Footer />
+            </div>
+        );
+    }
+
+    if (error || !laporan) {
+        return (
+            <div>
+                <Navbar />
+                <div
+                    className={styles.container}
+                    style={{ textAlign: "center", padding: "50px" }}
+                >
+                    <h2>Error: {error || "Laporan tidak ditemukan"}</h2>
+                    <ButtonMain
+                        btnText={"Kembali ke Riwayat"}
+                        btnColor={true}
+                        colorBorder={false}
+                        textColor={"white"}
+                        weightFont={true}
+                        onClick={() => navigate("/riwayat-laporan")}
+                    />
+                </div>
+                <Footer />
+            </div>
+        );
     }
 
     return (
@@ -126,7 +295,7 @@ export default function DetailLaporanPage() {
                                     Perkiraan Berat
                                 </h5>
                                 <p className={styles.propsDesc}>
-                                    {laporan.weight ?? "-"}
+                                    {laporan.weight ?? "-"} kg
                                 </p>
                             </div>
 
@@ -191,6 +360,7 @@ export default function DetailLaporanPage() {
                                             src={
                                                 laporan.photoNear ??
                                                 laporan.fotoUrlNear ??
+                                                laporan.fotoUrl ??
                                                 ""
                                             }
                                             alt="Foto dari dekat"
@@ -232,11 +402,7 @@ export default function DetailLaporanPage() {
                                 colorBorder={false}
                                 textColor={"white"}
                                 weightFont={true}
-                                onClick={() =>
-                                    navigate("/riwayat-laporan", {
-                                        state: laporan,
-                                    })
-                                }
+                                onClick={() => navigate("/riwayat-laporan")}
                             />
                         </div>
                     </div>

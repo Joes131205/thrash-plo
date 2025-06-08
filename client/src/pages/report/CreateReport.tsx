@@ -13,13 +13,18 @@ import apiService from "@/utils/api";
 
 export default function BuatLaporanPage() {
     const navigate = useNavigate();
-    const [locationValue, setLocationValue] = useState("");
+    const [locationValue, setLocationValue] = useState({
+        lat: 0,
+        long: 0,
+    });
+    const [locationName, setLocationName] = useState("");
     const [trashType, setTrashType] = useState("");
     const [weight, setWeight] = useState("");
     const [notes, setNotes] = useState("");
     const [photoNear, setPhotoNear] = useState<string | null>(null);
     const [photoFar, setPhotoFar] = useState<string | null>(null);
     const [isChecked, setIsChecked] = useState(false);
+    const [gettingLocation, setGettingLocation] = useState(false);
 
     // Form validation states
     const [errors, setErrors] = useState<{
@@ -32,6 +37,72 @@ export default function BuatLaporanPage() {
 
     const [loading, setLoading] = useState(false);
 
+    // Function to get current location using the Geolocation API
+    const getCurrentLocation = () => {
+        if ("geolocation" in navigator) {
+            setGettingLocation(true);
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    const { latitude, longitude } = position.coords;
+                    setLocationValue({
+                        lat: latitude,
+                        long: longitude,
+                    });
+
+                    // Try to get readable address from coordinates using reverse geocoding
+                    try {
+                        // Using Nominatim API for reverse geocoding (OpenStreetMap)
+                        const response = await fetch(
+                            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`
+                        );
+                        const data = await response.json();
+
+                        if (data && data.display_name) {
+                            setLocationName(data.display_name);
+                        } else {
+                            setLocationName(
+                                `${latitude.toFixed(6)}, ${longitude.toFixed(
+                                    6
+                                )}`
+                            );
+                        }
+                    } catch (error) {
+                        console.error("Error getting location name:", error);
+                        setLocationName(
+                            `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`
+                        );
+                    }
+
+                    setGettingLocation(false);
+
+                    // Clear any location error
+                    setErrors((prev) => ({
+                        ...prev,
+                        location: undefined,
+                    }));
+                },
+                (error) => {
+                    console.error("Error getting location: ", error);
+                    setGettingLocation(false);
+                    setErrors((prev) => ({
+                        ...prev,
+                        location: "Gagal mendapatkan lokasi. Mohon isi manual.",
+                    }));
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0,
+                }
+            );
+        } else {
+            alert(
+                "Geolocation tidak didukung di browser Anda. Mohon isi lokasi secara manual."
+            );
+            setGettingLocation(false);
+        }
+    };
+
     const validateForm = () => {
         const newErrors: {
             location?: string;
@@ -41,7 +112,7 @@ export default function BuatLaporanPage() {
             photoFar?: string;
         } = {};
 
-        if (!locationValue.trim()) {
+        if (locationValue.lat === 0 && locationValue.long === 0) {
             newErrors.location = "Lokasi harus diisi";
         }
 
@@ -85,34 +156,19 @@ export default function BuatLaporanPage() {
                 trashId: `TR-${Date.now()}`,
                 description: notes || "Tidak ada catatan",
                 photo: photoFar || "",
-                location: {
-                    lat: 0,
-                    long: 0,
-                },
+                location: locationValue,
                 category:
                     trashType === "Tumpukan Sampah Liar"
                         ? "liar"
                         : trashType === "Sampah di Sungai"
-                          ? "sungai"
-                          : trashType === "Sampah di Pantai"
-                            ? "pantai"
-                            : "liar",
+                        ? "sungai"
+                        : trashType === "Sampah di Pantai"
+                        ? "pantai"
+                        : ("liar" as "liar" | "pantai" | "sungai"),
                 weightEstimation: weightNum || 0,
             };
 
             await apiService.reports.create(reportData);
-
-            const laporanBaru = {
-                id: Date.now(),
-                tanggal: new Date().toISOString(),
-                lokasi: locationValue,
-                jenisSampah: trashType,
-                weight: weightNum,
-                notes: notes,
-                fotoUrlNear: photoNear,
-                fotoUrl: photoFar,
-                status: "Menunggu",
-            };
 
             // Navigate to report history with the new report
             navigate("/riwayat-laporan");
@@ -154,22 +210,34 @@ export default function BuatLaporanPage() {
                         {" "}
                         <div className={styles.leftContent}>
                             <ReportInput
-                                label={`Lokasi ${errors.location ? "• " + errors.location : ""}`}
+                                label={`Lokasi ${
+                                    errors.location
+                                        ? "• " + errors.location
+                                        : ""
+                                }`}
                                 placeholder="Masukkan lokasi"
-                                value={locationValue}
+                                value={locationName}
                                 onChange={(e) => {
-                                    setLocationValue(e.target.value);
-                                    if (e.target.value.trim()) {
-                                        setErrors((prev) => ({
-                                            ...prev,
-                                            location: undefined,
-                                        }));
+                                    setLocationName(e.target.value);
+                                    // When manually entering location, reset coordinates
+                                    if (e.target.value.trim() === "") {
+                                        setLocationValue({ lat: 0, long: 0 });
                                     }
+                                    setErrors((prev) => ({
+                                        ...prev,
+                                        location: undefined,
+                                    }));
                                 }}
                                 isLocationField={true}
+                                onUseCurrentLocation={getCurrentLocation}
+                                isLoadingLocation={gettingLocation}
                             />
                             <Dropdown
-                                label={`Jenis Sampah ${errors.trashType ? "• " + errors.trashType : ""}`}
+                                label={`Jenis Sampah ${
+                                    errors.trashType
+                                        ? "• " + errors.trashType
+                                        : ""
+                                }`}
                                 options={[
                                     "Tumpukan Sampah Liar",
                                     "Sampah di Sungai",
@@ -186,7 +254,9 @@ export default function BuatLaporanPage() {
                                 }}
                             />
                             <ReportInput
-                                label={`Perkiraan Berat ${errors.weight ? "• " + errors.weight : ""}`}
+                                label={`Perkiraan Berat ${
+                                    errors.weight ? "• " + errors.weight : ""
+                                }`}
                                 placeholder="Masukkan perkiraan berat (kg)"
                                 value={weight}
                                 onChange={(e) => {
@@ -212,7 +282,11 @@ export default function BuatLaporanPage() {
                                 icon={IcPlus}
                                 placeholder="Unggah Foto Disini"
                                 isShowLabel={true}
-                                label={`Foto dari Dekat ${errors.photoNear ? "• " + errors.photoNear : ""}`}
+                                label={`Foto dari Dekat ${
+                                    errors.photoNear
+                                        ? "• " + errors.photoNear
+                                        : ""
+                                }`}
                                 isDarkBorder={true}
                                 value={photoNear}
                                 onChange={(val) => {
@@ -227,7 +301,11 @@ export default function BuatLaporanPage() {
                                 icon={IcPlus}
                                 placeholder="Unggah Foto Disini"
                                 isShowLabel={true}
-                                label={`Foto dari Jauh ${errors.photoFar ? "• " + errors.photoFar : ""}`}
+                                label={`Foto dari Jauh ${
+                                    errors.photoFar
+                                        ? "• " + errors.photoFar
+                                        : ""
+                                }`}
                                 isDarkBorder={true}
                                 value={photoFar}
                                 onChange={(val) => {

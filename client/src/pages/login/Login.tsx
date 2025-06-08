@@ -50,9 +50,11 @@ export default function LoginPage() {
         setIsLoading(true);
         try {
             const response = await apiService.auth.login(email, password);
-
+            console.log(response);
             if (response.status === 200) {
                 setIsLogin(true);
+
+                localStorage.setItem("token", response.data.token);
 
                 if (rememberMe) {
                     localStorage.setItem("rememberedEmail", email);
@@ -60,7 +62,7 @@ export default function LoginPage() {
                     localStorage.removeItem("rememberedEmail");
                 }
 
-                navigate("/");
+                navigate("/riwayat-laporan");
             } else {
                 alert("Login gagal, periksa email dan password Anda");
             }
