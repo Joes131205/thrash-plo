@@ -68,3 +68,59 @@
 .listArtikel::-webkit-scrollbar {
   display: none;
 }
+
+.titleArticle {
+  font-weight: var(--weight-semibold);
+  font-size: 54px;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin-bottom: 1px;
+}
+
+.creator {
+  font-size: var(--dp-16);
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.leftContent {
+  flex: 1;
+}
+
+.paragraph {
+  padding: 0 50px;
+  margin-top: -50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.contentText {
+  color: var(--text-primary);
+  font-size: var(--dp-18);
+}
+
+.reaction {
+  padding: 0 50px;
+  text-align: center;
+}
+
+.askReaction {
+  color: var(--text-primary);
+  font-size: var(--dp-18);
+  font-weight: var(--weight-semibold);
+}
+
+.containerDetail {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}

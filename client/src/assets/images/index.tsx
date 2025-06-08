@@ -29,6 +29,7 @@ import ImgEarthDay from "./img-earth-day.jpg";
 import ImgTrashArt from "./img-trash-art.jpg";
 import ImgTumpukanSampah from "./img-tumpukan-sampah.jpeg";
 import ImgOsoji from "./img-osoji.jpg";
+import ImgCreator from "./img-creator.png";
 
 export {
   ImgLogo,
@@ -62,4 +63,5 @@ export {
   ImgTrashArt,
   ImgTumpukanSampah,
   ImgOsoji,
+  ImgCreator,
 };
