@@ -18,44 +18,73 @@ import TermsCondition from "./pages/others/TermsCon";
 import Error404 from "./pages/others/PageNotFound";
 
 const App = () => {
-  function AnimatedRoutes() {
-    const location = useLocation();
+    function AnimatedRoutes() {
+        const location = useLocation();
+
+        return (
+            <>
+                <ScrollToTop />
+                <AnimatePresence mode="wait">
+                    <Routes location={location} key={location.pathname}>
+                        {/* starter */}
+                        <Route path="/" element={<LandingPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route
+                            path="/register-warga"
+                            element={<RegisterWarga />}
+                        />
+                        <Route
+                            path="/register-komunitas"
+                            element={<RegisterKomunitas />}
+                        />
+                        <Route path="/terms" element={<TermsCondition />} />
+                        <Route path="/404" element={<Error404 />} />
+                        {/* menu navbar */}
+                        <Route
+                            path="/tentang-kami"
+                            element={<TentangKamiPage />}
+                        />
+                        <Route path="/artikel" element={<ArtikelPage />} />
+                        <Route
+                            path="/aksi-bersih"
+                            element={<AksiBersihPage />}
+                        />
+                        <Route
+                            path="/buat-laporan"
+                            element={<BuatLaporanPage />}
+                        />
+                        <Route
+                            path="/riwayat-laporan"
+                            element={<RiwayatLaporanPage />}
+                        />{" "}
+                        {/* details */}
+                        <Route
+                            path="/detail-aksi"
+                            element={<DetailAksiPage />}
+                        />
+                        <Route
+                            path="/detail-artikel"
+                            element={<DetailArtikelPage />}
+                        />
+                        <Route
+                            path="/detail-laporan"
+                            element={<DetailLaporanPage />}
+                        />
+                        <Route
+                            path="/detail-laporan/:id"
+                            element={<DetailLaporanPage />}
+                        />
+                    </Routes>
+                </AnimatePresence>
+            </>
+        );
+    }
 
     return (
-      <>
-        <ScrollToTop />
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            {/* starter */}
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register-warga" element={<RegisterWarga />} />
-            <Route path="/register-komunitas" element={<RegisterKomunitas />} />
-            <Route path="/terms" element={<TermsCondition />} />
-            <Route path="/404" element={<Error404 />} />
-
-            {/* menu navbar */}
-            <Route path="/tentang-kami" element={<TentangKamiPage />} />
-            <Route path="/artikel" element={<ArtikelPage />} />
-            <Route path="/aksi-bersih" element={<AksiBersihPage />} />
-            <Route path="/buat-laporan" element={<BuatLaporanPage />} />
-            <Route path="/riwayat-laporan" element={<RiwayatLaporanPage />} />
-
-            {/* details */}
-            <Route path="/detail-aksi" element={<DetailAksiPage />} />
-            <Route path="/detail-artikel" element={<DetailArtikelPage />} />
-            <Route path="/detail-laporan" element={<DetailLaporanPage />} />
-          </Routes>
-        </AnimatePresence>
-      </>
+        <Router>
+            <AnimatedRoutes />
+        </Router>
     );
-  }
-
-  return (
-    <Router>
-      <AnimatedRoutes />
-    </Router>
-  );
 };
 
 export default App;
