@@ -41,6 +41,7 @@ import IcChevronRight from "./ic-chevron-right.svg";
 import IcChevronBottom from "./ic-chevron-bottom.svg";
 import IcCopy from "./ic-copy.svg";
 import IcMenunggu from "./ic-menunggu.svg";
+import IcSearch from "./ic-search.svg";
 
 export {
   IcWarga,
@@ -86,4 +87,5 @@ export {
   IcChevronBottom,
   IcCopy,
   IcMenunggu,
+  IcSearch,
 };

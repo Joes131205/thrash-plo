@@ -14,6 +14,7 @@ import ScrollToTop from "./components/atomics/scrollToTop/scrollToTop";
 import BuatLaporanPage from "./pages/report/CreateReport";
 import DetailLaporanPage from "./pages/report/DetailReport";
 import RiwayatLaporanPage from "./pages/report/RiwayatLaporan";
+import TermsCondition from "./pages/others/TermsCon";
 
 const App = () => {
   function AnimatedRoutes() {
@@ -29,6 +30,7 @@ const App = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register-warga" element={<RegisterWarga />} />
             <Route path="/register-komunitas" element={<RegisterKomunitas />} />
+            <Route path="/terms" element={<TermsCondition />} />
 
             {/* menu navbar */}
             <Route path="/tentang-kami" element={<TentangKamiPage />} />

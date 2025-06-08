@@ -1,0 +1,107 @@
+.header {
+  padding: 20px 110px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.separator {
+  width: 1px;
+  height: 20;
+  color: #26b161;
+}
+
+.termsText {
+  font-weight: var(--weight-medium);
+  font-size: var(--dp-18);
+  color: var(--secondary-color);
+}
+
+.banner {
+  background-color: var(--secondary-color);
+  text-align: center;
+  padding: 70px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bannerText {
+  color: #fafafa;
+  font-weight: var(--weight-semibold);
+  font-size: var(--dp-36);
+}
+
+.searchBox {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fafafa;
+  width: 650px;
+  padding: 5px 8px 5px 25px;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+.searchBox input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 14px;
+  color: #888;
+}
+
+.iconBox {
+  background-color: var(--secondary-color);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.content {
+  padding: 40px 110px;
+}
+
+.titleContent {
+  font-weight: var(--weight-semibold);
+  font-size: var(--dp-24);
+  color: var(--text-primary);
+}
+
+.listContent {
+  margin-top: 60px;
+  display: flex;
+  gap: 40px;
+}
+
+.stakeholder {
+  color: var(--text-primary);
+  font-weight: var(--weight-medium);
+  font-size: var(--dp-20);
+  margin-bottom: 25px;
+}
+
+.termsPoint {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.pointTitle {
+  color: #c0c0c0;
+  font-weight: var(--weight-medium);
+  font-size: var(--dp-18);
+}
+
+.pointDesc {
+  color: #cccccc;
+  font-size: var(--dp-14);
+}
+
+.separator {
+  width: 3px;
+  background-color: #d9d9d9;
+  opacity: 0.8;
+}
