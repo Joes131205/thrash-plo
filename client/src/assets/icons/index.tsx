@@ -42,6 +42,8 @@ import IcChevronBottom from "./ic-chevron-bottom.svg";
 import IcCopy from "./ic-copy.svg";
 import IcMenunggu from "./ic-menunggu.svg";
 import IcSearch from "./ic-search.svg";
+import IcDecorTop from "./ic-decor-top.svg";
+import IcDecorBottom from "./ic-decor-bottom.svg";
 
 export {
   IcWarga,
@@ -88,4 +90,6 @@ export {
   IcCopy,
   IcMenunggu,
   IcSearch,
+  IcDecorBottom,
+  IcDecorTop,
 };

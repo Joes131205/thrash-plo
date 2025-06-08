@@ -1,0 +1,45 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.decorTop,
+.decorBottom {
+  height: auto;
+}
+
+.number {
+  color: var(--secondary-color);
+  font-size: 6rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.text {
+  color: var(--accent-color);
+  font-size: 2rem;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .number {
+    font-size: 4rem;
+  }
+
+  .text {
+    font-size: 1.2rem;
+  }
+
+  .decorTop,
+  .decorBottom {
+    width: 80px;
+    max-width: 50vw;
+  }
+}
