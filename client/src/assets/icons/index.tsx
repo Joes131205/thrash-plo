@@ -44,6 +44,21 @@ import IcMenunggu from "./ic-menunggu.svg";
 import IcSearch from "./ic-search.svg";
 import IcDecorTop from "./ic-decor-top.svg";
 import IcDecorBottom from "./ic-decor-bottom.svg";
+import IcHamburger from "./ic-hamburger.svg";
+import IcClipboard from "./ic-clipboard.svg";
+import IcClipboardList from "./ic-clipboard-list.svg";
+import IcArticle from "./ic-article.svg";
+import IcUserRound from "./ic-user-round.svg";
+import IcDashboard from "./ic-dashboard.svg";
+import IcRequestDash from "./ic-request.svg";
+import IcReportDash from "./ic-report.svg";
+import IcArticleDash from "./ic-article-dash.svg";
+import IcRelawanDash from "./ic-relawan.svg";
+import IcAksiDash from "./ic-aksi.svg";
+import IcLogout from "./ic-logout.svg";
+import IcFilterBtn from "./ic-filter-button.svg";
+import IcDelete from "./ic-delete.svg";
+import IcEdit from "./ic-edit.svg";
 
 export {
   IcWarga,
@@ -91,5 +106,20 @@ export {
   IcMenunggu,
   IcSearch,
   IcDecorBottom,
+  IcHamburger,
   IcDecorTop,
+  IcArticle,
+  IcClipboard,
+  IcClipboardList,
+  IcUserRound,
+  IcAksiDash,
+  IcArticleDash,
+  IcDashboard,
+  IcLogout,
+  IcRelawanDash,
+  IcReportDash,
+  IcRequestDash,
+  IcFilterBtn,
+  IcDelete,
+  IcEdit,
 };

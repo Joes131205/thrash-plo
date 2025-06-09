@@ -3,7 +3,6 @@ import Footer from "@/components/organisms/footer/footer";
 import styles from "./Artikel.module.css";
 import { motion } from "framer-motion";
 import { ImgAksiTwo, ImgBorderLine, ImgCreator } from "@/assets/images";
-import { IcSeparator, IcSeparatorLog } from "@/assets/icons";
 
 export default function DetailArtikelPage() {
   const pageVariants = {
