@@ -12,11 +12,13 @@ type User = {
     name: string;
     email: string;
     phone_number: string;
+    role: "user" | "community" | "admin" | "DLH";
 };
 
 type AuthContextType = {
     isLogin: boolean;
     user: User | null;
+    loading: boolean;
     loginUser: (email: string, password: string) => Promise<boolean>;
     registerUser: (
         name: string,
@@ -38,10 +40,10 @@ export const useAuth = (): AuthContextType => {
     }
     return context;
 };
-
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [isLogin, setIsLogin] = useState(false);
     const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(false);
 
     const fetchUserData = async () => {
         try {
@@ -56,6 +58,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             localStorage.removeItem("token");
             setUser(null);
             setIsLogin(false);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -64,6 +68,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         if (token) {
             setIsLogin(true);
             fetchUserData();
+        } else {
+            setLoading(false);
         }
     }, []);
 
@@ -77,6 +83,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 localStorage.setItem("token", response.data.token);
                 setUser(response.data.user);
                 setIsLogin(true);
+                await fetchUserData();
                 return true;
             }
             return false;
@@ -116,7 +123,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const logout = () => {
         localStorage.removeItem("token");
-        setUser(null);
         setIsLogin(false);
     };
 
@@ -126,6 +132,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 isLogin,
                 setIsLogin,
                 user,
+                loading,
                 loginUser,
                 registerUser,
                 logout,

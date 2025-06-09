@@ -5,7 +5,10 @@ export interface IReport extends Document {
     trashId: string;
     userId: Types.ObjectId;
     description: string;
-    photo: string;
+    photo: {
+        far: string;
+        near: string;
+    };
     location: {
         lat: number;
         long: number;
@@ -25,7 +28,16 @@ const ReportSchema: Schema = new Schema(
             required: true,
         },
         description: { type: String, required: true },
-        photo: { type: String, required: true },
+        photo: {
+            far: {
+                type: String,
+                required: true,
+            },
+            near: {
+                type: String,
+                required: true,
+            },
+        },
         location: {
             lat: {
                 type: Number,

@@ -148,14 +148,16 @@ export default function BuatLaporanPage() {
         }
 
         setLoading(true);
-
         try {
             const weightNum = weight.trim() === "" ? null : Number(weight);
 
             const reportData = {
                 trashId: `TR-${Date.now()}`,
                 description: notes || "Tidak ada catatan",
-                photo: photoFar || "",
+                photo: {
+                    near: photoNear || "",
+                    far: photoFar || "",
+                },
                 location: locationValue,
                 category:
                     trashType === "Tumpukan Sampah Liar"

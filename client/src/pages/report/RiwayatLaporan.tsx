@@ -28,7 +28,10 @@ interface ReportFromAPI {
     _id: string;
     trashId: string;
     description: string;
-    photo: string;
+    photo: {
+        near: string;
+        far: string;
+    };
     location: {
         lat: number;
         long: number;
@@ -108,15 +111,15 @@ export default function RiwayatLaporanPage() {
                                       4
                                   )}, ${report.location.long.toFixed(4)}`
                                 : "Lokasi tidak tersedia";
-
-                            // Return data in the format expected by the TableSampah component
                             return {
                                 id: report._id,
                                 lokasi: lokasi,
                                 jenisSampah: jenisSampah,
                                 tanggal: formattedDate,
                                 fotoUrl:
-                                    report.photo ||
+                                    (report.photo &&
+                                        (report.photo.far ||
+                                            report.photo.near)) ||
                                     "https://via.placeholder.com/60x40?text=No+Image",
                                 status: mapBackendToTabStatus(report.status), // Convert backend status to TabType
                                 originalData: report, // Keep the original data
