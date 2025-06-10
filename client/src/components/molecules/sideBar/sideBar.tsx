@@ -37,7 +37,7 @@ const sidebarItemsByRole: Record<string, SidebarItem[]> = {
     { key: "pengguna", label: "Daftar Pengguna", icon: IcRelawanDash },
     { key: "aksi-bersih", label: "Aksi Bersih", icon: IcAksiDash },
     { key: "artikel", label: "Artikel", icon: IcArticleDash },
-    { key: "mitra", label: "Mitra", icon: IcRelawanDash },
+    { key: "mitra", label: "Hubungkan ke Mitra", icon: IcRelawanDash },
     { key: "keluar", label: "Keluar", icon: IcLogout },
   ],
 };

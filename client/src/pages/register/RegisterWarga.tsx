@@ -70,7 +70,7 @@ export default function RegisterWarga() {
               <div className={styles.checkboxLabel}>
                 <input type="checkbox" checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)} className={styles.checkbox} />
                 <p className={styles.rememberMe}>
-                  Saya udah membaca {""}
+                  Saya sudah membaca {""}
                   <span onClick={() => navigate("/terms")} className={styles.registerLink} style={{ cursor: "pointer" }}>
                     {" "}
                     Syarat dan Ketentuan
@@ -82,7 +82,6 @@ export default function RegisterWarga() {
 
             <div
               style={{
-                width: "85%",
                 marginTop: 25,
                 textAlign: "center",
                 paddingBottom: 20,

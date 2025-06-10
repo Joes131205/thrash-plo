@@ -16,6 +16,10 @@ const getStatusColor = (status: string) => {
       return "#126DA9";
     case "Menunggu Dijemput":
       return "#FF6600";
+    case "Sedang Dibersihkan":
+      return "#126DA9";
+    case "Menunggu Diterima":
+      return "#FF6600";
     default:
       return "#007bff";
   }

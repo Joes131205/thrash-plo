@@ -133,11 +133,29 @@
   gap: 30px;
 }
 
+.headContent {
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .tabTitle {
   font-size: 28px;
   color: #2e2e2e;
   font-weight: bold;
   margin-bottom: -10px;
+}
+
+.filter {
+  font-size: 22px;
+  color: #2e2e2e;
+  font-weight: var(--weight-semibold);
+}
+
+.tabFilter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .topReport {

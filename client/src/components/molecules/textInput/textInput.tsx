@@ -17,7 +17,6 @@ const styles: Record<string, React.CSSProperties> = {
     border: "1.5px solid var(--stroke-secondary)",
     borderRadius: "8px",
     padding: "8px 12px",
-    maxWidth: "400px",
     width: "100%",
     gap: 11,
   },
@@ -31,12 +30,13 @@ const styles: Record<string, React.CSSProperties> = {
   },
   eyeIcon: {
     cursor: "pointer",
+    background: "none",
+    border: "none",
   },
 };
 
-export default function TextInput({ value, onChange, placeholder = "", type = "text", icon, password }: TextInputProps) {
+const TextInput: React.FC<TextInputProps> = ({ value, onChange, placeholder = "", type = "text", icon, password }) => {
   const [showPassword, setShowPassword] = useState(false);
-
   const inputType = password ? (showPassword ? "text" : "password") : type;
 
   const handleTogglePassword = () => {
@@ -47,7 +47,13 @@ export default function TextInput({ value, onChange, placeholder = "", type = "t
     <div style={styles.container}>
       {icon && <img src={icon} alt="icon" />}
       <input type={inputType} value={value} onChange={onChange} placeholder={placeholder} style={styles.text} />
-      {password && <img src={showPassword ? IcEyesOpen : IcEyesClose} alt="toggle password visibility" onClick={handleTogglePassword} style={styles.eyeIcon} />}
+      {password && (
+        <button type="button" onClick={handleTogglePassword} style={{ background: "transparent", border: "none", cursor: "pointer" }}>
+          <img src={showPassword ? IcEyesOpen : IcEyesClose} alt="toggle password visibility" />
+        </button>
+      )}
     </div>
   );
-}
+};
+
+export default TextInput;

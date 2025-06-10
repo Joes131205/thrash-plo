@@ -1,4 +1,4 @@
-import { IcArticle, IcClipboard, IcClipboardList, IcHamburger, IcUserRound } from "@/assets/icons";
+import { IcArticle, IcClipboard, IcClipboardList, IcHamburger, IcPlus, IcUserRound } from "@/assets/icons";
 import styles from "../../../pages/dashboard/Dashboard.module.css";
 import { ImgCreator } from "@/assets/images";
 import StatsCard from "@/components/molecules/statisticsCard/statsCard";
@@ -9,6 +9,10 @@ import ArticleTable from "@/components/organisms/articleTable/articleTable";
 import { SummaryCard } from "@/components/molecules/summaryCard/summaryCard";
 import { ContributorTable } from "@/components/organisms/contributorTable/contributorTable";
 import ModalConfirmation from "@/components/molecules/modalConfirm/modalConfirm";
+import { useState } from "react";
+import PictInput from "@/components/molecules/pictInput/pictInput";
+import ReportInput from "@/components/molecules/reportInput/reportInput";
+import Dropdown from "@/components/molecules/dropdownMain/DropdownMain";
 
 interface DLHContentProps {
   activeTab: string;
@@ -18,6 +22,13 @@ interface DLHContentProps {
 }
 
 export default function DLHContent({ activeTab, setActiveTab, isShowModalDelete, setIsShowModalDelete }: DLHContentProps) {
+  const [isShowFormAksi, setIsShowFormAksi] = useState(false);
+  const [photoBefore, setPhotoBefore] = useState<string | null>(null);
+  const [photoAfter, setPhotoAfter] = useState<string | null>(null);
+  const [notesAksi, setNotesAksi] = useState("");
+  const [trashType, setTrashType] = useState("");
+  const [isShowTabRequest, setIsShowTabRequest] = useState(true);
+
   const progressData = [
     { groupName: "Pandawara Group", status: "Sedang Diangkut", location: "Sungai Kapuas", date: "24-04-2025" },
     { groupName: "Sukarela Group", status: "Menunggu Dijemput", location: "Sungai Mahakam", date: "24-04-2025" },
@@ -49,7 +60,7 @@ export default function DLHContent({ activeTab, setActiveTab, isShowModalDelete,
       date: "22-04-2025",
       elapsed: "4 days",
       status: "Selesai",
-      verification: "Ditolak",
+      verification: "Tandai Selesai",
     },
   ];
 
@@ -150,10 +161,71 @@ export default function DLHContent({ activeTab, setActiveTab, isShowModalDelete,
 
       {/* ID : Request */}
       {activeTab === "request" && (
-        <div id="request" className={styles.tabContent}>
-          <h1 className={styles.tabTitle}>Daftar Permintaan dan Progress</h1>
-          <RequestTable data={dummyData} />
-        </div>
+        <>
+          {isShowTabRequest && (
+            <div id="request" className={styles.tabContent}>
+              <h1 className={styles.tabTitle}>Daftar Permintaan dan Progress</h1>
+              <RequestTable
+                data={dummyData}
+                onClickVerif={() => {
+                  setIsShowTabRequest(false);
+                  setIsShowFormAksi(true);
+                }}
+              />
+            </div>
+          )}
+          {isShowFormAksi && (
+            <div className={styles.formAksi}>
+              <div id="request" className={styles.tabContent}>
+                <h1 className={styles.tabTitle}>Unggah Bukti Kegiatan</h1>
+                <div style={{ width: "100%", height: 2, backgroundColor: "#2E2E2E" }}></div>
+
+                <p style={{ fontSize: 20, color: "#2e2e2e" }}>
+                  Silakan unggah foto atau dokumen sebagai bukti bahwa aksi telah dilakukan. <br />
+                  <span>(Unggah foto saat kegiatan dan hasil dari kegiatan) </span>
+                </p>
+                <div style={{ display: "flex", gap: 30 }}>
+                  <PictInput
+                    icon={IcPlus}
+                    placeholder="Unggah Foto Disini"
+                    isShowLabel={true}
+                    label={`Foto Ketika Kegiatan `}
+                    isDarkBorder={true}
+                    value={photoBefore}
+                    onChange={(val) => {
+                      setPhotoBefore(val);
+                    }}
+                  />
+                  <PictInput
+                    icon={IcPlus}
+                    placeholder="Unggah Foto Disini"
+                    isShowLabel={true}
+                    label={`Foto Hasil Kegiatan `}
+                    isDarkBorder={true}
+                    value={photoAfter}
+                    onChange={(val) => {
+                      setPhotoAfter(val);
+                    }}
+                  />
+                </div>
+                <Dropdown
+                  label={`Jenis Sampah `}
+                  options={["Sampah Plastik", "Sampah Kaleng", "Sampah Seng"]}
+                  placeholder="Pilih Jenis Sampah"
+                  value={trashType}
+                  onSelect={(value) => {
+                    setTrashType(value);
+                  }}
+                />
+                <ReportInput label="Deskripsi Hasil Aksi Bersih" placeholder="Masukkan catatan terkait sampah (opsional)" value={notesAksi} onChange={(e) => setNotesAksi(e.target.value)} isTextarea />
+                <div style={{ display: "flex", justifyContent: "flex-end", gap: 15 }}>
+                  <button style={{ cursor: "pointer", backgroundColor: "#3D3D3D", color: "#fff", padding: "10px 40px", fontWeight: "var(--weight-semibold)", borderRadius: 6 }}>Batal</button>
+                  <button style={{ cursor: "pointer", backgroundColor: "#2CD789", color: "#fff", padding: "10px 40px", fontWeight: "var(--weight-semibold)", borderRadius: 6 }}>Simpan</button>
+                </div>
+              </div>
+            </div>
+          )}
+        </>
       )}
 
       {/* ID : Laporan */}
@@ -214,6 +286,19 @@ export default function DLHContent({ activeTab, setActiveTab, isShowModalDelete,
                   confirmLabel="Ya, Hapus"
                 />
               )} */}
+        </div>
+      )}
+
+      {/* ID : Mitra */}
+      {activeTab === "mitra" && (
+        <div id="report" className={styles.headContent}>
+          <h1 className={styles.tabTitle}>Hubungkan ke Mitra</h1>
+          <div className={styles.tabFilter}>
+            <h1 className={styles.filter}>Filter : </h1>
+            <button style={{ backgroundColor: "#A5FFD6", padding: "10px 40px", borderRadius: 6, color: "#2e2e2e", fontWeight: "var(--weight-semibold)", cursor: "pointer" }}>Plastik</button>
+            <button style={{ backgroundColor: "#A5FFD6", padding: "10px 40px", borderRadius: 6, color: "#2e2e2e", fontWeight: "var(--weight-semibold)", cursor: "pointer" }}>Kaleng</button>
+            <button style={{ backgroundColor: "#A5FFD6", padding: "10px 40px", borderRadius: 6, color: "#2e2e2e", fontWeight: "var(--weight-semibold)", cursor: "pointer" }}>Seng</button>
+          </div>
         </div>
       )}
     </div>

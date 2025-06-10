@@ -4,20 +4,17 @@ import { ImgCreator } from "@/assets/images";
 import StatsCard from "@/components/molecules/statisticsCard/statsCard";
 import MonthlyReportChart from "@/components/organisms/barChart/monthlyReportChart";
 import ProgressItem from "@/components/organisms/progressItem/progressItem";
-import RequestTable from "@/components/organisms/requestTable/requestTable";
 import ArticleTable from "@/components/organisms/articleTable/articleTable";
-import { SummaryCard } from "@/components/molecules/summaryCard/summaryCard";
-import { ContributorTable } from "@/components/organisms/contributorTable/contributorTable";
-import ModalConfirmation from "@/components/molecules/modalConfirm/modalConfirm";
+import RequestComTable from "@/components/organisms/requestComTable/requestComTable";
 
-interface DLHContentProps {
+interface CommunityContentProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   isShowModalDelete: boolean;
   setIsShowModalDelete: (value: boolean) => void;
 }
 
-export default function CommunityContent({ activeTab, setActiveTab, isShowModalDelete, setIsShowModalDelete }: DLHContentProps) {
+export default function CommunityContent({ activeTab, setActiveTab, isShowModalDelete, setIsShowModalDelete }: CommunityContentProps) {
   const progressData = [
     { groupName: "Pandawara Group", status: "Sedang Diangkut", location: "Sungai Kapuas", date: "24-04-2025" },
     { groupName: "Sukarela Group", status: "Menunggu Dijemput", location: "Sungai Mahakam", date: "24-04-2025" },
@@ -28,7 +25,7 @@ export default function CommunityContent({ activeTab, setActiveTab, isShowModalD
 
   const dummyData = [
     {
-      name: "Pandawara Group",
+      name: "Bu Siti",
       location: "Sungai Bidadari",
       date: "24-04-2025",
       elapsed: "2 days",
@@ -36,7 +33,7 @@ export default function CommunityContent({ activeTab, setActiveTab, isShowModalD
       verification: "Terima",
     },
     {
-      name: "Sukarela Group",
+      name: "Pak Jumala",
       location: "Taman Kencana",
       date: "24-04-2025",
       elapsed: "2 days",
@@ -44,7 +41,7 @@ export default function CommunityContent({ activeTab, setActiveTab, isShowModalD
       verification: "Terima",
     },
     {
-      name: "Clean Group",
+      name: "Bu Asih",
       location: "Roxy",
       date: "22-04-2025",
       elapsed: "4 days",
@@ -75,14 +72,6 @@ export default function CommunityContent({ activeTab, setActiveTab, isShowModalD
       imageUrl: "https://via.placeholder.com/150x100.png?text=Artikel+3",
       status: "Selesai",
     },
-  ];
-
-  const contributorData = [
-    { image: ImgCreator, community: "Pandawara Group", leader: "Janssen125", reports: 212, weight: 2134, region: "Jakarta" },
-    { image: ImgCreator, community: "Sukarela Group", leader: "Shreen", reports: 105, weight: 1029, region: "Jakarta" },
-    { image: ImgCreator, community: "Green Group", leader: "Joe", reports: 97, weight: 1001, region: "Jakarta" },
-    { image: ImgCreator, community: "Clean Group", leader: "Budiman", reports: 59, weight: 502, region: "Jakarta" },
-    { image: ImgCreator, community: "Yayasan Group", leader: "Malati", reports: 43, weight: 543, region: "Jakarta" },
   ];
 
   const sedangDiangkut = progressData.filter((item) => item.status === "Sedang Diangkut");
@@ -152,41 +141,7 @@ export default function CommunityContent({ activeTab, setActiveTab, isShowModalD
       {activeTab === "request" && (
         <div id="request" className={styles.tabContent}>
           <h1 className={styles.tabTitle}>Daftar Permintaan dan Progress</h1>
-          <RequestTable data={dummyData} />
-        </div>
-      )}
-
-      {/* ID : Laporan */}
-      {activeTab === "laporan" && (
-        <div id="report" className={styles.tabContent}>
-          <h1 className={styles.tabTitle}>Laporan</h1>
-          <div className={styles.topReport}>
-            <div className={styles.card}>
-              <h3 className={`${styles.cardTitle} ${styles.centeredTitle}`}>Total Laporan Masuk Perbulan</h3>
-              <MonthlyReportChart />
-            </div>
-            <div className={`${styles.card} ${styles.cardWithPadding}`}>
-              <h2 className={`${styles.cardTitle} ${styles.borderBottom}`}>Ringkasan</h2>
-              <div className={styles.summaryGrid}>
-                <SummaryCard title="Total Laporan" value="5.879" />
-                <SummaryCard title="Bulan Laporan Terbanyak" value="Maret" />
-                <SummaryCard title="Laporan Terbanyak" value="967" />
-                <SummaryCard title="Kontribusi Terbanyak" value="Pandawara Group" />
-                <SummaryCard title="Total Laporan Kontributor Terbanyak" value="212" />
-                <SummaryCard title="Rata-rata Laporan" value="653,22" />
-                <SummaryCard title="Total Laporan Selesai" value="5.693" />
-                <SummaryCard title="Total Laporan Sedang Diproses" value="186" />
-                <SummaryCard title="Waktu Proses Paling Cepat" value="10 jam (Maret)" />
-                <SummaryCard title="Waktu Proses Paling Lambat" value="12 hari (Mei)" />
-              </div>
-            </div>
-          </div>
-          <div className={styles.bottomReport}>
-            <div className={`${styles.card}`}>
-              <h2 className={`${styles.cardTitle} ${styles.borderBottom}`}>5 Kontributor Terbesar</h2>
-              <ContributorTable data={contributorData} />
-            </div>
-          </div>
+          {/* <RequestComTable data={dummyData} /> */}
         </div>
       )}
 

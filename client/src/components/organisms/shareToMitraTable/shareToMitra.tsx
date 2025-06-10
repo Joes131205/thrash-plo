@@ -83,7 +83,7 @@ const styles = {
   },
 };
 
-const RequestTable: React.FC<RequestTableProps> = ({ data, onClickVerif }) => {
+const ShareToMitra: React.FC<RequestTableProps> = ({ data, onClickVerif }) => {
   if (!data || data.length === 0) {
     return <p style={{ fontStyle: "italic", color: "#999" }}>Belum ada laporan baru masuk.</p>;
   }
@@ -168,4 +168,4 @@ const RequestTable: React.FC<RequestTableProps> = ({ data, onClickVerif }) => {
   );
 };
 
-export default RequestTable;
+export default ShareToMitra;

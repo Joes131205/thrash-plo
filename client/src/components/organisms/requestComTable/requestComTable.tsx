@@ -12,7 +12,6 @@ type RequestData = {
 
 interface RequestTableProps {
   data: RequestData[];
-  onClickVerif?: () => void;
 }
 
 const styles = {
@@ -83,7 +82,7 @@ const styles = {
   },
 };
 
-const RequestTable: React.FC<RequestTableProps> = ({ data, onClickVerif }) => {
+const RequestComTable: React.FC<RequestTableProps> = ({ data }) => {
   if (!data || data.length === 0) {
     return <p style={{ fontStyle: "italic", color: "#999" }}>Belum ada laporan baru masuk.</p>;
   }
@@ -100,7 +99,7 @@ const RequestTable: React.FC<RequestTableProps> = ({ data, onClickVerif }) => {
             </th>
             <th style={{ ...styles.thtd, ...styles.th }}>
               <div style={{ display: "flex", alignItems: "center", gap: 5, justifyContent: "center" }}>
-                <p>Nama Komunitas</p>
+                <p>Nama Pelapor</p>
                 <img src={IcFilterBtn} alt="" style={{ width: 12 }} />
               </div>
             </th>
@@ -155,9 +154,7 @@ const RequestTable: React.FC<RequestTableProps> = ({ data, onClickVerif }) => {
                   <span style={styles.status[row.status.toLowerCase() as keyof typeof styles.status]}>{row.status}</span>
                 </td>
                 <td style={styles.thtd}>
-                  <button style={{ cursor: "pointer" }} onClick={onClickVerif}>
-                    <span style={styles.verification[row.verification.toLowerCase() as keyof typeof styles.verification]}>{row.verification}</span>
-                  </button>
+                  <span style={styles.verification[row.verification.toLowerCase() as keyof typeof styles.verification]}>{row.verification}</span>
                 </td>
               </tr>
             ))
@@ -168,4 +165,4 @@ const RequestTable: React.FC<RequestTableProps> = ({ data, onClickVerif }) => {
   );
 };
 
-export default RequestTable;
+export default RequestComTable;

@@ -25,6 +25,9 @@ import BuatLaporanPage from "./pages/report/CreateReport";
 import DetailLaporanPage from "./pages/report/DetailReport";
 import RiwayatLaporanPage from "./pages/report/RiwayatLaporan";
 import DashboardPage from "./pages/dashboard/Dashboard";
+import DashboardDLH from "./pages/dashboard/DashboardDlh";
+import DashboardCom from "./pages/dashboard/DashboardCom";
+import DashboardAdmin from "./pages/dashboard/DashboardAdmin";
 
 const App = () => {
   function AnimatedRoutes() {
@@ -54,7 +57,9 @@ const App = () => {
             <Route path="/detail-laporan" element={<DetailLaporanPage />} />
             <Route path="/detail-laporan/:id" element={<DetailLaporanPage />} />
             {/* dashboard */}
-            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard-dlh" element={<DashboardDLH />} />
+            <Route path="/dashboard-community" element={<DashboardCom />} />
+            <Route path="/dashboard-admin" element={<DashboardAdmin />} />
           </Routes>
         </AnimatePresence>
       </>
