@@ -40,7 +40,6 @@ export const createRecyclingTransaction = async (
             });
         }
 
-        // Validate if partner exists
         const partner = await RecyclingPartner.findById(partnerId);
         if (!partner) {
             return res.status(404).json({

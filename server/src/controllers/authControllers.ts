@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User, IUser, Community } from "../models";
+import { User, IUser, Community, ICommunity } from "../models";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -65,7 +65,6 @@ export const registerUser = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
-        const user: IUser | null = await User.findOne({ email });
 
         if (!email || !password) {
             return res.status(400).json({
@@ -73,6 +72,10 @@ export const login = async (req: Request, res: Response) => {
                 message: "Email and password are required",
             });
         }
+
+        const user: IUser | ICommunity | null =
+            (await User.findOne({ email })) ||
+            (await Community.findOne({ email }));
 
         if (!user) {
             return res.status(404).json({
